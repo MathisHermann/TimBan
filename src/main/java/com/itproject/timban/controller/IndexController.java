@@ -11,14 +11,15 @@ import java.util.ArrayList;
  * Author: Mathis
  * Peer: -
  * Reviewer: -
- * Date 11.04.2021
+ * Date: 11.04.2021
+ * Edit: 16.04.2021
  */
 
 @Controller
-@RequestMapping
+@RequestMapping(path = {"/", "/index"})
 public class IndexController {
 
-    @GetMapping(path = {"/", "/index"})
+    @GetMapping
     public String getIndex(Model model) {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("hello");
@@ -27,13 +28,4 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(path = "/login")
-    public String getLogin() {
-        return "login";
-    }
-
-    @GetMapping(path = "/logout")
-    public String getLogout() {
-        return "logout";
-    }
 }
