@@ -109,11 +109,6 @@ h1 {
  padding-left: 40px;
 }
 
-.svg
-{
- fill: white;
-}
-
 .login-button{
  display: flex;
  justify-content: center;
@@ -157,5 +152,141 @@ h1 {
 {
  color: #4F8280
 }
+
+.timebox{
+ margin-top: 200px;
+}
+
+.timeboxes{
+ display: flex;
+ margin: auto;
+}
+
+.timebox-1 {
+ flex: 0 0 65%;
+ height: 150px;
+ background: #1F2833;
+margin-right: 10px;
+ display: flex;
+}
+
+.timebox-2 {
+ flex: 1;
+ height: 150px;
+ background: #1F2833;
+ margin-left: 10px;
+ display: flex;
+}
+
+.timebox-2-date{
+ text-align: center;
+ height: 40px;
+ width: 130px;
+ background-color: #3FB0AC;
+ border-radius: 3px;
+margin-right: -20px;
+ margin-top: -20px;
+}
+
+.timebox-2-date h1{
+ font-size: 18px;
+ font-weight: bold;
+ color: white;
+ margin: 10px;
+}
+
+.column-timebox-1 {
+ margin: auto;
+ width: 33.33%;
+ text-align: center;
+ color: white;
+ line-height: 0px;
+}
+
+.column-timebox-1 h1{
+ margin-bottom: -10px;
+}
+
+.column-timebox-2{
+ margin: auto;
+ text-align: center;
+ color: white;
+ line-height: 0px;
+ position: center;
+ margin-left: 110px;
+}
+
+.column-timebox-2 h1{
+ margin-bottom: -10px;
+}
+
+.timebox-1 input[type=submit]
+{
+ border: none;
+ outline: none;
+ height: 50px;
+ width: 70%;
+ background: #3FB0AC;
+ color: #fff;
+ font-size: 22px;
+ border-radius: 5px;
+ text-transform: uppercase;
+ cursor: pointer;
+ font-weight:700;
+}
+
+.timebox-1 input[type=submit]:hover
+{
+ cursor: pointer;
+ background: #4F8280;
+ color: white;
+}
+
+
+.current-time
+{
+ color: white;
+}
+
+.last-recordings{
+ margin-top: 100px;
+}
+
+.recording{
+ height: 80px;
+ width: 100%;
+ margin-bottom: 5px;
+ cursor: pointer;
+ background: #A6A6A6;
+ color: white;
+ display: flex;
+
+}
+
+.last-recordings-date {
+ flex: 0 0 20%;
+ color: white;
+ line-height: 0px;
+ margin: auto;
+}
+
+.last-recordings-time {
+ flex: 0 0 20%;
+ color: white;
+ line-height: 0px;
+ margin: auto;
+}
+
+.last-recordings-status {
+ flex: 1;
+ color: white;
+ line-height: 0px;
+ margin: auto;
+}
+.last-recordings-status h1{
+ text-align: right;
+ margin-right: 20px;
+}
+
 
 /* END PART LARS */
