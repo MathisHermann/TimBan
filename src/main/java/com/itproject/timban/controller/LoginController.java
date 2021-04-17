@@ -2,7 +2,6 @@ package com.itproject.timban.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -20,11 +19,5 @@ public class LoginController {
     public String getLogin() {
         return "login";
     }
-
-    @PostMapping
-    public void postLogin() {
-        System.out.println("Hello World.");
-    }
-
 
 }

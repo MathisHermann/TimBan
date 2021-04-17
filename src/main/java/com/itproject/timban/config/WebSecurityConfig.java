@@ -22,10 +22,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .permitAll()
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/dashboard")
                 .and()
                 .logout()
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
+                .deleteCookies("JSESSIONID")
                 .permitAll();
     }
 
