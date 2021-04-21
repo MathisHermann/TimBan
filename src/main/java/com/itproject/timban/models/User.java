@@ -44,6 +44,9 @@ public class User {
         this.weeklyHours = weeklyHours;
     }
 
+    public User () {
+
+    }
 
     /** v.2
         public boolean isInProject(Project project) {

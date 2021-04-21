@@ -34,13 +34,13 @@ public class UserController {
         return new User("Sven", "sven@example.com", "password", true, 30);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
         // Add business service to save user
         return ResponseEntity.ok().body(user);
     }
 
-    @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         // Add business service to save user
         return ResponseEntity.ok().body(user);
