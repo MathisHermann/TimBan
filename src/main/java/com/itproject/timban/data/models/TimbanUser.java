@@ -1,5 +1,8 @@
 package com.itproject.timban.data.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 
 /**
@@ -9,7 +12,11 @@ import java.sql.Timestamp;
  * Date: 06.04.2021
  */
 
-public class User {
+@Entity
+public class TimbanUser {
+
+    @Id
+    @GeneratedValue
     private long id;
     private String userName;
     private String email;
@@ -24,7 +31,7 @@ public class User {
         private ArrayList<Project> projects;
      */
 
-    public User(long id, String userName, String email, String password, boolean isAdmin, long weeklyHours, Timestamp createdOn, Timestamp deletedOn) {
+    public TimbanUser(long id, String userName, String email, String password, boolean isAdmin, long weeklyHours, Timestamp createdOn, Timestamp deletedOn) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -35,7 +42,7 @@ public class User {
         this.deletedOn = deletedOn;
     }
 
-    public User(String userName, String email, String password, boolean isAdmin, long weeklyHours) {
+    public TimbanUser(String userName, String email, String password, boolean isAdmin, long weeklyHours) {
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -43,7 +50,7 @@ public class User {
         this.weeklyHours = weeklyHours;
     }
 
-    public User () {
+    public TimbanUser() {
 
     }
 

@@ -1,4 +1,4 @@
-package com.itproject.timban.config;
+package com.itproject.timban.tools;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;

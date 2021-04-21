@@ -1,7 +1,5 @@
 package com.itproject.timban.api;
 
-import com.itproject.timban.config.LogToFile;
-import com.itproject.timban.models.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

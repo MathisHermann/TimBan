@@ -1,9 +1,8 @@
 package com.itproject.timban.api;
 
-import com.itproject.timban.config.LogToFile;
-import com.itproject.timban.models.User;
+import com.itproject.timban.tools.LogToFile;
+import com.itproject.timban.data.models.TimbanUser;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,13 +24,13 @@ public class UserController {
      * Get all users available
      */
     @GetMapping
-    public ArrayList<User> getUsers() {
-        ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Hans", "hans@example.com", "password", false, 80));
-        users.add(new User("Jakob", "jakob@example.com", "password", true, 1));
-        users.add(new User("Lisa", "lisa@example.com", "password", false, 800));
-        users.add(new User("Jessica", "jessica@example.com", "password", false, 24));
-        users.add(new User("Ruedi", "ruedi@example.com", "password", false, 41));
+    public ArrayList<TimbanUser> getUsers() {
+        ArrayList<TimbanUser> users = new ArrayList<>();
+        users.add(new TimbanUser("Hans", "hans@example.com", "password", false, 80));
+        users.add(new TimbanUser("Jakob", "jakob@example.com", "password", true, 1));
+        users.add(new TimbanUser("Lisa", "lisa@example.com", "password", false, 800));
+        users.add(new TimbanUser("Jessica", "jessica@example.com", "password", false, 24));
+        users.add(new TimbanUser("Ruedi", "ruedi@example.com", "password", false, 41));
         return users;
     }
 
@@ -39,16 +38,16 @@ public class UserController {
      * Get single User based on the id
      */
     @GetMapping(path = "/{id}")
-    public User getSingleUser() {
+    public TimbanUser getSingleUser() {
         // ToDo: Add business service to retrieve user
-        return new User("Sven", "sven@example.com", "password", true, 30);
+        return new TimbanUser("Sven", "sven@example.com", "password", true, 30);
     }
 
     /**
      * Create new User
      */
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<TimbanUser> createUser(@RequestBody TimbanUser user) {
         // ToDo: Add business service to save user
 
         LogToFile.logUser("User created; UserID: " + user.getId() + "; Username: " + user.getUserName());
@@ -59,7 +58,7 @@ public class UserController {
      * Update User
      */
     @PutMapping(path = "/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
+    public ResponseEntity<TimbanUser> updateUser(@RequestBody TimbanUser user) {
         // ToDo: Add business service to save user
 
         LogToFile.logUser("User updated; UserID: " + user.getId() + "; Username: " + user.getUserName());
