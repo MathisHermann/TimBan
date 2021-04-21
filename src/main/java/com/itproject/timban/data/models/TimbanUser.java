@@ -1,7 +1,6 @@
-package com.itproject.timban.models;
+package com.itproject.timban.data.models;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 
 /**
  * Author: Sven Herzig
