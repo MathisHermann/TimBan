@@ -87,7 +87,7 @@ public class TimbanUser {
 
     /** Getter & Setters */
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
