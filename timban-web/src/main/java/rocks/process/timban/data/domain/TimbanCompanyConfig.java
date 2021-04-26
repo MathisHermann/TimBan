@@ -9,7 +9,7 @@ import javax.persistence.Entity;
  * Date: 26.04.2021
  */
 
-@Entity
+// @Entity
 public class TimbanCompanyConfig {
 
     private String companyName;
