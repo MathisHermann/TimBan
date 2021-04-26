@@ -43,7 +43,7 @@ public class TimbanUser {
     private Timestamp deletedOn;
 
 
-    public TimbanUser(long id, String userName, String email, String password, boolean isAdmin, long weeklyHours, Timestamp createdOn, Timestamp deletedOn) {
+    public TimbanUser(Long id, String userName, String email, String password, boolean isAdmin, long weeklyHours, Timestamp createdOn, Timestamp deletedOn) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -87,11 +87,11 @@ public class TimbanUser {
 
     /** Getter & Setters */
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

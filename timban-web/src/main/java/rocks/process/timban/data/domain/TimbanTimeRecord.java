@@ -17,14 +17,14 @@ public class TimbanTimeRecord {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
-    private long userId;
+    private Long userId;
     private boolean startRecording;
     private boolean stopRecording;
     private Timestamp timestamp; // TODO refresh discussion about Timestamp once tackled
 
-    public TimbanTimeRecord(long id, long userId, boolean startRecording, boolean stopRecording, Timestamp timestamp) {
+    public TimbanTimeRecord(Long id, Long userId, boolean startRecording, boolean stopRecording, Timestamp timestamp) {
         this.id = id;
         this.userId = userId;
         this.startRecording = startRecording;
@@ -34,13 +34,13 @@ public class TimbanTimeRecord {
 
     /** Getter & Setters */
 
-    public long getId() { return id; }
+    public Long getId() { return id; }
 
-    public void setId(long id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
 
-    public long getUserId() { return userId; }
+    public Long getUserId() { return userId; }
 
-    public void setUserId(long userId) { this.id = userId; } // TODO get foreign Key
+    public void setUserId(Long userId) { this.id = userId; } // TODO get foreign Key
 
     public boolean getStartRecording() { return startRecording; }
 
