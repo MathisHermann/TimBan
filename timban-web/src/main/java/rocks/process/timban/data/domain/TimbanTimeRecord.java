@@ -3,6 +3,7 @@ package rocks.process.timban.data.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.Instant;
 
 /**
  * Author: Sven Herzig
@@ -22,16 +23,17 @@ public class TimbanTimeRecord {
     private Long userId;
     private boolean startRecording;
     private boolean stopRecording;
-    private String timestamp; // TODO refresh discussion about Timestamp once tackled
+    private Instant timestamp; // TODO refresh discussion about Timestamp once tackled
 
-    public TimbanTimeRecord(Long id, Long userId, boolean startRecording, boolean stopRecording, String timestamp) {
+/** ToDo: Evaluate if needed
+    public TimbanTimeRecord(Long id, Long userId, boolean startRecording, boolean stopRecording, Instant timestamp) {
         this.id = id;
         this.userId = userId;
         this.startRecording = startRecording;
         this.stopRecording = stopRecording;
         this.timestamp = timestamp;
     }
-
+*/
     public TimbanTimeRecord() {
 
     }
@@ -54,7 +56,7 @@ public class TimbanTimeRecord {
 
     public void setStopRecording(boolean stopRecording) { this.stopRecording = stopRecording; }
 
-    public String getTimestamp() { return timestamp; }
+    public Instant getTimestamp() { return timestamp; }
 
-    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+    public void setTimestamp(Instant timestamp) { this.timestamp = timestamp; }
 }

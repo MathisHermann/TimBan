@@ -52,7 +52,7 @@ public class RecordController {
      * Create new Record
      */
     @PostMapping
-    public ResponseEntity<TimbanTimeRecord> createRecord(TimbanTimeRecord timbanTimeRecord) {
+    public ResponseEntity<TimbanTimeRecord> createRecord(@RequestBody TimbanTimeRecord timbanTimeRecord) {
         try {
             TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord);
             LogToFile.logUser("Record created; User: " + timbanTimeRecord.getUserId() + "; Timestamp: "
@@ -69,7 +69,7 @@ public class RecordController {
      * Update existing Record
      */
     @PutMapping(path = "/{id}")
-    public ResponseEntity<TimbanTimeRecord> updateUser(TimbanTimeRecord timbanTimeRecord) {
+    public ResponseEntity<TimbanTimeRecord> updateUser(@RequestBody TimbanTimeRecord timbanTimeRecord) {
         try {
             TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord);
             LogToFile.logUser("Record updated; User: " + updatedTimbanTimeRecord.getUserId() + "; Timestamp: "

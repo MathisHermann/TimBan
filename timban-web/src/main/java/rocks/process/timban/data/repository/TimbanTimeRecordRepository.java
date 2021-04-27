@@ -3,6 +3,8 @@ package rocks.process.timban.data.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import rocks.process.timban.data.domain.TimbanTimeRecord;
 
+import java.util.List;
+
 
 /**
  * Author: Mathis
@@ -13,4 +15,5 @@ import rocks.process.timban.data.domain.TimbanTimeRecord;
  */
 
 public interface TimbanTimeRecordRepository extends JpaRepository<TimbanTimeRecord, Long> {
+    List<TimbanTimeRecord> findAllByUserId(Long userId);
 }
