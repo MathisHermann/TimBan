@@ -24,7 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping(path = "/api/records")
-public class RecordController {
+public class TimbanTimeRecordController {
 
     @Autowired
     private TimbanTimeRecordRepository timbanTimeRecordRepository;
@@ -38,6 +38,14 @@ public class RecordController {
     @GetMapping
     public List<TimbanTimeRecord> getAllRecord() {
         return timbanTimeRecordRepository.findAll();
+    }
+
+    /**
+     * Get all records from one user
+     */
+    @GetMapping(path = "/users/{id}")
+    public List<TimbanTimeRecord> getRecordsByUser(@PathVariable Long id) {
+        return timbanTimeRecordRepository.findAllByUserId(id);
     }
 
     /**
