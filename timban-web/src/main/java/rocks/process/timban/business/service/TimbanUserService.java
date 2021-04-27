@@ -12,9 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.data.repository.TimbanUserRepository;
-
 import javax.validation.Valid;
 import javax.validation.Validator;
+
+/**
+ * Author:
+ * PairProgrammer:
+ * Reviewer:
+ * Date:
+ */
 
 @Service
 @Validated

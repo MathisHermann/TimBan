@@ -1,18 +1,23 @@
 package rocks.process.timban.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import rocks.process.timban.business.service.TimbanUserService;
+import rocks.process.timban.data.repository.TimbanUserRepository;
 import rocks.process.timban.tools.LogToFile;
 import rocks.process.timban.data.domain.TimbanUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 /**
- * Author: Mathis
- * Peer: Sven
+ * Author: Mathis / Sven
+ * PairProgrammer: Mathis / Sven
  * Reviewer: -
- * Date: 21.04.2021
+ * Date: 21.04.2021, 27.04.2021
  *
  * This class handles all the requests regarding the model User. Supporting all CRUD operations.
  */
@@ -21,60 +26,69 @@ import java.util.ArrayList;
 @RequestMapping(path = "/api/users")
 public class UserController {
 
+    @Autowired
+    private TimbanUserRepository timbanUserRepository;
+
+    @Autowired
+    private TimbanUserService timbanUserService;
+
     /**
-     * Get all users available
+     * Get all users available / Successfully tested with Postman
      */
     @GetMapping
-    public ArrayList<TimbanUser> getUsers() {
-        ArrayList<TimbanUser> users = new ArrayList<>();
-        users.add(new TimbanUser("Hans", "hans@example.com", "password", false, 80));
-        users.add(new TimbanUser("Jakob", "jakob@example.com", "password", true, 1));
-        users.add(new TimbanUser("Lisa", "lisa@example.com", "password", false, 800));
-        users.add(new TimbanUser("Jessica", "jessica@example.com", "password", false, 24));
-        users.add(new TimbanUser("Ruedi", "ruedi@example.com", "password", false, 41));
-        return users;
+    public List<TimbanUser> getUsers() {
+        return timbanUserRepository.findAll();
     }
 
     /**
-     * Get single User based on the id
+     * Get single User based on the id / Successfully tested with Postman
+     * @return
      */
     @GetMapping(path = "/{id}")
-    public TimbanUser getSingleUser() {
-        // ToDo: Add business service to retrieve user
-        return new TimbanUser("Sven", "sven@example.com", "password", true, 30);
+    public Optional<TimbanUser> getSingleUser(@PathVariable Long id) {
+        return timbanUserRepository.findById(id);
     }
 
     /**
-     * Create new User
+     * Create new User / Successfully tested with Postman
      */
     @PostMapping
-    public ResponseEntity<TimbanUser> createUser(@RequestBody TimbanUser user) {
-        // ToDo: Add business service to save user
-
-        LogToFile.logUser("User created; UserID: " + user.getId() + "; Username: " + user.getUserName());
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<Void> createUser(@RequestBody TimbanUser timbanUser) {
+        try {
+            timbanUserService.saveTimbanUser(timbanUser);
+            LogToFile.logUser("User created; UserID: " + timbanUser.getId() + "; Username: " + timbanUser.getUserName());
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    } catch (Exception e) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
-     * Update User
+     * Update User / TODO Unsuccessfully tested with Postman error400
      */
     @PutMapping(path = "/{id}")
-    public ResponseEntity<TimbanUser> updateUser(@RequestBody TimbanUser user) {
-        // ToDo: Add business service to save user
-
-        LogToFile.logUser("User updated; UserID: " + user.getId() + "; Username: " + user.getUserName());
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<Void> updateUser(@RequestBody TimbanUser timbanUser) {
+        try {
+            timbanUserService.saveTimbanUser(timbanUser);
+            LogToFile.logUser("User updated; UserID: " + timbanUser.getId() + "; Username: " + timbanUser.getUserName());
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+            }
     }
 
     /**
-     * Delete User
+     * Delete User / Successfully tested with Postman
      */
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        // ToDo: Add business service to delete user
-
-        LogToFile.logUser("User deleted; UserID: " + id);
-        return ResponseEntity.ok().build();
+        try {
+            timbanUserRepository.deleteById(id);
+            LogToFile.logUser("User deleted; UserID: " + id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

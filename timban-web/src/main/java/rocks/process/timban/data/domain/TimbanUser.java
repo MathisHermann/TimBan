@@ -62,6 +62,12 @@ public class TimbanUser {
         this.weeklyHours = weeklyHours;
     }
 
+    public TimbanUser(){
+
+    }
+
+
+
 
 
     /** v.2
