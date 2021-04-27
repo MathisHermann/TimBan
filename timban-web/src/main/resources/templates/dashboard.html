@@ -48,16 +48,19 @@
 <div class="last-recordings">
     <div class="container">
         <h1>My last recordings:</h1>
-        <div class="recording">
+
+
+        <div th:each="record: ${records} " class="recording">
 
             <div class="last-recordings-date">
-                <h1>02.03.2021</h1>
+                <h1 th:text="${record.timestamp}"/>
             </div>
             <div class="last-recordings-time">
-                <h1>09:01</h1>
+                <h1 th:text="${record.timestamp}"/>
             </div>
             <div class="last-recordings-status">
-                <h1>Check-In</h1>
+                <div th:if="${record.startRecording}"><h1>Check-In</h1>
+                    <div  th:unless="${record.stopRecording}"><h1>Check-Out</h1>
             </div>
 
         </div>
