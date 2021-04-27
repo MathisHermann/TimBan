@@ -30,10 +30,15 @@ public class DashboardController {
         /* TODO
          * Add a list of the timerecordings of the current month to the model (remove current attribute message..)
          */
-        model.addAttribute("records", timbanTimeRecordRepository.
-                findAllByUserId(
-                        timbanUserService.getCurrentTimbanUser().getId()
-                ));
+
+        if (timbanUserService.getCurrentTimbanUser() != null) {
+            model.addAttribute("records", timbanTimeRecordRepository.
+                    findAllByUserId(
+                            timbanUserService.getCurrentTimbanUser().getId()
+                    ));
+        } else {
+            model.addAttribute("records", timbanTimeRecordRepository.findAll());
+        }
         return "dashboard";
     }
 
