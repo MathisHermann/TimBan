@@ -44,7 +44,7 @@ public class TimbanTimeRecord {
 
     public Long getUserId() { return userId; }
 
-    public void setUserId(Long userId) { this.userId = userId; } // TODO get foreign Key
+    public void setUserId(Long userId) { this.userId = userId/*TimbanUser.getId()*/; } // TODO get foreign Key
 
     public boolean getStartRecording() { return startRecording; }
 
