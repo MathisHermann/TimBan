@@ -20,11 +20,12 @@ import java.util.Optional;
  * Date: 21.04.2021, 27.04.2021
  *
  * This class handles all the requests regarding the model User. Supporting all CRUD operations.
+ * Only the Admin is able to access these operations.
  */
 
 @RestController
 @RequestMapping(path = "/api/users")
-public class UserController {
+public class TimbanUserController {
 
     @Autowired
     private TimbanUserRepository timbanUserRepository;
