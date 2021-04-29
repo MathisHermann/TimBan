@@ -3,6 +3,8 @@
 
 <!-- COPIED & ADJUSTED FROM INTERNET TECHNOLOGY PROJECT -->
 
+serviceEndpointURL = window.location.protocol + "//" + window.location.host
+
 function login(email, password, callback) {
 
     $.ajax({
@@ -14,7 +16,8 @@ function login(email, password, callback) {
         url: serviceEndpointURL + "/login",
         data: JSON.stringify({
             "email": email,
-            "password": password
+            "password": password,
+            "remember": false
         }),
         success: function (data, textStatus, response) {
             callback(true);
@@ -48,6 +51,11 @@ function currentTime () {
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     return currentTime;
+}
+
+function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
 }
 
 <!-- END PART LARS-->

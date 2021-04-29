@@ -46,8 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .requireCsrfProtectionMatcher(new CSRFRequestMatcher())
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
             .authorizeRequests()
-                .antMatchers("/", "/index", "/css/**", "/images/**", "/login/**", "/dashboard/**", "/admin/**","/api/**").permitAll()
-         //       .antMatchers("/dashboard/**").authenticated() ToDo: After authentication is implemented delete dashboard above and enable this line
+                .antMatchers("/", "/index", "/css/**", "/js/**", "/images/**", "/login/**", "/dashboard/**", "/admin/**","/api/**").permitAll()
+                .antMatchers("/dashboard/**").authenticated()
                 .antMatchers(HttpMethod.GET, "/logout").permitAll()
                 .anyRequest().authenticated().and()
                     .addFilter(new TokenLoginFilter(authenticationManagerBean(), tokenService))
