@@ -59,10 +59,9 @@
                 <h1 th:text="${record.timestamp}"/>
             </div>
             <div class="last-recordings-status">
-                <div th:if="${record.startRecording}"><h1>Check-In</h1>
-                    <div  th:unless="${record.stopRecording}"><h1>Check-Out</h1>
+                <h1 th:if="${record.startRecording}">Check-In</h1>
+                    <h1  th:unless="${record.stopRecording}">Check-Out</h1>
             </div>
-
         </div>
     </div>
 </div>
