@@ -1,10 +1,23 @@
 package rocks.process.timban.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
+import rocks.process.timban.data.domain.TimbanUser;
+import rocks.process.timban.tools.LogToFile;
 
-@Service
-public class OnStartService {
+
+/**
+ * Author: Mathis
+ * Peer: -
+ * Reviewer: -
+ * Date: 29.04.2021
+ * Edit:
+ */
+
+@Component
+public class OnStartService implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
     TimbanUserService timbanUserService;
@@ -12,16 +25,43 @@ public class OnStartService {
     @Autowired
     TimbanTimeRecordService timbanTimeRecordService;
 
-    // create fake admin user
-//        users.add(new TimbanUser("Hans", "hans@example.com", "password", false, 80));
-//        users.add(new TimbanUser("Jakob", "jakob@example.com", "password", true, 1));
-//        users.add(new TimbanUser("Lisa", "lisa@example.com", "password", false, 800));
-//        users.add(new TimbanUser("Jessica", "jessica@example.com", "password", false, 24));
-//        users.add(new TimbanUser("Ruedi", "ruedi@example.com", "password", false, 41));
 
-        // create fake user
+    private void logResults(boolean adminCreated, boolean fakeUsersCreated) {
+        LogToFile.logSystem("info", "Admin Account " + (adminCreated ? "successfully" : "not") + " created.");
+        LogToFile.logSystem("info", "Fake User Accounts " + (fakeUsersCreated ? "successfully" : "not") + " created.");
+    }
 
-    // create fake timeRecords
+    public boolean createFakeUsers() {
+        try {
+            timbanUserService.saveTimbanUser(new TimbanUser("Hans", "hans@example.com", "password", false, 80));
+            timbanUserService.saveTimbanUser(new TimbanUser("Jakob", "jakob@example.com", "password", false, 1));
+            timbanUserService.saveTimbanUser(new TimbanUser("Lisa", "lisa@example.com", "password", false, 800));
+            timbanUserService.saveTimbanUser(new TimbanUser("Jessica", "jessica@example.com", "password", false, 24));
+            timbanUserService.saveTimbanUser(new TimbanUser("Ruedi", "ruedi@example.com", "password", false, 41));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean createAdminUser() {
+        try {
+            timbanUserService.saveTimbanUser(new TimbanUser("admin", "admin@example.fhnw.ch", "secret", true, 0));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onApplicationEvent(ApplicationReadyEvent event) {
+        this.logResults(this.createAdminUser(), this.createFakeUsers());
+    }
+
+
+    // ToDo: create fake timeRecords
 
 
 }
