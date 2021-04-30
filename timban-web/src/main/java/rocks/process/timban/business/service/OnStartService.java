@@ -47,7 +47,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
 
     public boolean createAdminUser() {
         try {
-            timbanUserService.saveTimbanUser(new TimbanUser("admin", "admin@example.fhnw.ch", "secret", true, 0));
+            timbanUserService.saveTimbanUser(new TimbanUser("admin", "admin@example.com", "12345678", true, 0));
         } catch (Exception e) {
             e.printStackTrace();
             return false;
