@@ -11,6 +11,11 @@ nav {
 }
 
 .logo {
+    max-height: 40px;
+    margin: 45px 55px;
+}
+
+.nav-head-icon {
     max-height: 70px;
     margin: 45px 55px;
 }
