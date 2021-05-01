@@ -43,7 +43,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </div>
         </ul>
@@ -100,7 +100,7 @@
                 <h1 th:text="${record.timestamp}"/>
             </div>
             <div class="last-recordings-time">
-                <h1 th:text="${record.timestamp}"/>
+               <h1 th:text="${record.timestamp}"/>
             </div>
             <div class="last-recordings-status">
                 <h1 th:if="${record.startRecording}">Check-In</h1>

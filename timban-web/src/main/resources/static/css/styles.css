@@ -33,6 +33,7 @@ body {
  padding: 130px 50px;
  margin-top: 100px;
  box-shadow: 0px 0px 9px 0px rgb(0 0 0 / 50%);
+ border-radius: 4px;
 }
 
 .login-logo
@@ -171,6 +172,7 @@ h1 {
 margin-right: 10px;
  display: flex;
  box-shadow: 0px 0px 9px 0px rgb(0 0 0 / 50%);
+ border-radius: 4px;
 }
 
 .timebox-2 {
@@ -180,6 +182,7 @@ margin-right: 10px;
  margin-left: 10px;
  display: flex;
  box-shadow: 0px 0px 9px 0px rgb(0 0 0 / 50%);
+ border-radius: 4px;
 }
 
 .timebox-2-date{
