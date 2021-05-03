@@ -14,6 +14,8 @@ import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.data.repository.TimbanUserRepository;
 import javax.validation.Valid;
 import javax.validation.Validator;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author:
@@ -45,6 +47,10 @@ public class TimbanUserService {
         }
         timbanUser.setPassword(passwordEncoder.encode(timbanUser.getPassword()));
         timbanUserRepository.save(timbanUser);
+    }
+
+    public List<TimbanUser> getAllTimbanUsers() {
+        return timbanUserRepository.findAll();
     }
 
     public TimbanUser getCurrentTimbanUser() {

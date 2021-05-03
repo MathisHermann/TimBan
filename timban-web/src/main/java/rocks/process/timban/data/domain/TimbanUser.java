@@ -37,6 +37,8 @@ public class TimbanUser {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // only create object property from JSON
     private String password;
 
+    private boolean currentlyCheckedIn;
+
     private boolean isAdmin;
     private long weeklyHours;
     private Timestamp createdOn;
@@ -54,12 +56,13 @@ public class TimbanUser {
         this.deletedOn = deletedOn;
     }
 
-    public TimbanUser(String userName, String email, String password, boolean isAdmin, long weeklyHours) {
+    public TimbanUser(String userName, String email, String password, boolean isAdmin, long weeklyHours, boolean currentlyCheckedIn) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
         this.weeklyHours = weeklyHours;
+        this. currentlyCheckedIn = currentlyCheckedIn;
     }
 
     public TimbanUser(){
@@ -157,5 +160,13 @@ public class TimbanUser {
 
     public void setDeletedOn(Timestamp deletedOn) {
         this.deletedOn = deletedOn;
+    }
+
+    public boolean isCurrentlyCheckedIn() {
+        return currentlyCheckedIn;
+    }
+
+    public void setCurrentlyCheckedIn(boolean currentlyCheckedIn) {
+        this.currentlyCheckedIn = currentlyCheckedIn;
     }
 }

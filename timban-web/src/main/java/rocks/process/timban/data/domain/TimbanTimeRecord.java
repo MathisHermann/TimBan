@@ -25,15 +25,13 @@ public class TimbanTimeRecord {
     private boolean stopRecording;
     private Instant timestamp; // TODO refresh discussion about Timestamp once tackled
 
-/** ToDo: Evaluate if needed
-    public TimbanTimeRecord(Long id, Long userId, boolean startRecording, boolean stopRecording, Instant timestamp) {
-        this.id = id;
+    public TimbanTimeRecord(Long userId, boolean startRecording, boolean stopRecording, Instant timestamp) {
         this.userId = userId;
         this.startRecording = startRecording;
         this.stopRecording = stopRecording;
         this.timestamp = timestamp;
     }
-*/
+
     public TimbanTimeRecord() {
 
     }
