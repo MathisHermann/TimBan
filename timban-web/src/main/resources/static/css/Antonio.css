@@ -11,11 +11,6 @@ nav {
 }
 
 .logo {
-    max-height: 40px;
-    margin: 45px 55px;
-}
-
-.nav-head-icon {
     max-height: 70px;
     margin: 45px 55px;
 }
@@ -44,7 +39,6 @@ nav {
     border: none;
     cursor: pointer;
 
-
 }
 
 .btn-secondary:hover {
@@ -52,14 +46,6 @@ nav {
     color: white;
 
 }
-
-
-.btn-edit {
-    margin-left: 50px;
-}
-
-
-
 
 
 .container {
@@ -115,20 +101,16 @@ li {
     .table-header {
         display: none;
     }
-    .table-row{
 
-    }
     li {
         display: block;
     }
     .col {
 
         flex-basis: 100%;
-
-    }
-    .col {
         display: flex;
         padding: 10px 0;
+
     }
     :before {
         color: #6C7A89;
