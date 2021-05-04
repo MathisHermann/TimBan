@@ -10,14 +10,14 @@ nav {
     width: 50%;
 }
 
-.logo {
+.dude {
     max-height: 70px;
     margin: 45px 55px;
 }
 
-.dude {
-    max-height: 70px;
-    margin: 45px 55px;
+.logo {
+    max-height: 40px;
+    margin: 20px 20px;
 }
 
 .btn-outline-primary {
@@ -25,7 +25,9 @@ nav {
     color: white;
     border: none;
     cursor: pointer;
+
 }
+
 .btn-outline-primary:hover {
     background-color: #173e43;
     color: white;
@@ -35,7 +37,6 @@ nav {
     color: #3fb0ac;
     margin-top: 30px;
     display: inline;
-
 }
 
 .btn-secondary {
@@ -43,15 +44,12 @@ nav {
     color: white;
     border: none;
     cursor: pointer;
-
 }
 
 .btn-secondary:hover {
     background-color: #173e43;
     color: white;
-
 }
-
 
 .container {
     max-width: 1000px;
@@ -79,25 +77,31 @@ li {
     justify-content: space-between;
     margin-bottom: 25px;
 }
+
 .table-header {
     background-color: #3fb0ac;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
 }
+
 .table-row {
     background-color: #ffffff;
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
 }
+
 .col-1 {
     flex-basis: 10%;
 }
+
 .col-2 {
     flex-basis: 40%;
 }
+
 .col-3 {
     flex-basis: 25%;
 }
+
 .col-4 {
     flex-basis: 25%;
 }
@@ -110,13 +114,14 @@ li {
     li {
         display: block;
     }
+
     .col {
 
         flex-basis: 100%;
         display: flex;
         padding: 10px 0;
-
     }
+
     :before {
         color: #6C7A89;
         padding-right: 10px;
