@@ -36,6 +36,7 @@ public class DashboardController {
                     findAllByUserId(
                             timbanUserService.getCurrentTimbanUser().getId()
                     ));
+            model.addAttribute("user", timbanUserService.getCurrentTimbanUser());
         } else {
             model.addAttribute("records", timbanTimeRecordRepository.findAll());
         }
