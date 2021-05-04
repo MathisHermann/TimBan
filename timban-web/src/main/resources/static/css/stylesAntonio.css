@@ -15,6 +15,11 @@ nav {
     margin: 45px 55px;
 }
 
+.dude {
+    max-height: 70px;
+    margin: 45px 55px;
+}
+
 .btn-outline-primary {
     background-color: #3fb0ac;
     color: white;
