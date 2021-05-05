@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.data.repository.TimbanUserRepository;
+
 import javax.validation.Valid;
 import javax.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Author:
@@ -56,5 +58,16 @@ public class TimbanUserService {
     public TimbanUser getCurrentTimbanUser() {
         String userEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return timbanUserRepository.findByEmail(userEmail);
+    }
+
+    public Object getUserById(Long id) {
+        Optional<TimbanUser> timbanUser;
+
+        try {
+            timbanUser = timbanUserRepository.findById(id);
+        } catch (Exception e) {
+            timbanUser = Optional.empty();
+        }
+        return timbanUser;
     }
 }
