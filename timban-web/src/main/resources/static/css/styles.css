@@ -232,14 +232,14 @@ margin-right: -20px;
  border: none;
  outline: none;
  height: 50px;
- width: 70%;
  background: #3FB0AC;
  color: #fff;
- font-size: 22px;
  border-radius: 5px;
  text-transform: uppercase;
  cursor: pointer;
  font-weight:700;
+ padding-right: 10px;
+ padding-left: 10px;
 }
 
 .timebox-1 input[type=submit]:hover
@@ -267,7 +267,11 @@ margin-right: -20px;
  background: #A6A6A6;
  color: white;
  display: flex;
+}
 
+.recording-box{
+ margin-left: 20px;
+ margin-right: 20px;
 }
 
 .last-recordings-date {
@@ -292,7 +296,7 @@ margin-right: -20px;
 }
 .last-recordings-status h1{
  text-align: right;
- margin-right: 20px;
+ margin-right: 10%;
 }
 
 .footer-box{

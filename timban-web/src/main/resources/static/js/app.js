@@ -58,4 +58,45 @@ function getCookie(name) {
     if (match) return match[2];
 }
 
+<!-- TIME AND DATE-->
+
+
+function getTimestamp {
+    var today = new Date();
+    var i;
+    var x;
+    var timeWorked = 0;
+
+    for (x = 0; x < records.length; x++)
+    {
+        for (i = 0; i < records.length; i++)
+        {
+            if (records.timestamp.getDate() == today)
+            {
+                var timestamp[i] = records.timestamp.getTime();
+                continue;
+            }
+        }
+
+        if (timestamp1 != null && timestamp2 != null){
+            var difference = timestamp2 - timestamp1;
+            timeWorked + difference;
+        }
+    }
+
+}
+
+function timeDifference(timestamp1, timestamp2) {
+    var difference = timestamp1 - timestamp2;
+}
+
+
+
+
+
+
+
+
+
+
 <!-- END PART LARS-->

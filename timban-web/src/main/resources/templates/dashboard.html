@@ -13,7 +13,7 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
 
     <!-- Antonio CSS -->
-    <link rel="stylesheet" th:href="@{/css/stylesAntonio.css}" />
+    <link  th:href="@{/css/stylesAntonio.css}" rel="stylesheet" />
 
 
 
@@ -29,17 +29,17 @@
     </button>
     <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
         <img th:src="@{/images/logo.png}" alt="logo" class="logo" />
-        <form class="search-form d-flex ml-auto mt-1 mb-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<!--        <form class="search-form d-flex ml-auto mt-1 mb-0">-->
+<!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
+<!--        </form>-->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
 
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<div th:text="${user.email}" />-->
-                        Hey, User
+
+                        Hey,<div  th:text="${user.userName}" />
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Settings</a>
@@ -72,7 +72,7 @@
                     <p>CURRENT TIME</p>
                 </div>
                 <div class="column-timebox-1">
-                    <h1>Online</h1>
+                    <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'" />
                     <p>CURRENT STATUS</p>
                 </div>
             </div>
