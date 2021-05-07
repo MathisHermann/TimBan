@@ -58,43 +58,47 @@ function getCookie(name) {
     if (match) return match[2];
 }
 
+
 <!-- TIME AND DATE-->
 
+//
+//
+// function timeWorked (records) {
+//     var today = new Date();
+//     var i;
+//     var x;
+//     var timeWorked = 0;
+//
+//
+//     for (x = 0; x < records.length; x++)
+//     {
+//         for (i = 0; i < records.length; i++)
+//         {
+//             if (records.timestamp.getDate() == today)
+//             {
+//                 var timestamp[i+1] = records.timestamp.getTime();
+//                 continue;
+//             }
+//         }
+//
+//         if (timestamp1 != null && timestamp2 != null){
+//             var difference = timestamp2 - timestamp1;
+//             timeWorked + difference;
+//         }
+//         return timeWorked;
+//     }
 
-function getTimestamp {
-    var today = new Date();
-    var i;
-    var x;
-    var timeWorked = 0;
+// }
 
-    for (x = 0; x < records.length; x++)
-    {
-        for (i = 0; i < records.length; i++)
-        {
-            if (records.timestamp.getDate() == today)
-            {
-                var timestamp[i] = records.timestamp.getTime();
-                continue;
-            }
-        }
 
-        if (timestamp1 != null && timestamp2 != null){
-            var difference = timestamp2 - timestamp1;
-            timeWorked + difference;
-        }
-    }
-
+<!-- Check-In Button-->
+function timeRecord () {
+    var xhttp = new XMLHttpRequest();
+    document.getElementById("check-in-button")
+    xhttp.open("POST", "/api/records", true);
+    xhttp.send();
+    console.log("hello");
 }
-
-function timeDifference(timestamp1, timestamp2) {
-    var difference = timestamp1 - timestamp2;
-}
-
-
-
-
-
-
 
 
 

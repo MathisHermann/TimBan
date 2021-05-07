@@ -64,7 +64,7 @@
 
                 <div class="column-timebox-1">
                     <div class="check-in-button">
-                        <input type="submit" name="check-in-button" value="Check-In">
+                        <input onclick="timeRecord()" type="submit" id="check-in-button" name="check-in-button" th:value="${user.currentlyCheckedIn} ? 'Check-Out' : 'Check-In'">
                     </div>
                 </div>
                 <div class="column-timebox-1">
