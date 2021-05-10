@@ -6,6 +6,8 @@
 package rocks.process.timban.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,6 @@ import rocks.process.timban.data.repository.TimbanUserRepository;
 
 import javax.validation.Valid;
 import javax.validation.Validator;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,14 +41,25 @@ public class TimbanUserService {
     private PasswordEncoder passwordEncoder;
 
     public void saveTimbanUser(@Valid TimbanUser timbanUser) throws Exception {
-        if (timbanUser.getId() == null) {
-            if (timbanUserRepository.findByEmail(timbanUser.getEmail()) != null) {
-                throw new Exception("Email address " + timbanUser.getEmail() + " already assigned another agent.");
+        try {
+
+            if (timbanUser.getId() == null) {
+                if (timbanUserRepository.findByEmail(timbanUser.getEmail()) != null) {
+                    throw new Exception("Email address " + timbanUser.getEmail() + " already assigned.");
+                } else {
+                    timbanUser.setPassword(passwordEncoder.encode(timbanUser.getPassword()));
+                }
+            } else if (getCurrentTimbanUser().isAdmin()) {
+                timbanUser.setPassword(passwordEncoder.encode(
+                        timbanUserRepository.findById(timbanUser.getId()).get().getPassword()));
+            } else {
+                throw new Exception("Forbidden");
             }
-        } else if (timbanUserRepository.findByEmailAndIdNot(timbanUser.getEmail(), timbanUser.getId()) != null) {
-            throw new Exception("Email address " + timbanUser.getEmail() + " already assigned another agent.");
+
+        } catch (NullPointerException ne) {
+            throw new Exception("Not logged in.");
         }
-        timbanUser.setPassword(passwordEncoder.encode(timbanUser.getPassword()));
+
         timbanUserRepository.save(timbanUser);
     }
 
