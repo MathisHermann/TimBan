@@ -61,46 +61,74 @@ function getCookie(name) {
 
 <!-- TIME AND DATE-->
 
-//
-//
-// function timeWorked (records) {
+
+
+// function timeWorked() {
 //     var today = new Date();
 //     var i;
 //     var x;
 //     var timeWorked = 0;
 //
 //
-//     for (x = 0; x < records.length; x++)
-//     {
-//         for (i = 0; i < records.length; i++)
+//             for (i = 0; i < record.length; i++)
 //         {
-//             if (records.timestamp.getDate() == today)
+//             if (record.timestamp.getDate() == today)
 //             {
-//                 var timestamp[i+1] = records.timestamp.getTime();
+//                 console.log(record.timestamp.toString());
+//                 var timestamp[i] = record.timestamp.getTime();
 //                 continue;
 //             }
 //         }
 //
-//         if (timestamp1 != null && timestamp2 != null){
-//             var difference = timestamp2 - timestamp1;
-//             timeWorked + difference;
+//             for (x = 0; i < record.length; i++) {
+//
+//                 if (timestamp[x] != null && timestamp[x+1] != null){
+//                      var difference = timestamp2 - timestamp1;
+//                      timeWorked + difference;
+//
+//                     return timeWorked.showCalculatedTime();
 //         }
-//         return timeWorked;
 //     }
-
 // }
+//
+// function showCalculatedTime (timeWorked){
+//
+// }
+//
 
 
 <!-- Check-In Button-->
-<!--
-function timeRecord () {
-    var xhttp = new XMLHttpRequest();
-    document.getElementById("check-in-button")
-    xhttp.open("POST", "/api/records", true);
-    xhttp.send();
-    console.log("hello");
+
+function timeRecord (userId , startRecording) {
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.open("POST", "/api/records", true);
+    // xhttp.send("{'userId':12, 'startRecording': true, 'timestamp': 1619532050}");
+    var timestamp = new Date();
+
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/records",
+        data: JSON.stringify({
+            "userId": userId,
+            "startRecording": startRecording,
+            "timestamp": timestamp
+        }),
+        success: function (data, textStatus, response) {
+            // callback(true);
+            location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            callback(false);
+        }
+    });
 }
--->
+
 
 
 
