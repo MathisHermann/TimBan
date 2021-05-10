@@ -94,7 +94,7 @@ function getCookie(name) {
 // function showCalculatedTime (timeWorked){
 //
 // }
-//
+
 
 
 <!-- Check-In Button-->
