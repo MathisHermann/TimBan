@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import rocks.process.timban.data.domain.TimbanTimeRecord;
 import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.data.repository.TimbanUserRepository;
 
@@ -81,5 +82,13 @@ public class TimbanUserService {
             timbanUser = Optional.empty();
         }
         return timbanUser;
+    }
+
+    public void setUserCurrentlyCheckedIn(TimbanTimeRecord timbanTimeRecord) {
+        try {
+            timbanUserRepository.findById(timbanTimeRecord.getUserId())
+                    .get().setCurrentlyCheckedIn(timbanTimeRecord.getStartRecording());
+        } catch (Exception e) {}
+
     }
 }
