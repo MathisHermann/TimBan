@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import rocks.process.timban.data.domain.TimbanTimeRecord;
 import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.tools.LogToFile;
-
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 
 /**
@@ -98,17 +98,17 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                 timbanTimeRecordService.saveTimbanTimeRecord(
                         new TimbanTimeRecord(
                                 timbanUser.getId(),
-                                timbanUser.isCurrentlyCheckedIn(),
                                 !timbanUser.isCurrentlyCheckedIn(),
+                                timbanUser.isCurrentlyCheckedIn(),
                                 Instant.now()
                         ));
 
                 timbanTimeRecordService.saveTimbanTimeRecord(
                         new TimbanTimeRecord(
                                 timbanUser.getId(),
-                                !timbanUser.isCurrentlyCheckedIn(),
                                 timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now()
+                                !timbanUser.isCurrentlyCheckedIn(),
+                                Instant.now().plus(90, ChronoUnit.MINUTES)
                         ));
             }
         } catch (Exception e) {

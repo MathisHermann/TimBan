@@ -63,9 +63,9 @@ public class TimbanTimeRecordController {
     public ResponseEntity<TimbanTimeRecord> createRecord(@RequestBody TimbanTimeRecord timbanTimeRecord) {
         try {
             TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord);
-            LogToFile.logUser("Record created; User: " + timbanTimeRecord.getUserId() + "; Timestamp: "
-                    + timbanTimeRecord.getTimestamp() + "; Action: "
-                    + (timbanTimeRecord.getStartRecording() ? "Start recording" : "Stop recording"));
+            LogToFile.logUser("Record created; User: " + updatedTimbanTimeRecord.getUserId() + "; Timestamp: "
+                    + updatedTimbanTimeRecord.getTimestamp() + "; Action: "
+                    + (updatedTimbanTimeRecord.getStartRecording() ? "Start recording" : "Stop recording"));
 
                 return new ResponseEntity<>(updatedTimbanTimeRecord, updatedTimbanTimeRecord == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK);
         } catch (Exception e) {
@@ -97,6 +97,7 @@ public class TimbanTimeRecordController {
     public ResponseEntity<Void> deleteRecord(@PathVariable Long id) {
         try {
             timbanTimeRecordRepository.deleteById(id);
+            LogToFile.logUser("Record deleted: " + (id));
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
