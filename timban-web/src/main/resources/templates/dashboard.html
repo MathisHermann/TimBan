@@ -13,9 +13,7 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
 
     <!-- Antonio CSS -->
-    <link  th:href="@{/css/stylesAntonio.css}" rel="stylesheet" />
-
-
+    <link th:href="@{/css/stylesAntonio.css}" rel="stylesheet"/>
 
 
     <title>Dashboard</title>
@@ -24,22 +22,25 @@
 <!-- Top Nav/Search -->
 
 <nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-        <img th:src="@{/images/logo.png}" alt="logo" class="logo" />
-<!--        <form class="search-form d-flex ml-auto mt-1 mb-0">-->
-<!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
-<!--        </form>-->
+        <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
+        <!--        <form class="search-form d-flex ml-auto mt-1 mb-0">-->
+        <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+        <!--            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
+        <!--        </form>-->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
 
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        Hey,<div  th:text="${user.userName}" />
+                        Hey,
+                        <div th:text="${user.userName}"/>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Settings</a>
@@ -47,7 +48,7 @@
                     </div>
                 </div>
         </ul>
-        <img th:src="@{/images/head-icon.png}" alt="logo" class="dude" />
+        <img th:src="@{/images/head-icon.png}" alt="logo" class="dude"/>
     </div>
 </nav>
 
@@ -64,26 +65,27 @@
 
                 <div class="column-timebox-1">
                     <div class="check-in-button">
-                        <input  type="submit" id="check-in-button" name="check-in-button" th:value="${user.currentlyCheckedIn} ? 'Check-Out' : 'Check-In'">
+                        <input type="submit" id="check-in-button" name="check-in-button"
+                               th:value="${user.currentlyCheckedIn} ? 'Check-Out' : 'Check-In'">
                     </div>
                 </div>
                 <div class="column-timebox-1">
-                    <h1 th:text="${#dates.format(#dates.createNow() , 'HH:mm')}" />
+                    <h1 th:text="${#dates.format(#dates.createNow() , 'HH:mm')}"/>
                     <p>CURRENT TIME</p>
                 </div>
                 <div class="column-timebox-1">
-                    <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'" />
+                    <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'"/>
                     <p>CURRENT STATUS</p>
                 </div>
             </div>
 
             <div class="timebox-2">
                 <div class="column-timebox-2">
-                    <h1 th:text="${timeWorked}" />
+                    <h1 th:text="${timeWorked}"/>
                     <p>TIME LEFT</p>
                 </div>
                 <div class="timebox-2-date">
-                    <h1 th:text="${#dates.format(#dates.createNow() , 'dd.MM.yyyy')}" />
+                    <h1 th:text="${#dates.format(#dates.createNow() , 'dd.MM.yyyy')}"/>
                 </div>
             </div>
         </div>
@@ -100,11 +102,11 @@
                 <h1 th:text="${#dates.format(record.timestamp, 'dd.MM.yyyy')}"/>
             </div>
             <div class="last-recordings-time">
-               <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
+                <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
             </div>
             <div class="last-recordings-status">
-                <h1 th:if="${record.startRecording}">Check-In</h1>
-                    <h1  th:if="${record.stopRecording}">Check-Out</h1>
+                <h1 th:if="${record.startRecording}">Check-Out</h1>
+                <h1 th:unless="${record.startRecording}">Check-In</h1>
             </div>
         </div>
     </div>
@@ -125,7 +127,7 @@
 
 <footer style="height: 15px;">
     <div class="footer-box">
-        <p class="footer" >
+        <p class="footer">
             ©TimBan — Made with ❤ for the people of the internet.<br></p>
     </div>
 </footer>
@@ -148,9 +150,8 @@
         console.log(Date.parse(records[1].timestamp) - Date.parse(records[0].timestamp))
 
 
-
     }
 
-   // timeRecord(2, true, 1619532050)
+    // timeRecord(2, true, 1619532050)
 </script>
 </html>

@@ -41,38 +41,66 @@ public class TimbanUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Save a user - either Post or Put
+     * @param timbanUser - must be valid or exception is thrown
+     * @throws Exception - there are some cases where an exception is thrown
+     */
     public void saveTimbanUser(@Valid TimbanUser timbanUser) throws Exception {
         try {
-
             if (timbanUser.getId() == null) {
                 if (timbanUserRepository.findByEmail(timbanUser.getEmail()) != null) {
                     throw new Exception("Email address " + timbanUser.getEmail() + " already assigned.");
                 } else {
                     timbanUser.setPassword(passwordEncoder.encode(timbanUser.getPassword()));
                 }
-            } else if (getCurrentTimbanUser().isAdmin()) {
+            } else {
                 timbanUser.setPassword(passwordEncoder.encode(
                         timbanUserRepository.findById(timbanUser.getId()).get().getPassword()));
-            } else {
-                throw new Exception("Forbidden");
             }
-
         } catch (NullPointerException ne) {
             throw new Exception("Not logged in.");
         }
-
         timbanUserRepository.save(timbanUser);
     }
 
+    /**
+     * Set the status of the current user to checked-in or checked-out
+     * if the user triggers the creation of a new time record.
+     * @param timbanTimeRecord - time record that is created upon user trigger
+     */
+    public void changeCheckedInStatus(TimbanTimeRecord timbanTimeRecord) {
+        try {
+            TimbanUser timbanUser = getCurrentTimbanUser();
+            timbanUser.setCurrentlyCheckedIn(!timbanTimeRecord.getStartRecording());
+            saveTimbanUser(timbanUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Return a list of all users
+     * @return List
+     */
     public List<TimbanUser> getAllTimbanUsers() {
         return timbanUserRepository.findAll();
     }
 
+    /**
+     * Get the current user
+     * @return TimbanUser
+     */
     public TimbanUser getCurrentTimbanUser() {
         String userEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return timbanUserRepository.findByEmail(userEmail);
     }
 
+    /**
+     * Get a user based upon the user id
+     * @param id - Long
+     * @return - TimbanUser
+     */
     public Object getUserById(Long id) {
         Optional<TimbanUser> timbanUser;
 
@@ -82,13 +110,5 @@ public class TimbanUserService {
             timbanUser = Optional.empty();
         }
         return timbanUser;
-    }
-
-    public void setUserCurrentlyCheckedIn(TimbanTimeRecord timbanTimeRecord) {
-        try {
-            timbanUserRepository.findById(timbanTimeRecord.getUserId())
-                    .get().setCurrentlyCheckedIn(timbanTimeRecord.getStartRecording());
-        } catch (Exception e) {}
-
     }
 }

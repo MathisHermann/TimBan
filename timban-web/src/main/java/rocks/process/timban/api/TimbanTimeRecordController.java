@@ -62,7 +62,7 @@ public class TimbanTimeRecordController {
     @PostMapping
     public ResponseEntity<TimbanTimeRecord> createRecord(@RequestBody TimbanTimeRecord timbanTimeRecord) {
         try {
-            TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord);
+            TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord, false);
             LogToFile.logUser("Record created; User: " + updatedTimbanTimeRecord.getUserId() + "; Timestamp: "
                     + updatedTimbanTimeRecord.getTimestamp() + "; Action: "
                     + (updatedTimbanTimeRecord.getStartRecording() ? "Start recording" : "Stop recording"));
@@ -79,7 +79,7 @@ public class TimbanTimeRecordController {
     @PutMapping(path = "/{id}")
     public ResponseEntity<TimbanTimeRecord> updateUser(@RequestBody TimbanTimeRecord timbanTimeRecord) {
         try {
-            TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord);
+            TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord, false);
             LogToFile.logUser("Record updated; User: " + updatedTimbanTimeRecord.getUserId() + "; Timestamp: "
                     + updatedTimbanTimeRecord.getTimestamp() + "; Action: "
                     + (updatedTimbanTimeRecord.getStartRecording() ? "Start recording" : "Stop recording"));

@@ -24,11 +24,13 @@ public class TimbanTimeRecordService {
     @Autowired
     private TimbanTimeRecordRepository timbanTimeRecordRepository;
 
-    public TimbanTimeRecord saveTimbanTimeRecord(@Valid TimbanTimeRecord timbanTimeRecord) {
+    public TimbanTimeRecord saveTimbanTimeRecord(@Valid TimbanTimeRecord timbanTimeRecord, boolean isFromFaker) {
         // If the id is null, a new Time Record is created. Otherwise, the existing entity is updated.
 
         if (timbanTimeRecord.getId() == null) {
-            timbanUserService.setUserCurrentlyCheckedIn(timbanTimeRecord);
+            if (!isFromFaker) {
+                timbanUserService.changeCheckedInStatus(timbanTimeRecord);
+            }
             return timbanTimeRecordRepository.save(timbanTimeRecord);
         } else if (timbanTimeRecordRepository.findById(timbanTimeRecord.getId()).isPresent())
             return timbanTimeRecordRepository.save(timbanTimeRecord);

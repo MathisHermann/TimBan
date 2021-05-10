@@ -64,7 +64,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     public void createFakeUsers() {
         fakeUsersCreated = true;
         try {
-            timbanUserService.saveTimbanUser(new TimbanUser("Hans", "hans@example.com", "password", false, 80, true));
+            timbanUserService.saveTimbanUser(new TimbanUser("Hans", "hans@example.com", "password", false, 80, false));
             timbanUserService.saveTimbanUser(new TimbanUser("Jakob", "jakob@example.com", "password", false, 1, false));
             timbanUserService.saveTimbanUser(new TimbanUser("Lisa", "lisa@example.com", "password", false, 800, false));
             timbanUserService.saveTimbanUser(new TimbanUser("Jessica", "jessica@example.com", "password", false, 24, false));
@@ -98,18 +98,18 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                 timbanTimeRecordService.saveTimbanTimeRecord(
                         new TimbanTimeRecord(
                                 timbanUser.getId(),
-                                !timbanUser.isCurrentlyCheckedIn(),
                                 timbanUser.isCurrentlyCheckedIn(),
+                                !timbanUser.isCurrentlyCheckedIn(),
                                 Instant.now()
-                        ));
+                        ), true);
 
                 timbanTimeRecordService.saveTimbanTimeRecord(
                         new TimbanTimeRecord(
                                 timbanUser.getId(),
-                                timbanUser.isCurrentlyCheckedIn(),
                                 !timbanUser.isCurrentlyCheckedIn(),
+                                timbanUser.isCurrentlyCheckedIn(),
                                 Instant.now().plus(90, ChronoUnit.MINUTES)
-                        ));
+                        ), true);
             }
         } catch (Exception e) {
             e.printStackTrace();
