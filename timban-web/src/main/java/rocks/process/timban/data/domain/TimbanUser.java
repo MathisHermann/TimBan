@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * Author: Sven Herzig
@@ -41,11 +42,11 @@ public class TimbanUser {
 
     private boolean isAdmin;
     private long weeklyHours;
-    private Timestamp createdOn;
-    private Timestamp deletedOn;
+    private Instant createdOn;
+    private Instant changedOn;
 
 
-    public TimbanUser(Long id, String userName, String email, String password, boolean isAdmin, long weeklyHours, Timestamp createdOn, Timestamp deletedOn) {
+    public TimbanUser(Long id, String userName, String email, String password, boolean isAdmin, long weeklyHours, Instant createdOn, Instant changedOn) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -53,7 +54,7 @@ public class TimbanUser {
         this.isAdmin = isAdmin;
         this.weeklyHours = weeklyHours;
         this.createdOn = createdOn;
-        this.deletedOn = deletedOn;
+        this.changedOn = changedOn;
     }
 
     public TimbanUser(String userName, String email, String password, boolean isAdmin, long weeklyHours, boolean currentlyCheckedIn) {
@@ -146,20 +147,20 @@ public class TimbanUser {
         this.weeklyHours = weeklyHours;
     }
 
-    public Timestamp getCreatedOn() {
+    public Instant getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Timestamp createdOn) {
+    public void setCreatedOn(Instant createdOn) {
         this.createdOn = createdOn;
     }
 
-    public Timestamp getDeletedOn() {
-        return deletedOn;
+    public Instant getChangedOn() {
+        return changedOn;
     }
 
-    public void setDeletedOn(Timestamp deletedOn) {
-        this.deletedOn = deletedOn;
+    public void setChangedOn(Instant deletedOn) {
+        this.changedOn = deletedOn;
     }
 
     public boolean isCurrentlyCheckedIn() {

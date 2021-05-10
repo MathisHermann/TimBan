@@ -9,6 +9,8 @@ import rocks.process.timban.data.domain.TimbanUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,11 +58,12 @@ public class TimbanUserController {
     @PostMapping
     public ResponseEntity<Void> createUser(@RequestBody TimbanUser timbanUser) {
         try {
+            timbanUser.setCreatedOn(Instant.now());
             timbanUserService.saveTimbanUser(timbanUser);
             LogToFile.logUser("User created; UserID: " + timbanUser.getId() + "; Username: " + timbanUser.getUserName());
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
-            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -72,9 +75,9 @@ public class TimbanUserController {
         try {
             timbanUserService.saveTimbanUser(timbanUser);
             LogToFile.logUser("User updated; UserID: " + timbanUser.getId() + "; Username: " + timbanUser.getUserName());
-            return new ResponseEntity<Void>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
     }
 

@@ -92,6 +92,7 @@ function getCookie(name) {
 
 
 <!-- Check-In Button-->
+<!--
 function timeRecord () {
     var xhttp = new XMLHttpRequest();
     document.getElementById("check-in-button")
@@ -99,7 +100,7 @@ function timeRecord () {
     xhttp.send();
     console.log("hello");
 }
-
+-->
 
 
 
