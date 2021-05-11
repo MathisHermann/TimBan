@@ -2,33 +2,6 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 
-    <style>
-        .grid {
-            margin-top: 200px;
-            font-size: 26px;
-            color: white;
-            display: grid;
-            height:300px;
-            border: #173e43 5px solid;
-        }
-
-        .player {
-            background-color: #3fb0ac;
-            border: white 5px solid;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .player:nth-child(3):nth-last-child(1) {
-            grid-column:span 2;
-        }
-
-        .player:nth-child(2):nth-last-child(3) {
-            grid-column:2;
-        }
-    </style>
-
     <meta charset="UTF-8"/>
     <title>Overview</title>
 
@@ -89,18 +62,62 @@
 
 <!-- End: Employee Overview-->
 
-<!-- Start Modal: Create User -->
+<!-- Start: User Update -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Enter User Data</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Update User Information</h5>
+    </div>
+
+    <div class="modal-body">
+        <!-- First name & Last name -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="formFirstname2" class="form-control" />
+                    <label class="form-label" for="formFirstname2">First name</label>
+                </div>
             </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="formLastname2" class="form-control" />
+                    <label class="form-label" for="formLastname2">Last name</label>
+                </div>
+            </div>
+        </div>
 
-            <div class="modal-body">
-                <form>
+        <!-- Workload Information & Email Information -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="formWorkload2" class="form-control" />
+                    <label class="form-label" for="formWorkload2">Workload</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="formEmail2" class="form-control" />
+                    <label class="form-label" for="formEmail2">Email</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- "Create User" Button" -->
+        <button type="submit" class="btn btn-outline-primary btn-block mb-4">Update</button>
+    </div>
+
+    <!-- End: Update User -->
+
+    <!-- Start Modal: Create User -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Enter User Data</h5>
+                </div>
+
+                <div class="modal-body">
                     <!-- First name & Last name: Text input -->
                     <div class="row mb-4">
                         <div class="col">
@@ -119,28 +136,18 @@
                     <!-- Workload: Input -->
                     <input type="text" id="formWorkload" class="form-control"/>
                     <label class="form-label" for="formWorkload">Workload</label>
-                    <!-- Address: Input -->
-                    <input type="text" id="formAddress" class="form-control"/>
-                    <label class="form-label" for="formAddress">Address</label>
                     <!-- Email: Input -->
                     <input type="email" id="formEmail" class="form-control"/>
                     <label class="form-label" for="formEmail">Email</label>
-                    <!-- Number: Input -->
-                    <input type="number" id="formPhone" class="form-control"/>
-                    <label class="form-label" for="FormPhone">Phone</label>
-                    <!-- Information: Input -->
-                    <textarea class="form-control" id="formInformation" rows="4"></textarea>
-                    <label class="form-label" for="formInformation">Additional information</label>
                     <!-- "Create User" Button" -->
                     <button type="submit" class="btn btn-outline-primary btn-block mb-4">Create User</button>
 
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- End Modal: Create User -->
+    <!-- End Modal: Create User -->
 
 </body>
 </html>
