@@ -5,15 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Bootstrap CSS / Javascript-->
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css}" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js}" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 
     <!-- Lars CSS -->
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
 
     <!-- Antonio CSS -->
     <link th:href="@{/css/stylesAntonio.css}" rel="stylesheet"/>
+
+    <!-- JavaScript and dependencies -->
+    <script th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js}" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+            th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js}"></script>
 
 
     <title>Dashboard</title>
@@ -43,7 +49,7 @@
                         <div th:text="${user.userName}"/>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#settingsModal" >Settings</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </div>
@@ -53,6 +59,8 @@
 </nav>
 
 <!-- End Top Nav/Search -->
+
+<!-- Start : Timebox Infoboxes -->
 
 <div class="timebox">
 
@@ -81,7 +89,7 @@
 
             <div class="timebox-2">
                 <div class="column-timebox-2">
-                    <h1 th:text="${timeWorked}"/>
+                    <h1 th:text="${#timeWorked}" />
                     <p>TIME LEFT</p>
                 </div>
                 <div class="timebox-2-date">
@@ -91,6 +99,10 @@
         </div>
     </div>
 </div>
+
+<!-- End : Timebox Infoboxes -->
+
+<!-- Start : Last recordings -->
 
 <div class="last-recordings">
     <div class="recording-box">
@@ -112,18 +124,15 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-        crossorigin="anonymous"></script>
+<!-- End : Last recordings -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.1/cjs/popper.min.js"
-        integrity="sha256-T3bYsIPyOLpEfeZOX4M7J59ZoDMzuYFUsPiSN3Xcc2M=" crossorigin="anonymous"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+
+
 
 <script th:src="@{/js/app.js}"></script>
+
+<!-- Start: Footer -->
 
 <footer style="height: 15px;">
     <div class="footer-box">
@@ -132,7 +141,51 @@
     </div>
 </footer>
 
+<!-- End: Footer -->
+
+<!-- Start Modal: Settings / scr: https://getbootstrap.com/docs/4.0/components/modal/-->
+
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change your user infos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <!-- New Name: Input -->
+                    <input type="text" id="formName" class="form-control"/>
+                    <label class="form-label" for="formName">New Name</label>
+                    <!-- New Email: Input -->
+                    <input type="email" id="formEmail" class="form-control"/>
+                    <label class="form-label" for="formEmail">New Email</label>
+                    <!-- New Password: Input -->
+                    <input type="password" id="formPassword" class="form-control"/>
+                    <label class="form-label" for="formPassword">New Password</label>
+                    <!-- "Save Settings" Button" -->
+                    <button type="submit" id="saveSettings" class="btn btn-outline-primary btn-block mb-4">Save Settings</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Modal: Settings -->
+
+
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
 <script th:inline="javascript">
 
     $(document).ready
@@ -147,11 +200,34 @@
 
         })
         var records = [[${records}]];
-        console.log(Date.parse(records[1].timestamp) - Date.parse(records[0].timestamp))
 
 
-    }
 
-    // timeRecord(2, true, 1619532050)
+        // console.log(Date.parse(records[1].timestamp) - Date.parse(records[0].timestamp))
+        // console.log(Date.parse(records[1].timestamp))
+        // console.log(today)
+        //
+        // var timestamp = records[1].timestamp;
+        // var today = new Date().setHours(0, 0, 0, 0);
+        // var thatDay = new Date(timestamp).setHours(0, 0, 0, 0);
+        //
+        // if(today === thatDay){
+        //     console.log("*** Same day ***");
+    // }
+
+
+
+
+
+
+
+
+        }
+
+
 </script>
+
+
+
+
 </html>

@@ -61,48 +61,45 @@ function getCookie(name) {
 
 <!-- TIME AND DATE-->
 
-
-
-// function timeWorked() {
-//     var today = new Date();
+// function cleanList (records){
 //     var i;
-//     var x;
-//     var timeWorked = 0;
+//     var today = new Date().setHours(0, 0, 0, 0);
 //
+//     for (i = 0; i < records.length; i++){
+//         var thatDay = new Date(records[i].timestamp).setHours(0, 0, 0, 0);
 //
-//             for (i = 0; i < record.length; i++)
-//         {
-//             if (record.timestamp.getDate() == today)
-//             {
-//                 console.log(record.timestamp.toString());
-//                 var timestamp[i] = record.timestamp.getTime();
-//                 continue;
-//             }
+//         //remove timestamps from the array that are not from today
+//         if(today !== thatDay){
+//             records.splice(i)
 //         }
-//
-//             for (x = 0; i < record.length; i++) {
-//
-//                 if (timestamp[x] != null && timestamp[x+1] != null){
-//                      var difference = timestamp2 - timestamp1;
-//                      timeWorked + difference;
-//
-//                     return timeWorked.showCalculatedTime();
-//         }
+//         //sort list - recent timestamp is first
+//         records.sort();
+//         records.reverse();
 //     }
 // }
 //
-// function showCalculatedTime (timeWorked){
+// function timeWorked (){
+//     cleanList(records);
+//     var i;
+//     var difference = 0;
 //
+//     if (records[0].startRecording === true) {
+//         for (i = 1; i < records.length; i++){
+//             difference = records[i+1].timestamp - records[i].timestamp;
+//
+//     }
+
+
 // }
+
+
 
 
 
 <!-- Check-In Button-->
 
+
 function timeRecord (userId , startRecording) {
-    // var xhttp = new XMLHttpRequest();
-    // xhttp.open("POST", "/api/records", true);
-    // xhttp.send("{'userId':12, 'startRecording': true, 'timestamp': 1619532050}");
     var timestamp = new Date();
 
 
@@ -128,8 +125,6 @@ function timeRecord (userId , startRecording) {
         }
     });
 }
-
-
 
 
 <!-- END PART LARS-->
