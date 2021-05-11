@@ -39,7 +39,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
      */
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        if (timbanUserService.getAllTimbanUsers().size() > 0) {
+        if (!(timbanUserService.getAllTimbanUsers().size() > 0)) {
             if (!adminCreated)
                 this.createAdminUser();
             if (!fakeUsersCreated)
