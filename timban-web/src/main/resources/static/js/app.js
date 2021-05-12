@@ -43,9 +43,6 @@ function validateLogin(callback) {
     });
 }
 
-function preventDefault(){
-
-}
 
 function currentTime () {
     var today = new Date();
@@ -114,6 +111,38 @@ function timeRecord (userId , startRecording) {
             "userId": userId,
             "startRecording": startRecording,
             "timestamp": timestamp
+        }),
+        success: function (data, textStatus, response) {
+            // callback(true);
+            location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            callback(false);
+        }
+    });
+}
+
+
+<!-- END PART LARS-->
+
+<!-- Settings -->
+
+
+function putProfile (name, email, password) {
+
+
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/users",
+        data: JSON.stringify({
+            "userName": name,
+            "email": email,
+            "password": password
         }),
         success: function (data, textStatus, response) {
             // callback(true);

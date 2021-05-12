@@ -73,6 +73,7 @@ public class TimbanUserController {
     @PutMapping
     public ResponseEntity<Void> updateUser(@RequestBody TimbanUser timbanUser) {
         try {
+            timbanUser.setId(timbanUserService.getCurrentTimbanUser().getId());
             timbanUserService.saveTimbanUser(timbanUser);
             LogToFile.logUser("User updated; UserID: " + timbanUser.getId() + "; Username: " + timbanUser.getUserName());
             return new ResponseEntity<>(HttpStatus.OK);
