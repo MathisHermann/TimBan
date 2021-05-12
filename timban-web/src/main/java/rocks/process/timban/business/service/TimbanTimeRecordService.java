@@ -6,7 +6,9 @@ import rocks.process.timban.data.domain.TimbanTimeRecord;
 import rocks.process.timban.data.repository.TimbanTimeRecordRepository;
 
 import javax.validation.Valid;
+import java.sql.Time;
 import java.time.Instant;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,8 +99,8 @@ public class TimbanTimeRecordService {
         }
     }
 
-    public Long getTotalTimeOfCurrentDay(Long userId) {
-        return 327L;
+    public LocalTime getTotalTimeOfCurrentDay(Long userId) {
+        return LocalTime.ofSecondOfDay(200 * 60);
     }
 
 }
