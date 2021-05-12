@@ -76,6 +76,14 @@ nav {
     grid-column:2;
 }
 
+.overviewLink {
+    color: black;
+    text-decoration: none;
+}
+.overviewLink:hover {
+    color: #3FB0AC;
+}
+
 .container {
     max-width: 1000px;
     margin-top: 250px;

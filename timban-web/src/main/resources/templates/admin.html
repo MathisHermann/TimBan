@@ -60,38 +60,20 @@
       <div class="col col-3">Workload %</div>
       <div class="col col-4">Workload hrs.</div>
     </li>
-
+    </ul>
+  <ul class="responsive-table" th:each="user: ${users}">
+    <a class= overviewLink th:href="${'/overview/' + {user.id}}">
     <li class="table-row">
-      <div class="col col-1" data-label="Id">1</div>
-      <div class="col col-2" data-label="Name">Max Muster</div>
-      <div class="col col-3" data-label="Workload %">100%</div>
-      <div class="col col-4" data-label="Workload hrs.">42h</div>
-    </li>
+      <div class="col col-1" data-label="Id" th:text="${user.id}"></div>
+      <div class="col col-2" data-label="Name"th:text="${user.userName}"></div>
+      <div class="col col-3" data-label="Workload %"th:text="${companyHours}"></div>
+       <div class="col col-4" data-label="Workload hrs."th:text="${user.weeklyHours}"></div>
+     </li>
+</a>
+    </ul>
+ </div>
 
-    <li class="table-row">
-      <div class="col col-1" data-label="Id">2</div>
-      <div class="col col-2" data-label="Name">Max Muster</div>
-      <div class="col col-3" data-label="Workload %">20%</div>
-      <div class="col col-4" data-label="Workload hrs.">8h</div>
-    </li>
-
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">3</div>
-      <div class="col col-2" data-label="Customer Name">Max Muster</div>
-      <div class="col col-3" data-label="Workload %">30%</div>
-      <div class="col col-4" data-label="Workload hrs.">12h</div>
-    </li>
-
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">4</div>
-      <div class="col col-2" data-label="Customer Name">Max Muster</div>
-      <div class="col col-3" data-label="Workload %">60%</div>
-      <div class="col col-4" data-label="Workload hrs.">24h</div>
-    </li>
-  </ul>
-</div>
-
-<!-- End: Employee Table -->
+ <!-- End: Employee Table -->
 
 <!-- Start Modal: Create User -->
 
@@ -103,27 +85,18 @@
       </div>
 
       <div class="modal-body">
-        <!-- First name & Last name: Text input -->
-        <div class="row mb-4">
-          <div class="col">
-            <div class="form-outline">
-              <input type="text" id="formFirstname" class="form-control" />
-              <label class="form-label" for="formFirstname">First name</label>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-outline">
-              <input type="text" id="formLastname" class="form-control" />
-              <label class="form-label" for="formLastname">Last name</label>
-            </div>
-          </div>
-        </div>
+        <!-- Name: Text input -->
+        <input type="text" id="formName" class="form-control"/>
+        <label class="form-label" for="formName">Name</label>
         <!-- Workload: Input -->
         <input type="text" id="formWorkload" class="form-control"/>
         <label class="form-label" for="formWorkload">Workload</label>
         <!-- Email: Input -->
         <input type="email" id="formEmail" class="form-control"/>
         <label class="form-label" for="formEmail">Email</label>
+        <!-- Password: Input -->
+        <input type="password" id="formPassword" class="form-control"/>
+        <label class="form-label" for="formPassword">Password</label>
         <!-- "Create User" Button" -->
         <button type="submit" class="btn btn-outline-primary btn-block mb-4">Create User</button>
 
@@ -133,6 +106,7 @@
 </div>
 
 <!-- End Modal: Create User -->
+
 
 </body>
 </html>
