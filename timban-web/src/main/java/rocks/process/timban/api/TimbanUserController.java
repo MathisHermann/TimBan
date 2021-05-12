@@ -70,7 +70,7 @@ public class TimbanUserController {
     /**
      * Update User / TODO Unsuccessfully tested with Postman error400
      */
-    @PutMapping(path = "/{id}")
+    @PutMapping
     public ResponseEntity<Void> updateUser(@RequestBody TimbanUser timbanUser) {
         try {
             timbanUserService.saveTimbanUser(timbanUser);
