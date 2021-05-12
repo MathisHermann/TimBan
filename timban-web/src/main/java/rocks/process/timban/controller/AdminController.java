@@ -24,9 +24,12 @@ public class AdminController {
     @GetMapping
     public String getAdminView(Model model) {
         try {
-            if (timbanUserService.getCurrentTimbanUser().isAdmin())
+            if (timbanUserService.getCurrentTimbanUser().isAdmin()) {
+
+                model.addAttribute("users", timbanUserService.getAllTimbanUsers());
+
                 return "admin";
-            else
+            } else
                 return "dashboard";
         } catch (Exception e) {
             return "login";
