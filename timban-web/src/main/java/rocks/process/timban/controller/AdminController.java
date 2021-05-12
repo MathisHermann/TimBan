@@ -25,9 +25,9 @@ public class AdminController {
     public String getAdminView(Model model) {
         try {
             if (timbanUserService.getCurrentTimbanUser().isAdmin()) {
-
+                int companyHours = 42;
                 model.addAttribute("users", timbanUserService.getAllTimbanUsers());
-                model.addAttribute("companyHours", 42);
+                model.addAttribute("companyHours", companyHours);
 
                 return "admin";
             } else

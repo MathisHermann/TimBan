@@ -6,8 +6,6 @@
 package rocks.process.timban.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -101,7 +99,7 @@ public class TimbanUserService {
      * @param id - Long
      * @return - TimbanUser
      */
-    public Object getUserById(Long id) {
+    public Optional<TimbanUser> getUserById(Long id) {
         Optional<TimbanUser> timbanUser;
 
         try {
@@ -109,6 +107,6 @@ public class TimbanUserService {
         } catch (Exception e) {
             timbanUser = Optional.empty();
         }
-        return timbanUser;
+        return timbanUserRepository.findById(id);
     }
 }
