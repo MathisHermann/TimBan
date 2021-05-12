@@ -27,6 +27,7 @@ public class AdminController {
             if (timbanUserService.getCurrentTimbanUser().isAdmin()) {
 
                 model.addAttribute("users", timbanUserService.getAllTimbanUsers());
+                model.addAttribute("companyHours", 42);
 
                 return "admin";
             } else
