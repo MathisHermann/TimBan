@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import rocks.process.timban.business.service.TimbanTimeRecordService;
 import rocks.process.timban.business.service.TimbanUserService;
 import rocks.process.timban.data.repository.TimbanTimeRecordRepository;
 
@@ -21,8 +22,12 @@ public class DashboardController {
 
     @Autowired
     TimbanTimeRecordRepository timbanTimeRecordRepository;
+
     @Autowired
     TimbanUserService timbanUserService;
+
+    @Autowired
+    TimbanTimeRecordService timbanTimeRecordService;
 
     @GetMapping
     public String getDashboard(Model model) {
@@ -37,6 +42,7 @@ public class DashboardController {
                             timbanUserService.getCurrentTimbanUser().getId()
                     ));
             model.addAttribute("user", timbanUserService.getCurrentTimbanUser());
+            model.addAttribute("totalTimeOfCurrentDay", timbanTimeRecordService.getTotalTimeOfCurrentDay(timbanUserService.getCurrentTimbanUser().getId()));
         } else {
             model.addAttribute("records", timbanTimeRecordRepository.findAll());
         }

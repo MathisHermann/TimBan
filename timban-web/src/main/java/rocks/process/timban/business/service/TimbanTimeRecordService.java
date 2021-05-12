@@ -48,7 +48,7 @@ public class TimbanTimeRecordService {
     /**
      * This is a function. lol
      */
-    public void calculate() {
+    public void calculate(Long userId) {
 
         // retrieve data from db
         List<TimbanTimeRecord> arrayList = timbanTimeRecordRepository.findAll();
@@ -95,6 +95,10 @@ public class TimbanTimeRecordService {
             System.out.println(totalTime);
 
         }
+    }
+
+    public Long getTotalTimeOfCurrentDay(Long userId) {
+        return 327L;
     }
 
 }
