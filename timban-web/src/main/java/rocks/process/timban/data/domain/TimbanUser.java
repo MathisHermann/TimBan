@@ -40,6 +40,8 @@ public class TimbanUser {
 
     private boolean currentlyCheckedIn;
 
+    private Long companyBelongingId;
+
     private boolean isAdmin;
     private long weeklyHours;
     private Instant createdOn;
@@ -170,4 +172,13 @@ public class TimbanUser {
     public void setCurrentlyCheckedIn(boolean currentlyCheckedIn) {
         this.currentlyCheckedIn = currentlyCheckedIn;
     }
+
+    public void setCompanyBelonging(Long companyBelongingId) {
+        this.companyBelongingId = companyBelongingId;
+    }
+
+    public Long getCompanyBelongingId() {
+        return companyBelongingId;
+    }
+
 }

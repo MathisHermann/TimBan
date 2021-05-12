@@ -45,21 +45,17 @@ public class TimbanUserService {
      * @throws Exception - there are some cases where an exception is thrown
      */
     public void saveTimbanUser(@Valid TimbanUser timbanUser) throws Exception {
-        try {
-            if (timbanUser.getId() == null) {
-                if (timbanUserRepository.findByEmail(timbanUser.getEmail()) != null) {
-                    throw new Exception("Email address " + timbanUser.getEmail() + " already assigned.");
-                } else {
-                    timbanUser.setPassword(passwordEncoder.encode(timbanUser.getPassword()));
-                }
-            } else {
-                timbanUser.setPassword(passwordEncoder.encode(
-                        timbanUserRepository.findById(timbanUser.getId()).get().getPassword()));
+
+        if (timbanUser.getId() == null) {
+            if (timbanUserRepository.findByEmail(timbanUser.getEmail()) != null) {
+                throw new Exception("Email address " + timbanUser.getEmail() + " already assigned another agent.");
             }
-        } catch (NullPointerException ne) {
-            throw new Exception("Not logged in.");
+        } else if (timbanUserRepository.findByEmailAndIdNot(timbanUser.getEmail(), timbanUser.getId()) != null) {
+            throw new Exception("Email address " + timbanUser.getEmail() + " already assigned another agent.");
         }
+        timbanUser.setPassword(passwordEncoder.encode(timbanUser.getPassword()));
         timbanUserRepository.save(timbanUser);
+
     }
 
     /**

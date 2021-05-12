@@ -76,11 +76,11 @@ public class TimbanUserController {
             timbanUser.setId(timbanUserService.getCurrentTimbanUser().getId());
             timbanUserService.saveTimbanUser(timbanUser);
             LogToFile.logUser("User updated; UserID: " + timbanUser.getId() + "; Username: " + timbanUser.getUserName());
-            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

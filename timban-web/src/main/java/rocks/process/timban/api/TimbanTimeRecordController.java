@@ -67,7 +67,7 @@ public class TimbanTimeRecordController {
                     + updatedTimbanTimeRecord.getTimestamp() + "; Action: "
                     + (updatedTimbanTimeRecord.getStartRecording() ? "Start recording" : "Stop recording"));
 
-                return new ResponseEntity<>(updatedTimbanTimeRecord, updatedTimbanTimeRecord == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK);
+                return new ResponseEntity<>(updatedTimbanTimeRecord, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(timbanTimeRecord, HttpStatus.BAD_REQUEST);
         }
