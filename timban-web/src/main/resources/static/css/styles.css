@@ -84,7 +84,6 @@ h1 {
  font-size: 18px;
  font-weight: 500;
  text-transform: uppercase;
-
 }
 
 .loginbox input[type=text]::placeholder , input[type=password]::placeholder
@@ -220,7 +219,6 @@ margin-right: -20px;
  color: white;
  line-height: 0px;
  position: center;
- margin-left: 110px;
 }
 
 .column-timebox-2 h1{
@@ -312,6 +310,13 @@ margin-right: -20px;
  font-size: 11px;
  color: rgb(0, 0, 0);
 }
+
+
+.modal-body input[type=password] {
+ border: revert!important;
+ border-bottom: revert!important;
+}
+
 
 
 
