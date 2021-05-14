@@ -72,30 +72,20 @@ public class TimbanUser {
 
     }
 
-
-
-
-
-    /** v.2
+    /* v.2
      private ArrayList<ProjectRole> projectRole;
      private ArrayList<Project> projects;
      */
 
-
-
-    /** v.2
+    /* v.2
      public boolean isInProject(Project project) {
      ArrayList.contains(project); ???
      }
      */
 
-    /** v.2
+    /* v.2
      hasRole ToDo
      */
-
-    public void changePassword() {
-        //ToDo
-    }
 
     /** Getter & Setters */
 

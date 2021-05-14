@@ -74,6 +74,7 @@ public class TimbanUserController {
     public ResponseEntity<Void> updateUser(@RequestBody TimbanUser timbanUser) {
         try {
             timbanUser.setId(timbanUserService.getCurrentTimbanUser().getId());
+            timbanUser.setChangedOn(Instant.now());
             timbanUserService.saveTimbanUser(timbanUser);
             LogToFile.logUser("User updated; UserID: " + timbanUser.getId() + "; Username: " + timbanUser.getUserName());
         } catch (Exception e) {
