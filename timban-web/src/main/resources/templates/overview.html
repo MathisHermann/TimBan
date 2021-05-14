@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <!-- Update Email & Password -->
+        <!-- Update Email & Check Box -->
         <div class="row mb-4">
             <div class="col">
                 <div class="form-outline">
@@ -94,17 +94,16 @@
                     <label class="form-label" for="formEmail2">Email</label>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-outline">
-                    <input type="text" id="Password2" class="form-control" th:field="${user.password}"/>
-                    <label class="form-label" for="Password2">Password</label>
-                </div>
-            </div>
-        </div>
 
+            <div class="col">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="adminCheck2">
+                <label class="form-check-label" for="adminCheck2">Admin Rights</label>
+            </div>
+            </div>
         <!-- "Create User" Button" -->
         <button type="submit" class="btn btn-outline-primary btn-block mb-4">Update</button>
-            </div>
+
 
     <!-- End: Update User -->
 
@@ -130,6 +129,11 @@
                     <!-- Password: Input -->
                     <input type="password" id="formPassword" class="form-control"/>
                     <label class="form-label" for="formPassword">Password</label>
+                    <!-- Admin Rights: Check -->
+                    <p><div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="adminCheck">
+                        <label class="form-check-label" for="adminCheck">Admin Rights</label>
+                    </div></p>
                     <!-- "Create User" Button" -->
                     <button type="submit" class="btn btn-outline-primary btn-block mb-4">Create User</button>
 

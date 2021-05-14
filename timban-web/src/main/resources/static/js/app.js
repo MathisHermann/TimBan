@@ -157,3 +157,37 @@ function putProfile (name, email, password) {
 
 
 <!-- END PART LARS-->
+
+<!-- Start: Antonio - Create User -->
+
+function postProfile(name, workload, email, password, callbackSuccess ) {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/users",
+        data: JSON.stringify({
+            "userName": name,
+            "workload": workload,
+            "email": email,
+            "password": password
+        }),
+        success: function (data, textStatus, response) {
+            callbackSuccess(true);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+
+        }
+    });
+}
+
+<!-- End: Antonio - Create User -->
+
+<!-- Start: Antonio - Delete User -->
+
+
+
+<!-- End: Antonio - Delete User -->
