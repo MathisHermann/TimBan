@@ -47,7 +47,6 @@
     </nav>
 
 </head>
-<body>
 
 <!-- End: Top Nav/Search -->
 
@@ -96,53 +95,91 @@
             </div>
 
             <div class="col">
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="adminCheck2">
-                <label class="form-check-label" for="adminCheck2">Admin Rights</label>
-            </div>
-            </div>
-        <!-- "Create User" Button" -->
-        <button type="submit" class="btn btn-outline-primary btn-block mb-4">Update</button>
-
-
-    <!-- End: Update User -->
-
-    <!-- Start Modal: Create User -->
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Enter User Data</h5>
-                </div>
-
-                <div class="modal-body">
-                    <!-- Name: Text input -->
-                    <input type="text" id="formName" class="form-control"/>
-                    <label class="form-label" for="formName">Name</label>
-                    <!-- Workload: Input -->
-                    <input type="text" id="formWorkload" class="form-control"/>
-                    <label class="form-label" for="formWorkload">Workload</label>
-                    <!-- Email: Input -->
-                    <input type="email" id="formEmail" class="form-control"/>
-                    <label class="form-label" for="formEmail">Email</label>
-                    <!-- Password: Input -->
-                    <input type="password" id="formPassword" class="form-control"/>
-                    <label class="form-label" for="formPassword">Password</label>
-                    <!-- Admin Rights: Check -->
-                    <p><div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="adminCheck">
-                        <label class="form-check-label" for="adminCheck">Admin Rights</label>
-                    </div></p>
-                    <!-- "Create User" Button" -->
-                    <button type="submit" class="btn btn-outline-primary btn-block mb-4">Create User</button>
-
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="formAdmin2">
+                    <label class="form-check-label" for="formAdmin2">Admin Rights</label>
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- Update user & Delete User Button" -->
+            <div class="btn-group justified row mb-4">
+                <div class="btn-group col">
+                    <button type="submit" id="updateUser" class="btn btn-outline-primary">Update</button>
+                </div>
+                <div class="btn-group col">
+                    <button type="button" id="deleteUser" class="btn btn-outline-primary">Delete User</button>
+                </div>
+            </div>
 
-    <!-- End Modal: Create User -->
+            <!-- End: Update User -->
 
-</body>
+            <!-- Start Modal: Create User -->
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Enter User Data</h5>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Name: Text input -->
+                            <input type="text" id="formName" class="form-control"/>
+                            <label class="form-label" for="formName">Name</label>
+                            <!-- Workload: Input -->
+                            <input type="text" id="formWorkload" class="form-control"/>
+                            <label class="form-label" for="formWorkload">Workload</label>
+                            <!-- Email: Input -->
+                            <input type="email" id="formEmail" class="form-control"/>
+                            <label class="form-label" for="formEmail">Email</label>
+                            <!-- Password: Input -->
+                            <input type="password" id="formPassword" class="form-control"/>
+                            <label class="form-label" for="formPassword">Password</label>
+                            <!-- Admin Rights: Check -->
+                            <p><div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="formAdmin">
+                            <label class="form-check-label" for="formAdmin">Admin Rights</label>
+                        </div></p>
+                            <!-- "Create User" Button" -->
+                            <button type="submit" id="formButton" class="btn btn-outline-primary btn-block mb-4">Create User</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+
+            <!-- End Modal: Create User -->
+
+<!-- Start: Update User JS -->
+
+<script th:src="@{/js/app.js}"></script>
+<script>
+
+    $(document).ready
+
+    {
+        $('#updateUser').click(function(event) {
+            var name = $('#formName2').val();
+            var workload = $('#formWorkload2').val();
+            var email = $('#formEmail2').val();
+            var isAdmin = $('#formAdmin2').val();
+
+            updateUser(name, workload, email, isAdmin, function (result) {
+                if (result)
+                    location.reload()
+            });
+
+            event.preventDefault();
+        })
+    }
+
+<!-- End: Update User JS -->
+
+<!-- Start: Delete User JS -->
+
+
+
+<!-- End: Delete User JS -->
+
+</script>
 </html>

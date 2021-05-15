@@ -160,7 +160,7 @@ function putProfile (name, email, password) {
 
 <!-- Start: Antonio - Create User -->
 
-function postProfile(name, workload, email, password, callbackSuccess ) {
+function postProfile(name, workload, email, password, isAdmin, callbackSuccess ) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -172,7 +172,8 @@ function postProfile(name, workload, email, password, callbackSuccess ) {
             "userName": name,
             "workload": workload,
             "email": email,
-            "password": password
+            "password": password,
+            "isAdmin": isAdmin
         }),
         success: function (data, textStatus, response) {
             callbackSuccess(true);
@@ -186,8 +187,46 @@ function postProfile(name, workload, email, password, callbackSuccess ) {
 
 <!-- End: Antonio - Create User -->
 
+<!-- Start: Antonio - Update User -->
+
+function updateUser(name, workload, email, password, isAdmin, callbackSuccess ) {
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/users",
+        data: JSON.stringify({
+            "userName": name,
+            "workload": workload,
+            "email": email,
+            "isAdmin": isAdmin
+        }),
+        success: function (data, textStatus, response) {
+            callbackSuccess(true);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+
+        }
+    });
+}
+
+<!-- End: Antonio - Update User -->
+
 <!-- Start: Antonio - Delete User -->
 
-
+/*
+function deleteUser(id, callback) {
+    $.ajax({
+        type: "DELETE",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/users"
+    });
+}
+ */
 
 <!-- End: Antonio - Delete User -->

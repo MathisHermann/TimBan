@@ -17,7 +17,8 @@
           integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
           src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="   crossorigin="anonymous"></script>
-<!-- Start: Top Nav/Search -->
+
+  <!-- Start: Top Nav/Search -->
 
 <nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +60,7 @@
       <div class="col col-2">Name</div>
       <div class="col col-3">Workload %</div>
       <div class="col col-4">Workload hrs.</div>
+      <div class="col col-5"></div>
     </li>
     </ul>
   <ul class="responsive-table" th:each="user: ${users}">
@@ -69,7 +71,7 @@
       <div class="col col-3" data-label="Workload %"th:text="${companyHours}"></div>
        <div class="col col-4" data-label="Workload hrs."th:text="${user.weeklyHours}"></div>
      </li>
-</a>
+    </a>
     </ul>
  </div>
 
@@ -99,11 +101,11 @@
         <label class="form-label" for="formPassword">Password</label>
         <!-- Admin Rights: Check -->
         <p><div class="form-check">
-        <input type="checkbox" class="form-check-input" id="adminCheck">
-        <label class="form-check-label" for="adminCheck">Admin Rights</label>
+        <input type="checkbox" class="form-check-input" id="formAdmin">
+        <label class="form-check-label" for="formAdmin">Admin Rights</label>
       </div></p>
         <!-- "Create User" Button" -->
-        <button type="submit" class="btn btn-outline-primary btn-block mb-4">Create User</button>
+        <button type="submit" id="formButton" class="btn btn-outline-primary btn-block mb-4">Create User</button>
 
       </div>
     </div>
@@ -126,8 +128,9 @@
       var workload = $('#formWorkload').val();
       var email = $('#formEmail').val();
       var password = $('#formPassword').val();
+      var isAdmin = $('#formAdmin').val();
 
-      postProfile(name, workload, email, password, function (result) {
+      postProfile(name, workload, email, password, isAdmin, function (result) {
         if (result)
           location.reload()
       });
@@ -138,16 +141,5 @@
 
 <!-- End: Create User JS -->
 
-<!-- Start: Delete User JS -->
-
-
-
-<!-- Start: Delete User JS -->
-
 </script>
-
-
-
-
-
 </html>
