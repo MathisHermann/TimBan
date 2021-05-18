@@ -15,8 +15,11 @@ public class TimbanCompanyConfigService {
         return timbanCompanyConfigRepository.save(timbanCompanyConfig);
     }
 
-    public int getCompanyHours() {
+    public int getWeeklyCompanyHours() {
         return 42;
     }
 
+    public int getMonthlyCompanyHours() {return getWeeklyCompanyHours() * getYearlyCompanyHours()/12;}
+
+    public int getYearlyCompanyHours() {return getWeeklyCompanyHours() * 52;}
 }

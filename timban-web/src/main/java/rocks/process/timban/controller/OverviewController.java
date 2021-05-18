@@ -65,7 +65,15 @@ public class OverviewController {
                     );
 
                     model.addAttribute(
-                            "companyHours", timbanCompanyConfigService.getCompanyHours()
+                            "weeklyCompanyHours", timbanCompanyConfigService.getWeeklyCompanyHours()
+                    );
+
+                    model.addAttribute(
+                            "monthlyCompanyHours", timbanCompanyConfigService.getMonthlyCompanyHours()
+                    );
+
+                    model.addAttribute(
+                            "yearlyCompanyHours", timbanCompanyConfigService.getYearlyCompanyHours()
                     );
 
                     // valid return if there is no error

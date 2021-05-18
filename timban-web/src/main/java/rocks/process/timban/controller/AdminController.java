@@ -42,7 +42,9 @@ public class AdminController {
         try {
             if (timbanUserService.getCurrentTimbanUser().isAdmin()) {
                 model.addAttribute("users", timbanUserService.getAllTimbanUsers());
-                model.addAttribute("companyHours", timbanCompanyConfigService.getCompanyHours());
+                model.addAttribute("weeklyCompanyHours", timbanCompanyConfigService.getWeeklyCompanyHours());
+                model.addAttribute("monthlyCompanyHours", timbanCompanyConfigService.getMonthlyCompanyHours());
+                model.addAttribute("yearlyCompanyHours", timbanCompanyConfigService.getYearlyCompanyHours());
 
                 // Return if there are no exceptions and everything works as expected.
                 return "admin";
