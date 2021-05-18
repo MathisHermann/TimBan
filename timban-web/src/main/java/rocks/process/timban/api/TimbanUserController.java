@@ -2,6 +2,7 @@ package rocks.process.timban.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import rocks.process.timban.business.service.TimbanUserService;
 import rocks.process.timban.data.repository.TimbanUserRepository;
 import rocks.process.timban.tools.LogToFile;
@@ -19,7 +20,8 @@ import java.util.Optional;
  * Author: Mathis / Sven
  * PairProgrammer: Mathis / Sven
  * Reviewer: -
- * Date: 21.04.2021, 27.04.2021
+ * Date: 21.04.2021
+ * Edit: 27.04.2021, 18.05.2021
  *
  * This class handles all the requests regarding the model User. Supporting all CRUD operations.
  * Only the Admin is able to access these operations.
@@ -68,7 +70,7 @@ public class TimbanUserController {
     }
 
     /**
-     * Update User / TODO Unsuccessfully tested with Postman error400
+     * Update User
      */
     @PutMapping
     public ResponseEntity<Void> updateUser(@RequestBody TimbanUser timbanUser) {
@@ -77,6 +79,21 @@ public class TimbanUserController {
             timbanUser.setChangedOn(Instant.now());
             timbanUserService.saveTimbanUser(timbanUser);
             LogToFile.logUser("User updated; UserID: " + timbanUser.getId() + "; Username: " + timbanUser.getUserName());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Update User with the admin overview
+     */
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<Void> updateUserById(@RequestBody TimbanUser timbanUser, @PathVariable Long id) {
+        try {
+            TimbanUser updatedUser = timbanUserService.updateUser(timbanUser, id);
+            LogToFile.logUser("User updated; UserID: " + updatedUser.getId() + "; Username: " + updatedUser.getUserName());
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

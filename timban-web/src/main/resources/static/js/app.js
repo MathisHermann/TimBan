@@ -188,20 +188,19 @@ function postProfile(name, workload, email, password, isAdmin, callbackSuccess )
 <!-- End: Antonio - Create User -->
 
 <!-- Start: Antonio - Update User -->
-
-function updateUser(name, workload, email, password, isAdmin, callbackSuccess ) {
+function updateUserByAdmin(name, workload, email, isAdmin, id, callbackSuccess) {
     $.ajax({
         type: "PUT",
         contentType: "application/json",
         headers: {
             "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
         },
-        url: serviceEndpointURL + "/api/users",
+        url: serviceEndpointURL + "/api/users/" + id,
         data: JSON.stringify({
             "userName": name,
             "workload": workload,
             "email": email,
-            "isAdmin": isAdmin
+            "admin": isAdmin
         }),
         success: function (data, textStatus, response) {
             callbackSuccess(true);

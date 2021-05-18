@@ -16,6 +16,7 @@ import rocks.process.timban.data.repository.TimbanUserRepository;
 
 import javax.validation.Valid;
 import javax.validation.Validator;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +57,13 @@ public class TimbanUserService {
         timbanUser.setPassword(passwordEncoder.encode(timbanUser.getPassword()));
         timbanUserRepository.save(timbanUser);
 
+    }
+
+    public TimbanUser updateUser(TimbanUser timbanUser, Long id) {
+        timbanUser.setId(id);
+        timbanUser.setPassword(getUserById(id).get().getPassword());
+        timbanUser.setChangedOn(Instant.now());
+        return timbanUserRepository.save(timbanUser);
     }
 
     /**
