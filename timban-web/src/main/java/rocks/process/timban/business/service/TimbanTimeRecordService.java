@@ -103,4 +103,13 @@ public class TimbanTimeRecordService {
         return LocalTime.ofSecondOfDay(200 * 60);
     }
 
+    public String getWeekly() {
+        return "2:30";
+    }
+    public String getMonthly() {
+        return "2:30";
+    }
+    public String getYearly() {
+        return "2:30";
+    }
 }
