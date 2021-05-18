@@ -56,7 +56,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
         LogToFile.logSystem("info", "Admin Account " + (adminCreated ? "successfully" : "not") + " created.");
         LogToFile.logSystem("info", "Fake User Accounts " + (fakeUsersCreated ? "successfully" : "not") + " created.");
         LogToFile.logSystem("info", "Fake Time Records " + (fakeTimeRecordsCreated ? "successfully" : "not") + " created.");
-        timbanTimeRecordService.calculate(2L, "week");
+     // timbanTimeRecordService.calculate(2L, "week");
     }
 
     /**
@@ -101,7 +101,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 timbanUser.isCurrentlyCheckedIn(),
                                 !timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now()
+                                Instant.now().plus(180, ChronoUnit.MINUTES).plus(10080 * 52, ChronoUnit.MINUTES)
                         ), true);
 
                 timbanTimeRecordService.saveTimbanTimeRecord(
@@ -109,7 +109,24 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 !timbanUser.isCurrentlyCheckedIn(),
                                 timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(90, ChronoUnit.MINUTES)
+                                Instant.now().plus(280, ChronoUnit.MINUTES).plus(10080 * 52, ChronoUnit.MINUTES)
+                        ), true);
+            }
+            for (TimbanUser timbanUser : timbanUserService.getAllTimbanUsers()) {
+                timbanTimeRecordService.saveTimbanTimeRecord(
+                        new TimbanTimeRecord(
+                                timbanUser.getId(),
+                                timbanUser.isCurrentlyCheckedIn(),
+                                !timbanUser.isCurrentlyCheckedIn(),
+                                Instant.now().minus(180, ChronoUnit.MINUTES)
+                        ), true);
+
+                timbanTimeRecordService.saveTimbanTimeRecord(
+                        new TimbanTimeRecord(
+                                timbanUser.getId(),
+                                !timbanUser.isCurrentlyCheckedIn(),
+                                timbanUser.isCurrentlyCheckedIn(),
+                                Instant.now().minus(90, ChronoUnit.MINUTES)
                         ), true);
             }
 
@@ -145,23 +162,6 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 !timbanUser.isCurrentlyCheckedIn(),
                                 timbanUser.isCurrentlyCheckedIn(),
                                 Instant.now().plus(280, ChronoUnit.MINUTES).plus(9080, ChronoUnit.MINUTES)
-                        ), true);
-            }
-            for (TimbanUser timbanUser : timbanUserService.getAllTimbanUsers()) {
-                timbanTimeRecordService.saveTimbanTimeRecord(
-                        new TimbanTimeRecord(
-                                timbanUser.getId(),
-                                timbanUser.isCurrentlyCheckedIn(),
-                                !timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(180, ChronoUnit.MINUTES).plus(10080 * 52, ChronoUnit.MINUTES)
-                        ), true);
-
-                timbanTimeRecordService.saveTimbanTimeRecord(
-                        new TimbanTimeRecord(
-                                timbanUser.getId(),
-                                !timbanUser.isCurrentlyCheckedIn(),
-                                timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(280, ChronoUnit.MINUTES).plus(10080 * 52, ChronoUnit.MINUTES)
                         ), true);
             }
         } catch (Exception e) {

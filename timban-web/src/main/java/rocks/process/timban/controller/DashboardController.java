@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import rocks.process.timban.business.service.TimbanTimeRecordService;
 import rocks.process.timban.business.service.TimbanUserService;
+import rocks.process.timban.data.domain.TimbanTimeRecord;
 import rocks.process.timban.data.repository.TimbanTimeRecordRepository;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Author: Mathis
@@ -37,10 +41,12 @@ public class DashboardController {
          */
 
         if (timbanUserService.getCurrentTimbanUser() != null) {
-            model.addAttribute("records", timbanTimeRecordRepository.
-                    findAllByUserId(
-                            timbanUserService.getCurrentTimbanUser().getId()
-                    ));
+
+            ArrayList<TimbanTimeRecord> timeRecords = (ArrayList<TimbanTimeRecord>) timbanTimeRecordRepository.findAllByUserId(timbanUserService.getCurrentTimbanUser().getId());
+
+            timeRecords.sort(Comparator.comparing(TimbanTimeRecord::getTimestamp).reversed());
+
+            model.addAttribute("records", timeRecords);
             model.addAttribute("user", timbanUserService.getCurrentTimbanUser());
             model.addAttribute("totalTimeOfCurrentDay", timbanTimeRecordService.getTotalTimeOfCurrentDay(timbanUserService.getCurrentTimbanUser().getId()));
         } else {

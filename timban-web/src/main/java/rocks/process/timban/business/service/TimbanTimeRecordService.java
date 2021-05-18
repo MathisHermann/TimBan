@@ -56,6 +56,13 @@ public class TimbanTimeRecordService {
         // retrieve data from db
         List<TimbanTimeRecord> timeRecords = getTimeRecordListByTimeSpanAndId(userId, timeSpan);
 
+        if (timeRecords.size() % 2 != 0)
+            timeRecords.add(new TimbanTimeRecord(userId, true, false, Instant.now()));
+
+        // Sort the list that the newest record is the first
+        timeRecords.sort(Comparator.comparing(TimbanTimeRecord::getTimestamp).reversed());
+
+
         // Array of the each time record pair grouped by day
         int[][] diffAndWeekDay = new int[timeRecords.size() / 2][2];
 
@@ -65,12 +72,12 @@ public class TimbanTimeRecordService {
         // Iterate over list and extract the time difference between
         for (int i = 0; i < timeRecords.size(); i += 2) {
 
-            int dayOfFirst = timeRecords.get(i).getTimestamp().atZone(ZoneId.systemDefault()).getDayOfMonth();
-            int dayOfSecond = timeRecords.get(i + 1).getTimestamp().atZone(ZoneId.systemDefault()).getDayOfMonth();
+            int dayOfFirst = timeRecords.get(i + 1).getTimestamp().atZone(ZoneId.systemDefault()).getDayOfMonth();
+            int dayOfSecond = timeRecords.get(i).getTimestamp().atZone(ZoneId.systemDefault()).getDayOfMonth();
 
             if (dayOfFirst == dayOfSecond) {
-                int difference = (int) (timeRecords.get(i + 1).getTimestamp().toEpochMilli()
-                        - (int) timeRecords.get(i).getTimestamp().toEpochMilli()) / (60 * 1000);
+                int difference = (int) (timeRecords.get(i).getTimestamp().getEpochSecond()
+                        - (int) timeRecords.get(i + 1).getTimestamp().getEpochSecond()) / 60;
                 diffAndWeekDay[i / 2][0] = difference;
                 diffAndWeekDay[i / 2][1] = dayOfFirst;
             }

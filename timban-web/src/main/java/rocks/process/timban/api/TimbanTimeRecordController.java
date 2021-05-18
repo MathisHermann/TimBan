@@ -62,6 +62,7 @@ public class TimbanTimeRecordController {
     @PostMapping
     public ResponseEntity<TimbanTimeRecord> createRecord(@RequestBody TimbanTimeRecord timbanTimeRecord) {
         try {
+            timbanTimeRecord.setStopRecording(!timbanTimeRecord.getStartRecording());
             TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord, false);
             LogToFile.logUser("Record created; User: " + updatedTimbanTimeRecord.getUserId() + "; Timestamp: "
                     + updatedTimbanTimeRecord.getTimestamp() + "; Action: "
