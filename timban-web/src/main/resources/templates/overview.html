@@ -63,7 +63,7 @@
 
 <!-- Start: Employee Overview-->
 <div class="grid">
-    <div class="player" th:text="|${user.weeklyHours} %|"></div>
+    <div class="player" th:text="|WORKLOAD: ${(user.weeklyHours * 100 / companyHours)}|"></div>
     <div class="player" th:text= "|WEEKLY: ${weekly}|"></div>
     <div class="player" th:text="|MONTHLY: ${monthly}|"></div>
     <div class="player" th:text="|YEARLY: ${yearly}|"></div>
@@ -90,7 +90,7 @@
             <div class="col">
                 <div class="form-outline">
                     <input type="text" id="formWorkload2" class="form-control" th:field="${user.weeklyHours}"/>
-                    <label class="form-label" for="formWorkload2">Workload</label>
+                    <label class="form-label" for="formWorkload2">Workload hrs.</label>
                 </div>
             </div>
         </div>
