@@ -67,9 +67,9 @@
     <a class= overviewLink th:href="${'/overview/' + {user.id}}">
     <li class="table-row">
       <div class="col col-1" data-label="Id" th:text="${user.id}"></div>
-      <div class="col col-2" data-label="Name"th:text="${user.userName}"></div>
-      <div class="col col-3" data-label="Workload %"th:text="|${(user.weeklyHours/companyHours)*100} %|"></div>
-       <div class="col col-4" data-label="Workload hrs."th:text="${user.weeklyHours}"></div>
+      <div class="col col-2" data-label="Name" th:text="${user.userName}"></div>
+      <div class="col col-3" data-label="Workload %" th:text="|${(user.weeklyHours * 100 / companyHours)} %|"></div>
+       <div class="col col-4" data-label="Workload hrs." th:text="${user.weeklyHours}"></div>
      </li>
     </a>
     </ul>
