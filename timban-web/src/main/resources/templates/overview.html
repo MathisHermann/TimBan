@@ -63,10 +63,10 @@
 
 <!-- Start: Employee Overview-->
 <div class="grid">
-    <div class="player" th:text="${user.weeklyHours}"></div>
-    <div class="player">WEEKLY: 4h 23min</div>
-    <div class="player">MONTHLY: 4h 32min</div>
-    <div class="player">YEARLY: 4h 23min</div>
+    <div class="player" th:text="|${user.weeklyHours} %|"></div>
+    <div class="player" th:text= "|WEEKLY: ${weekly}|"></div>
+    <div class="player" th:text="|MONTHLY: ${monthly}|"></div>
+    <div class="player" th:text="|YEARLY: ${yearly}|"></div>
 </div>
 
 <!-- End: Employee Overview-->
