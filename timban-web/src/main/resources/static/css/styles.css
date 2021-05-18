@@ -57,9 +57,12 @@ body {
 
 h1 {
  margin: 0;
- padding: 0 0 20px;
  text-align: center;
  font-size: 22px;
+}
+
+p {
+ margin-bottom: 0;
 }
 
 .loginbox p{
@@ -225,7 +228,7 @@ margin-right: -20px;
  margin-bottom: -10px;
 }
 
-.timebox-1 input[type=submit]
+#row-one input[type=submit]
 {
  border: none;
  outline: none;
@@ -236,11 +239,11 @@ margin-right: -20px;
  text-transform: uppercase;
  cursor: pointer;
  font-weight:700;
- padding-right: 10px;
- padding-left: 10px;
+ padding-right: 30px;
+ padding-left: 30px;
 }
 
-.timebox-1 input[type=submit]:hover
+#row-one input[type=submit]:hover
 {
  cursor: pointer;
  background: #4F8280;
@@ -301,12 +304,12 @@ margin-right: -20px;
  bottom: 0;
  position: fixed;
  width: 100%;
+ background: white;
 }
 
 .footer {
  text-align: center;
- margin: 15px;
- height: 18px;
+ margin: 5px;
  font-size: 11px;
  color: rgb(0, 0, 0);
 }
@@ -318,7 +321,85 @@ margin-right: -20px;
 }
 
 
+#row-one{
+ color: white;
+ height: 100%;
+ background: #1F2833;
+ box-shadow: 0px 0px 9px 0px rgb(0 0 0 / 50%);
+ border-radius: 4px;
+ margin-bottom: 20px;
+ padding-top: 40px;
+ padding-bottom: 40px;
+}
 
+#row-two{
+ color: white;
+ height: 100%;
+ background: #1F2833;
+ box-shadow: 0px 0px 9px 0px rgb(0 0 0 / 50%);
+ border-radius: 4px;
+ width: auto;
+ padding-top: 40px;
+ padding-bottom: 40px;
+}
+
+select {
+ -moz-appearance: none;
+ -webkit-appearance: none;
+ text-indent: 1px;
+ text-overflow: '';
+ appearance: none;
+ border: none;
+ width: 80%;
+ height: 40px;
+ -moz-padding-start: calc(10px - 3px);
+ padding-left: 10px;
+ background: #4F8280;
+ color: #fff;
+ font-size: 16px;
+ box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+ border-radius: 3px;
+ outline: none;
+ color: white;
+ cursor: pointer;
+ text-transform: uppercase;
+ font-weight:700;
+}
+
+select:focus::-ms-value {
+ background-color: transparent;
+}
+
+select::-ms-expand {
+ display: none;
+}
+
+#lastRecording-row{
+ background-color: #ffffff;
+ box-shadow: 0px 0px 9px 0px rgb(0 0 0 / 10%);
+ padding: 10px;
+ margin-bottom: 10px;
+}
+
+#myLastRecording{
+ text-transform: uppercase;
+ font-weight: 700;
+ margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+ #selectProject-Div {
+  margin-top: 30px;
+ }
+
+ .loginbox {
+  width: 95%!important;
+ }
+
+ #heroSection-dashboard{
+  width: 95%;
+ }
+}
 
 
 /* END PART LARS */

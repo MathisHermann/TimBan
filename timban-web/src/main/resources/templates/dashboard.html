@@ -64,69 +64,149 @@
 
 <!-- End Top Nav/Search -->
 
-<!-- Start : Timebox Infoboxes -->
-
-<div class="timebox">
-
-    <div class="container">
-
-        <div class="timeboxes">
+<!-- Start : Hero -->
 
 
-            <div class="timebox-1">
 
-                <div class="column-timebox-1">
-                    <div class="check-in-button">
-                        <input type="submit" id="check-in-button" name="check-in-button"
-                               th:value="${user.currentlyCheckedIn} ? 'Check-Out' : 'Check-In'">
-                    </div>
-                </div>
-                <div class="column-timebox-1">
-                    <h1 th:text="${#dates.format(#dates.createNow() , 'HH:mm')}"/>
-                    <p>CURRENT TIME</p>
-                </div>
-                <div class="column-timebox-1">
-                    <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'"/>
-                    <p>CURRENT STATUS</p>
-                </div>
-            </div>
+<div class="container" id="heroSection-dashboard">
 
-            <div class="timebox-2">
-                <div class="column-timebox-2">
-                    <h1 th:text="${totalTimeOfCurrentDay}"/>
-                    <p>TIME WORKED</p>
-                </div>
-                <div class="timebox-2-date">
-                    <h1 th:text="${#dates.format(#dates.createNow() , 'dd.MM.yyyy')}"/>
-                </div>
-            </div>
+    <div class="row justify-content-center align-items-center" id="row-one">
+        <div class="col-sm text-center">
+            <input type="submit" id="check-in-button" name="check-in-button"
+                   th:value="${user.currentlyCheckedIn} ? 'Check-Out' : 'Check-In'">
+        </div>
+        <div class="col-sm text-center" id="selectProject-Div">
+            <select class="selectProject-wrapper" id="selectProject" name="selectProject">
+                <option selected>Select Project</option>
+<!--                <option th:each="project : ${projects}"-->
+<!--                        th:value="${project}"-->
+<!--                        th:text="${project}"></option>-->
+            </select>
+            <span class="input-group-btn"><i class="glyphicon glyphicon-menu-down"></i></span>
+        </div>
+        <div class="col-sm text-center">
+            <h1 th:text="${#dates.format(#dates.createNow() , 'HH:mm')}"/>
+            <p>CURRENT TIME</p>
+        </div>
+        <div class="col-sm text-center">
+            <h1 th:text="${#dates.format(#dates.createNow() , 'dd.MM.yyyy')}"/>
+            <p>TODAY'S DATE</p>
+        </div>
+    </div>
+
+
+
+    <div class="row justify-content-center align-items-center" id="row-two">
+        <div class="col-sm text-center">
+            <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'"/>
+            <p>CURRENT STATUS</p>
+        </div>
+        <div class="col-sm text-center">
+            <h1 th:text="${#strings.substring(totalTimeOfCurrentDay,0,2) + 'h ' + #strings.substring(totalTimeOfCurrentDay,3) + 'min'}"/>
+
+            <p>TIME WORKED TODAY</p>
+        </div>
+        <div class="col-sm text-center">
+            <h1 th:text="${user.weeklyHours}"/>
+<!--            calculation not done yet-->
+            <p>UNDER TIME</p>
         </div>
     </div>
 </div>
 
-<!-- End : Timebox Infoboxes -->
+<!-- End : Hero -->
+
+
+
+
+<!--&lt;!&ndash; Start : Timebox Infoboxes &ndash;&gt;-->
+
+<!--<div class="timebox">-->
+
+<!--    <div class="container">-->
+
+<!--        <div class="timeboxes">-->
+
+
+<!--            <div class="timebox-1">-->
+
+<!--                <div class="column-timebox-1">-->
+<!--                    <div class="check-in-button">-->
+<!--                        <input type="submit" id="check-in-button" name="check-in-button"-->
+<!--                               th:value="${user.currentlyCheckedIn} ? 'Check-Out' : 'Check-In'">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="column-timebox-1">-->
+<!--                    <h1 th:text="${#dates.format(#dates.createNow() , 'HH:mm')}"/>-->
+<!--                    <p>CURRENT TIME</p>-->
+<!--                </div>-->
+<!--                <div class="column-timebox-1">-->
+<!--                    <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'"/>-->
+<!--                    <p>CURRENT STATUS</p>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="timebox-2">-->
+<!--                <div class="column-timebox-2">-->
+<!--                    <h1 th:text="${totalTimeOfCurrentDay}"/>-->
+<!--                    <p>TIME WORKED</p>-->
+<!--                </div>-->
+<!--                <div class="timebox-2-date">-->
+<!--                    <h1 th:text="${#dates.format(#dates.createNow() , 'dd.MM.yyyy')}"/>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; End : Timebox Infoboxes &ndash;&gt;-->
 
 <!-- Start : Last recordings -->
 
-<div class="last-recordings">
-    <div class="recording-box">
-        <h1>My last recordings:</h1>
 
-        <div th:each="record: ${records} " class="recording">
+<div class="container" >
+    <h1 id="myLastRecording">My last recordings:</h1>
 
-            <div class="last-recordings-date">
-                <h1 th:text="${#dates.format(record.timestamp, 'dd.MM.yyyy')}"/>
-            </div>
-            <div class="last-recordings-time">
-                <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
-            </div>
-            <div class="last-recordings-status">
-                <h1 th:if="${record.startRecording}">Check-Out</h1>
-                <h1 th:unless="${record.startRecording}">Check-In</h1>
-            </div>
+    <div class="row justify-content-center align-items-center" th:each="record: ${records}" id="lastRecording-row">
+        <div class="col-sm text-center">
+            <h1 th:text="${#dates.format(record.timestamp, 'dd.MM.yyyy')}"/>
+        </div>
+        <div class="col-sm text-center">
+            <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
+        </div>
+        <div class="col-sm text-center">
+            <h1>Project xyz</h1>
+        </div>
+        <div class="col-sm text-center">
+            <h1 th:if="${record.startRecording}">Check-Out</h1>
+            <h1 th:unless="${record.startRecording}">Check-In</h1>
         </div>
     </div>
+    </div>
 </div>
+
+
+
+
+<!--<div class="last-recordings">-->
+<!--    <div class="recording-box">-->
+<!--        <h1>My last recordings:</h1>-->
+
+<!--        <div th:each="record: ${records} " class="recording">-->
+
+<!--            <div class="last-recordings-date">-->
+<!--                <h1 th:text="${#dates.format(record.timestamp, 'dd.MM.yyyy')}"/>-->
+<!--            </div>-->
+<!--            <div class="last-recordings-time">-->
+<!--                <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>-->
+<!--            </div>-->
+<!--            <div class="last-recordings-status">-->
+<!--                <h1 th:if="${record.startRecording}">Check-Out</h1>-->
+<!--                <h1 th:unless="${record.startRecording}">Check-In</h1>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <!-- End : Last recordings -->
 
