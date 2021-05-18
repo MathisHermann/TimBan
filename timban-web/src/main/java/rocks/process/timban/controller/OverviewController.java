@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import rocks.process.timban.business.service.TimbanCompanyConfigService;
 import rocks.process.timban.business.service.TimbanTimeRecordService;
 import rocks.process.timban.business.service.TimbanUserService;
 import rocks.process.timban.data.domain.TimbanUser;
@@ -32,6 +33,9 @@ public class OverviewController {
     @Autowired
     TimbanTimeRecordService timbanTimeRecordService;
 
+    @Autowired
+    TimbanCompanyConfigService timbanCompanyConfigService;
+
     @GetMapping
     public String getOverview() {
         return "overview";
@@ -51,13 +55,17 @@ public class OverviewController {
                             "user", timbanUser.get()
                     );
                     model.addAttribute(
-                            "weekly", timbanTimeRecordService.getWeekly()
+                            "weekly", timbanTimeRecordService.getWeekly(timbanUser.get().getId())
                     );
                     model.addAttribute(
-                            "monthly", timbanTimeRecordService.getMonthly()
+                            "monthly", timbanTimeRecordService.getMonthly(timbanUser.get().getId())
                     );
                     model.addAttribute(
-                            "yearly",  timbanTimeRecordService.getYearly()
+                            "yearly",  timbanTimeRecordService.getYearly(timbanUser.get().getId())
+                    );
+
+                    model.addAttribute(
+                            "companyHours", timbanCompanyConfigService.getCompanyHours()
                     );
 
                     // valid return if there is no error

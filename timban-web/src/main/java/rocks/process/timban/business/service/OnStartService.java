@@ -130,6 +130,40 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 Instant.now().plus(270, ChronoUnit.MINUTES)
                         ), true);
             }
+            for (TimbanUser timbanUser : timbanUserService.getAllTimbanUsers()) {
+                timbanTimeRecordService.saveTimbanTimeRecord(
+                        new TimbanTimeRecord(
+                                timbanUser.getId(),
+                                timbanUser.isCurrentlyCheckedIn(),
+                                !timbanUser.isCurrentlyCheckedIn(),
+                                Instant.now().plus(180, ChronoUnit.MINUTES).plus(9080, ChronoUnit.MINUTES)
+                        ), true);
+
+                timbanTimeRecordService.saveTimbanTimeRecord(
+                        new TimbanTimeRecord(
+                                timbanUser.getId(),
+                                !timbanUser.isCurrentlyCheckedIn(),
+                                timbanUser.isCurrentlyCheckedIn(),
+                                Instant.now().plus(280, ChronoUnit.MINUTES).plus(9080, ChronoUnit.MINUTES)
+                        ), true);
+            }
+            for (TimbanUser timbanUser : timbanUserService.getAllTimbanUsers()) {
+                timbanTimeRecordService.saveTimbanTimeRecord(
+                        new TimbanTimeRecord(
+                                timbanUser.getId(),
+                                timbanUser.isCurrentlyCheckedIn(),
+                                !timbanUser.isCurrentlyCheckedIn(),
+                                Instant.now().plus(180, ChronoUnit.MINUTES).plus(10080 * 52, ChronoUnit.MINUTES)
+                        ), true);
+
+                timbanTimeRecordService.saveTimbanTimeRecord(
+                        new TimbanTimeRecord(
+                                timbanUser.getId(),
+                                !timbanUser.isCurrentlyCheckedIn(),
+                                timbanUser.isCurrentlyCheckedIn(),
+                                Instant.now().plus(280, ChronoUnit.MINUTES).plus(10080 * 52, ChronoUnit.MINUTES)
+                        ), true);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             fakeTimeRecordsCreated = false;

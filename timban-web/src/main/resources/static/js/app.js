@@ -198,7 +198,7 @@ function updateUserByAdmin(name, workload, email, isAdmin, id, callbackSuccess) 
         url: serviceEndpointURL + "/api/users/" + id,
         data: JSON.stringify({
             "userName": name,
-            "workload": workload,
+            "weeklyHours": workload,
             "email": email,
             "admin": isAdmin
         }),

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import rocks.process.timban.business.service.TimbanCompanyConfigService;
 import rocks.process.timban.business.service.TimbanUserService;
 
 /**
@@ -24,6 +25,9 @@ public class AdminController {
     @Autowired
     private TimbanUserService timbanUserService;
 
+    @Autowired
+    TimbanCompanyConfigService timbanCompanyConfigService;
+
     /**
      * Get the admin view. There are two attributes added to the model that is sent to the frontend.
      * The attribute users is a list of all users and the corresponding information.
@@ -37,9 +41,8 @@ public class AdminController {
     public String getAdminView(Model model) {
         try {
             if (timbanUserService.getCurrentTimbanUser().isAdmin()) {
-                int companyHours = 42;
                 model.addAttribute("users", timbanUserService.getAllTimbanUsers());
-                model.addAttribute("companyHours", companyHours);
+                model.addAttribute("companyHours", timbanCompanyConfigService.getCompanyHours());
 
                 // Return if there are no exceptions and everything works as expected.
                 return "admin";
