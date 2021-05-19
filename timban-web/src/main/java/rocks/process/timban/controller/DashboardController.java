@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import rocks.process.timban.business.service.TimbanTimeRecordService;
 import rocks.process.timban.business.service.TimbanUserService;
 import rocks.process.timban.data.domain.TimbanTimeRecord;
+import rocks.process.timban.data.repository.TimbanProjectRepository;
 import rocks.process.timban.data.repository.TimbanTimeRecordRepository;
 
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class DashboardController {
     @Autowired
     TimbanTimeRecordService timbanTimeRecordService;
 
+    @Autowired
+    TimbanProjectRepository timbanProjectRepository;
+
     @GetMapping
     public String getDashboard(Model model) {
 
@@ -43,10 +47,10 @@ public class DashboardController {
         if (timbanUserService.getCurrentTimbanUser() != null) {
 
             ArrayList<TimbanTimeRecord> timeRecords = (ArrayList<TimbanTimeRecord>) timbanTimeRecordRepository.findAllByUserId(timbanUserService.getCurrentTimbanUser().getId());
-
             timeRecords.sort(Comparator.comparing(TimbanTimeRecord::getTimestamp).reversed());
 
-            model.addAttribute("records", timeRecords);
+            model.addAttribute("records", timeRecords.subList(0, Math.min(timeRecords.size(), 20)));
+            model.addAttribute("projects", timbanProjectRepository.findAll());
             model.addAttribute("user", timbanUserService.getCurrentTimbanUser());
             model.addAttribute("totalTimeOfCurrentDay", timbanTimeRecordService.getTotalTimeOfCurrentDay(timbanUserService.getCurrentTimbanUser().getId()));
         } else {

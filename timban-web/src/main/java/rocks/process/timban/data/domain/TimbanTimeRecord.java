@@ -23,7 +23,8 @@ public class TimbanTimeRecord {
     private Long userId;
     private boolean startRecording;
     private boolean stopRecording;
-    private Instant timestamp; // TODO refresh discussion about Timestamp once tackled
+    private Instant timestamp;
+    private Long projectId;
 
     public TimbanTimeRecord(Long userId, boolean startRecording, boolean stopRecording, Instant timestamp) {
         this.userId = userId;
@@ -57,4 +58,12 @@ public class TimbanTimeRecord {
     public Instant getTimestamp() { return timestamp; }
 
     public void setTimestamp(Instant timestamp) { this.timestamp = timestamp; }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
 }
