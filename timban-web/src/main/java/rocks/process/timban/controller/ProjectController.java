@@ -27,9 +27,9 @@ public class ProjectController {
         try {
             model.addAttribute("projects", timbanProjectService.getAllTimbanProjects());
         } catch (Exception ignored) {
-            return "projects";
+
         }
-        return "redirect:/dashboard";
+        return "projects";
     }
 
 }
