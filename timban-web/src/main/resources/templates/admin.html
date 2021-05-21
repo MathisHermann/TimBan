@@ -18,7 +18,7 @@
           src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="   crossorigin="anonymous"></script>
 
-  <!-- Start: Top Nav/Search -->
+  <!-- Start: Top Nav -->
 
 <nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,30 +26,30 @@
   </button>
   <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
     <img th:src="@{/images/logo.png}" alt="logo" class="logo" />
-    <form class="search-form d-flex ml-auto mt-1 mb-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <!--  <form class="search-form d-flex ml-auto mt-1 mb-0"> -->
+    <!--    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+    <!--    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button> -->
+    <!--  </form> -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Howdy, Admin
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Create User</a>
-            <a class="dropdown-item" href="/logout">Logout</a>
-          </div>
+    <li class="nav-item dropdown">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Howdy, Admin
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Create User</a>
+          <a class="dropdown-item" href="/logout">Logout</a>
         </div>
+      </div>
     </ul>
     <img th:src="@{/images/dude.png}" alt="dude" class="dude" />
-  </div>
-</nav>
+    </div>
+    </nav>
 
-</head>
-<body>
+    </head>
+    <body>
 
-<!-- End: Top Nav/Search -->
+    <!-- End: Top Nav -->
 
 <!-- Start: Employee Table -->
 
