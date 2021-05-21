@@ -1,12 +1,15 @@
 package rocks.process.timban.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rocks.process.timban.business.service.TimbanProjectService;
 import rocks.process.timban.data.domain.TimbanProject;
+import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.data.repository.TimbanProjectRepository;
 
 import javax.validation.Valid;
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -32,9 +35,9 @@ public class TimbanProjectController {
     }
 
     @GetMapping(path = "/{id}")
-    public TimbanProject getProjects(@PathVariable Long id) throws Exception {
+    public List<TimbanUser> getProjects(@PathVariable Long id) {
         try {
-            return (TimbanProject) timbanProjectRepository.findById(id).get();
+            return timbanProjectService.getAttachedUsers(id);
         } catch (Exception e) {
            return null;
         }
@@ -42,6 +45,7 @@ public class TimbanProjectController {
 
     @PostMapping
     public TimbanProject createProject(@Valid TimbanProject timbanProject) throws Exception {
+        timbanProject.setCreatedAt(Instant.now());
         return timbanProjectService.save(timbanProject);
     }
 

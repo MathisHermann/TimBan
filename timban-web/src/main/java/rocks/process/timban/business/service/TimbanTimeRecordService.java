@@ -153,4 +153,8 @@ public class TimbanTimeRecordService {
     public TimbanTimeRecord getTimeRecordById(Long id) {
         return timbanTimeRecordRepository.findById(id).get();
     }
+
+    public List<TimbanTimeRecord> getTimeRecordByProjectId(Long projectId) {
+        return timbanTimeRecordRepository.findAllByProjectId(projectId);
+    }
 }

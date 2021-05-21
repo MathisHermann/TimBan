@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import rocks.process.timban.data.domain.TimbanProject;
 import rocks.process.timban.data.domain.TimbanTimeRecord;
 import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.tools.LogToFile;
@@ -28,9 +29,13 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     @Autowired
     TimbanTimeRecordService timbanTimeRecordService;
 
+    @Autowired
+    TimbanProjectService timbanProjectService;
+
     private boolean adminCreated = false;
     private boolean fakeUsersCreated = false;
     private boolean fakeTimeRecordsCreated = false;
+    private boolean fakeProjectsCreated = false;
 
     /**
      * Execute the faker and creation of the admin user.
@@ -45,9 +50,13 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
             this.createFakeUsers();
         if (!fakeTimeRecordsCreated)
             this.createFakeTimeRecords();
+        if (!fakeProjectsCreated)
+            this.createFakeProjects();
 
         this.logResults();
     }
+
+
 
     /**
      * Log the results of the fakers to the system log-file
@@ -57,6 +66,22 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
         LogToFile.logSystem("info", "Fake User Accounts " + (fakeUsersCreated ? "successfully" : "not") + " created.");
         LogToFile.logSystem("info", "Fake Time Records " + (fakeTimeRecordsCreated ? "successfully" : "not") + " created.");
      // timbanTimeRecordService.calculate(2L, "week");
+    }
+
+    /**
+     * Create Fake Projects
+     */
+    private void createFakeProjects() {
+        fakeProjectsCreated = true;
+        try {
+            timbanProjectService.save(new TimbanProject("Antonio's Project"));
+            timbanProjectService.save(new TimbanProject("Lars' Project"));
+            timbanProjectService.save(new TimbanProject("Sven's Project"));
+            timbanProjectService.save(new TimbanProject("Mathis' Project"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            fakeProjectsCreated = false;
+        }
     }
 
     /**

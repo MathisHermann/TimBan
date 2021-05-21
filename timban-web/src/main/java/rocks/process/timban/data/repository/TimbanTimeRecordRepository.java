@@ -16,4 +16,5 @@ import java.util.List;
 
 public interface TimbanTimeRecordRepository extends JpaRepository<TimbanTimeRecord, Long> {
     List<TimbanTimeRecord> findAllByUserId(Long userId);
+    List<TimbanTimeRecord> findAllByProjectId(Long projectId);
 }
