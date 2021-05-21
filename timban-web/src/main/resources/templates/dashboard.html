@@ -186,7 +186,7 @@
             <h1 th:unless="${record.startRecording}">Check-In</h1>
         </div>
         <div class="col-sm-1 text-center">
-            <a th:href="${'/record-settings/' + {record.id}}">Edit</a>
+            <a class="editSettings-Button" th:href="${'/record-settings/' + {record.id}}">Edit</a>
         </div>
     </div>
     </div>

@@ -388,6 +388,7 @@ select::-ms-expand {
 }
 
 .editSettings-Button{
+ text-decoration: none;
  border: none;
  outline: none;
  background: #3FB0AC;
