@@ -65,6 +65,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
         LogToFile.logSystem("info", "Admin Account " + (adminCreated ? "successfully" : "not") + " created.");
         LogToFile.logSystem("info", "Fake User Accounts " + (fakeUsersCreated ? "successfully" : "not") + " created.");
         LogToFile.logSystem("info", "Fake Time Records " + (fakeTimeRecordsCreated ? "successfully" : "not") + " created.");
+        LogToFile.logSystem("info", "Fake Projects " + (fakeProjectsCreated ? "successfully" : "not") + " created.");
      // timbanTimeRecordService.calculate(2L, "week");
     }
 
