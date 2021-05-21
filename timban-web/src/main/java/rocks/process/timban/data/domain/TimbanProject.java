@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 
 /**
  * Author: Mathis
@@ -21,6 +23,8 @@ public class TimbanProject {
     @NotEmpty
     private String projectName;
     private Instant createdAt;
+    private Instant dueDate;
+
 
     public TimbanProject() {
 
@@ -29,6 +33,15 @@ public class TimbanProject {
     public TimbanProject(String projectName) {
         this.projectName = projectName;
         this.createdAt = Instant.now();
+        this.dueDate = Instant.now().plus(10000, ChronoUnit.MINUTES);
+    }
+
+    public Instant getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Instant dueDate) {
+        this.dueDate = dueDate;
     }
 
     public Instant getCreatedAt() {

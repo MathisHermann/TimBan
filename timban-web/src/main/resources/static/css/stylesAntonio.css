@@ -84,6 +84,19 @@ nav {
     color: #3FB0AC;
 }
 
+.footer-box{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    background: white;
+}
+
+.footer {
+    text-align: center;
+    margin: 5px;
+    font-size: 11px;
+    color: rgb(0, 0, 0);
+}
 
 .container {
     max-width: 1000px;

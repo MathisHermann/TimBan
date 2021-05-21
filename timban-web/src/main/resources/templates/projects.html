@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Admin</title>
+    <title>Project</title>
 
     <!-- From Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/stylesAntonio.css" />
+    <link th:href="@{/css/stylesAntonio.css}" rel="stylesheet"/>
 
     <!-- JavaScript and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -56,24 +56,23 @@
 <div class="container">
     <ul class="responsive-table">
         <li class="table-header">
-            <div class="col col-1">Id</div>
-            <div class="col col-2">Name</div>
-            <div class="col col-3">Workload %</div>
-            <div class="col col-4">Workload hrs.</div>
-            <div class="col col-5"></div>
+            <div class="col col-1">ID</div>
+            <div class="col col-2">PROJECT NAME</div>
+            <div class="col col-3">DUE DATE</div>
+            <div class="col col-4">CREATION DATE</div>
         </li>
     </ul>
-    <ul class="responsive-table" th:each="user: ${users}">
-        <a class= overviewLink th:href="${'/overview/' + {user.id}}">
+    <ul class="responsive-table" th:each="project: ${projects}">
+
             <li class="table-row">
-                <div class="col col-1" data-label="Id" th:text="${user.id}"></div>
-                <div class="col col-2" data-label="Name" th:text="${user.userName}"></div>
-                <div class="col col-3" data-label="Workload %" th:text="|${(user.weeklyHours * 100 / weeklyCompanyHours)} %|"></div>
-                <div class="col col-4" data-label="Workload hrs." th:text="${user.weeklyHours}"></div>
+                <div class="col col-1" data-label="Id" th:text="${project.id}"></div>
+                <div class="col col-2" data-label="Project Name" th:text="${project.projectName}"></div>
+                <div class="col col-3" data-label="Due Date" th:text="${#dates.format(project.dueDate, 'dd.MM.yyyy')}"></div>
+                <div class="col col-4" data-label="Creation Date" th:text="${#dates.format(project.createdAt, 'dd.MM.yyyy')}"></div>
             </li>
-        </a>
     </ul>
 </div>
+
 
 <!-- End: Employee Table -->
 
@@ -118,6 +117,18 @@
 <!-- Start: Create User JS -->
 
 <script th:src="@{/js/app.js}"></script>
+
+<!-- Start: Footer -->
+
+<footer style="height: 15px;">
+    <div class="footer-box">
+        <p class="footer">
+            ©TimBan — Made with ❤ for the people of the internet.<br></p>
+    </div>
+</footer>
+
+<!-- End: Footer -->
+
 <script>
 
     $(document).ready
