@@ -1,3 +1,7 @@
+
+<!--Author:  Lars Stegmann-->
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
@@ -102,12 +106,13 @@
             <p>CURRENT STATUS</p>
         </div>
         <div class="col-sm text-center">
-            <h1 th:text="${#strings.substring(totalTimeOfCurrentDay,0,2) + 'h ' + #strings.substring(totalTimeOfCurrentDay,3) + 'min'}"/>
+            <h1 th:text="${totalTimeOfCurrentDay}"/>
+<!--            <h1 th:text="${#strings.substring(totalTimeOfCurrentDay,0,2) + 'h ' + #strings.substring(totalTimeOfCurrentDay,3) + 'min'}"/>-->
 
             <p>TIME WORKED TODAY</p>
         </div>
         <div class="col-sm text-center">
-            <h1 th:text="${user.weeklyHours}"/>
+            <h1 th:text="${dailyTimeToWorkInMin}"/>
 <!--            calculation not done yet-->
             <p>UNDER TIME</p>
         </div>
@@ -166,20 +171,22 @@
 
 <div class="container" >
     <h1 id="myLastRecording">My last recordings:</h1>
-
     <div class="row justify-content-center align-items-center" th:each="record: ${records}" id="lastRecording-row">
-        <div class="col-sm text-center">
+        <div class="col-sm-2 text-center">
             <h1 th:text="${#dates.format(record.timestamp, 'dd.MM.yyyy')}"/>
         </div>
-        <div class="col-sm text-center">
+        <div class="col-sm-2 text-center">
             <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
         </div>
-        <div class="col-sm text-center">
+        <div class="col-sm-4 text-center">
             <h1>Project xyz</h1>
         </div>
-        <div class="col-sm text-center">
+        <div class="col-sm-3 text-center">
             <h1 th:if="${record.startRecording}">Check-Out</h1>
             <h1 th:unless="${record.startRecording}">Check-In</h1>
+        </div>
+        <div class="col-sm-1 text-center">
+            <button class="editSettings-Button" >Edit</button>
         </div>
     </div>
     </div>
@@ -231,9 +238,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Change your user infos</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
 
             <div class="modal-body">
@@ -279,6 +283,7 @@
     {
         var user = [[${user}]];
         var records = [[${records}]];
+        var dailyTimeToWorkInMin = (user.weeklyHours * 60) / 5;
 
         $('#check-in-button').click(function () {
 
@@ -312,6 +317,8 @@
 
             event.preventDefault();
         })
+
+
 
 
         // console.log(Date.parse(records[1].timestamp) - Date.parse(records[0].timestamp))

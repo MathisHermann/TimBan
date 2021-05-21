@@ -387,6 +387,25 @@ select::-ms-expand {
  margin-bottom: 20px;
 }
 
+.editSettings-Button{
+ border: none;
+ outline: none;
+ background: #3FB0AC;
+ color: #fff;
+ border-radius: 5px;
+ text-transform: uppercase;
+ cursor: pointer;
+ font-weight: 700;
+ padding-right: 10px;
+ padding-left: 10px;
+}
+
+.editSettings-Button:hover {
+ cursor: pointer;
+ background: #4F8280;
+ color: white;
+}
+
 @media (max-width: 767px) {
  #selectProject-Div {
   margin-top: 30px;
@@ -398,6 +417,10 @@ select::-ms-expand {
 
  #heroSection-dashboard{
   width: 95%;
+ }
+
+ .editSettings-Button{
+  margin-top: 10px;
  }
 }
 
