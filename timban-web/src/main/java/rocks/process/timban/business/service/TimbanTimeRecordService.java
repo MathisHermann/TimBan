@@ -135,8 +135,8 @@ public class TimbanTimeRecordService {
         return filteredTimeRecords;
     }
 
-    public LocalTime getTotalTimeOfCurrentDay(Long userId) {
-        return LocalTime.ofSecondOfDay(calculate(userId, "day") * 60L);
+    public Long getTotalTimeOfCurrentDay(Long userId) {
+        return calculate(userId, "day") * 60L;
     }
 
     public LocalTime getWeekly(Long userId) {
@@ -150,4 +150,7 @@ public class TimbanTimeRecordService {
         return LocalTime.ofSecondOfDay(calculate(userId, "year") * 60L);
     }
 
+    public TimbanTimeRecord getTimeRecordById(Long id) {
+        return timbanTimeRecordRepository.findById(id).get();
+    }
 }

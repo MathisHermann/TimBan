@@ -39,4 +39,8 @@ public class TimbanProjectService {
     public void delete(Long id) {
         timbanProjectRepository.deleteById(id);
     }
+
+    public List<TimbanProject> getAllTimbanProjects() {
+        return timbanProjectRepository.findAll();
+    }
 }

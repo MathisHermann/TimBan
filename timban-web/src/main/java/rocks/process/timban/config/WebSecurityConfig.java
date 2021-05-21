@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
             .authorizeRequests()
                 .antMatchers("/", "/index", "/css/**", "/js/**", "/images/**", "/login/**", "/api/**").permitAll()
-                .antMatchers("/dashboard/**", "/projects/**", "/admin/**", "/overview/**").authenticated()
+                .antMatchers("/dashboard/**", "/projects/**", "/admin/**", "/overview/**", "/record-settings").authenticated()
                 .antMatchers(HttpMethod.GET, "/logout").permitAll()
                 .anyRequest().authenticated().and()
                     .addFilter(new TokenLoginFilter(authenticationManagerBean(), tokenService))
