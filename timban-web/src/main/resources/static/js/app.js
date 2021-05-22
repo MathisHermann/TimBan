@@ -216,16 +216,20 @@ function updateUserByAdmin(name, workload, email, isAdmin, id, callbackSuccess) 
 
 <!-- Start: Antonio - Delete User -->
 
-/*
-function deleteUser(id, callback) {
+
+function deleteUser(id, callbackSuccess) {
     $.ajax({
         type: "DELETE",
         headers: {
             "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
         },
-        url: serviceEndpointURL + "/api/users"
+        url: serviceEndpointURL + "/api/users/" + id,
+
+        success: function (data, textStatus, response) {
+            callbackSuccess(true);
+        }
     });
 }
- */
+
 
 <!-- End: Antonio - Delete User -->

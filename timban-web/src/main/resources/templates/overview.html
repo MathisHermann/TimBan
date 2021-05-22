@@ -27,7 +27,7 @@
 
 <body>
 
-<!-- Start: Top Nav/Search -->
+<!-- Start: Top Nav -->
 
 <nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -48,8 +48,10 @@
                         Howdy, Admin
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Create
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create
                             User</a>
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createProjectModal">Create
+                            Project</a>
                         <a class="dropdown-item" href="#">Logout</a>
                     </div>
                 </div>
@@ -58,13 +60,12 @@
     </div>
 </nav>
 
-<!-- End: Top Nav/Search -->
-
+<!-- End: Top Nav -->
 
 <!-- Start: Employee Overview-->
 <div class="grid">
     <div class="player" th:text="|WORKLOAD: ${(user.weeklyHours * 100 / weeklyCompanyHours)} %|"></div>
-    <div class="player" th:text= "|WEEKLY: ${(user.weeklyHours) - (weeklyCompanyHours)}|"></div>
+    <div class="player" th:text="|WEEKLY: ${(user.weeklyHours) - (weeklyCompanyHours)}|"></div>
     <div class="player" th:text="|MONTHLY: ${(user.weeklyHours) - (monthlyCompanyHours)}|"></div>
     <div class="player" th:text="|YEARLY: ${(user.weeklyHours) - (yearlyCompanyHours)}|"></div>
 </div>
@@ -94,7 +95,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Update Email & Check Box -->
         <div class="row mb-4">
             <div class="col">
@@ -121,12 +121,11 @@
             </div>
         </div>
 
-
         <!-- End: Update User -->
 
         <!-- Start Modal: Create User -->
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -168,6 +167,34 @@
 
 <!-- End Modal: Create User -->
 
+<!-- Start Modal: Create Project -->
+
+<div class="modal fade" id="createProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Enter Project Data</h5>
+            </div>
+
+            <div class="modal-body">
+                <!-- Project Name: Text input -->
+                <input type="text" id="projectName" class="form-control"/>
+                <label class="form-label" for="projectName">Project Name</label>
+                <!-- Due Date: Input -->
+                <input type="date" id="dueDate" class="form-control"/>
+                <label class="form-label" for="dueDate">Due Date</label>
+                <!-- "Create Project" Button" -->
+                <button type="submit" id="createProjectButton" class="btn btn-outline-primary btn-block mb-4">Create Project
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- End Modal: Create Project -->
+
 <!-- Start: Update User JS -->
 
 <script th:src="@{/js/app.js}"></script>
@@ -190,8 +217,11 @@
 
     $(document).ready
     {
+        var id = window.location.pathname.split("/")[2];
+
+// Start: Update User
+
         $('#updateUser').click(function (event) {
-            var id = window.location.pathname.split("/")[2];
             var name = $('#formName2').val();
             var workload = $('#formWorkload2').val();
             var email = $('#formEmail2').val();
@@ -204,15 +234,20 @@
 
             event.preventDefault();
         })
+
+// End: Update User
+
+// Start: Delete User
+
+        $('#deleteUser').click(function (event) {
+            deleteUser(id, function (result) {
+                if (result)
+                    location.replace("/admin")
+            })
+        })
+
+// End: Delete User
+
     }
-
-    <!-- End: Update User JS -->
-
-    <!-- Start: Delete User JS -->
-
-
-
-    <!-- End: Delete User JS -->
-
 </script>
 </html>
