@@ -106,16 +106,22 @@
             <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'"/>
             <p>CURRENT STATUS</p>
         </div>
-        <div class="col-sm text-center">
-            <h1 th:text="${totalTimeOfCurrentDay}"/>
-<!--            <h1 th:text="${#strings.substring(totalTimeOfCurrentDay,0,2) + 'h ' + #strings.substring(totalTimeOfCurrentDay,3) + 'min'}"/>-->
+        <div class="col-sm text-center" >
+            <h1 th:with="hours=${(totalTimeOfCurrentDay/3600)},
+                        minutes=${(totalTimeOfCurrentDay - (hours * 3600)) / (60)}"
+
+                    th:text="${hours} + ' h '  + ${minutes} % 60 + ' min'"/>
 
             <p>TIME WORKED TODAY</p>
         </div>
         <div class="col-sm text-center">
-            <h1 th:text="${dailyTimeToWorkInMin}"/>
-<!--            calculation not done yet-->
-            <p>UNDER TIME</p>
+            <h1 th:with="difference=${(user.weeklyHours*3600)/5 - totalTimeOfCurrentDay},
+                         hours=${(difference/3600)},
+                        minutes=${(difference - (hours * 3600)) / (60)}"
+
+                th:text="${hours} + ' h '  + ${minutes} % 60 + ' min'"/>
+
+            <p th:text="${((user.weeklyHours * 60) / 5) > (totalTimeOfCurrentDay/60)} ? 'UNDER TIME' : 'OVER TIME'" />
         </div>
     </div>
 </div>
@@ -284,7 +290,6 @@
     {
         var user = [[${user}]];
         var records = [[${records}]];
-        var dailyTimeToWorkInMin = (user.weeklyHours * 60) / 5;
 
         $('#check-in-button').click(function () {
 
