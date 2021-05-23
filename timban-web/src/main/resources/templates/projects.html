@@ -45,8 +45,10 @@
                             Howdy, Admin
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create User</a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createProjectModal">Create Project</a>
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create
+                                User</a>
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                               data-bs-target="#createProjectModal">Create Project</a>
                             <a class="dropdown-item" href="/logout">Logout</a>
                         </div>
                     </div>
@@ -72,7 +74,7 @@
         </li>
     </ul>
     <ul class="responsive-table" th:each="project: ${projects}">
-        <a class= "rowClick" data-toggle="collapse" th:attr="data-target='#div-id-'+${project.id}">
+        <a class="rowClick" data-toggle="collapse" th:attr="data-target='#div-id-'+${project.id}">
             <li class="table-row">
                 <div class="col col-1" data-label="Id" th:text="${project.id}"></div>
                 <div class="col col-2" data-label="Project Name" th:text="${project.projectName}"></div>
@@ -83,10 +85,45 @@
             </li>
         </a>
         <div class="collapse" th:id="@{|div-id-${project.id}|}">
-            Lorem ipsum dolor text....
-        </div>
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Project Information</h5>
+                </div>
+                <!-- Update Project Name & Due Date -->
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" id="formProjectName" class="form-control"
+                                       th:value="${project.projectName}"/>
+                                <label class="form-label" for="formProjectName">Project Name</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" id="formDueDate" class="form-control"
+                                       th:value="${#dates.format(project.dueDate, 'dd.MM.yyyy')}"/>
+                                <label class="form-label" for="formDueDate">Due Date</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Update user & Delete User Button" -->
+                    <div class="row">
+                        <div class="btn-group col">
+                            <button type="submit" id="updateProjectButton" class="btn btn-outline-primary">Update
+                            </button>
+                        </div>
+                        <div class="btn-group col">
+                            <button type="button" id="deleteProjectButton" class="btn btn-outline-primary">Delete
+                                Project
+                            </button>
+                        </div>
+                    </div>
     </ul>
 </div>
+
+<button type="button" class="btn-outline-primary btn-lg">+</button>
 
 <!-- End: Project Table -->
 
@@ -142,13 +179,14 @@
 
             <div class="modal-body">
                 <!-- Project Name: Text input -->
-                <input type="text" id="projectName" class="form-control"/>
-                <label class="form-label" for="projectName">Project Name</label>
+                <input type="text" id="createProjectName" class="form-control"/>
+                <label class="form-label" for="createProjectName">Project Name</label>
                 <!-- Due Date: Input -->
-                <input type="date" id="dueDate" class="form-control"/>
-                <label class="form-label" for="dueDate">Due Date</label>
+                <input type="date" id="createDueDate" class="form-control"/>
+                <label class="form-label" for="createDueDate">Due Date</label>
                 <!-- "Create Project" Button" -->
-                <button type="submit" id="createProjectButton" class="btn btn-outline-primary btn-block mb-4">Create Project
+                <button type="submit" id="createProjectButton" class="btn btn-outline-primary btn-block mb-4">Create
+                    Project
                 </button>
 
             </div>
@@ -172,22 +210,19 @@
 
 <!-- End: Footer -->
 
-<!-- Start: Create User JS -->
-
 <script>
 
 
     $(document).ready
 
-    {
-        $('#formButton').click(function (event) {
-            var name = $('#formName').val();
-            var workload = $('#formWorkload').val();
-            var email = $('#formEmail').val();
-            var password = $('#formPassword').val();
-            var isAdmin = $('#formAdmin').val();
+    // Start: Create Project
 
-            postProfile(name, workload, email, password, isAdmin, function (result) {
+    {
+        $('#createProjectButton').click(function (event) {
+            var projectName = $('#projectName').val();
+            var dueDate = $('#dueDate').val();
+
+            createProject(projectName, dueDate, function (result) {
                 if (result)
                     location.reload()
             });
@@ -196,7 +231,35 @@
         })
     }
 
-    <!-- End: Create User JS -->
+    // End: Create Project
+
+    // Start: Update Project
+
+    $('#updateProjectButton').click(function (event) {
+        var projectName = $('#formProjectName').val();
+        var dueDate = $('#formDueDate').val();
+
+        updateProject(projectName, dueDate, id, function (result) {
+            if (result)
+                location.reload()
+        });
+
+        event.preventDefault();
+    })
+
+    // End: Update Project
+
+    // Start: Delete Project
+
+    $('#deleteProjectButton').click(function (event) {
+        deleteProject(id, function (result) {
+            if (result)
+                location.replace("/projects")
+        })
+    })
+    }
+
+    // End: Delete Project
 
 </script>
 </html>

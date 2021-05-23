@@ -124,7 +124,7 @@ function timeRecord (userId , startRecording) {
 }
 
 
-<!-- END PART LARS-->
+
 
 <!-- Settings -->
 
@@ -158,6 +158,9 @@ function putProfile (name, email, password) {
 
 <!-- END PART LARS-->
 
+
+<!-- START PART ANTONIO -->
+
 <!-- Start: Antonio - Create User -->
 
 function postProfile(name, workload, email, password, isAdmin, callbackSuccess ) {
@@ -188,6 +191,7 @@ function postProfile(name, workload, email, password, isAdmin, callbackSuccess )
 <!-- End: Antonio - Create User -->
 
 <!-- Start: Antonio - Update User -->
+
 function updateUserByAdmin(name, workload, email, isAdmin, id, callbackSuccess) {
     $.ajax({
         type: "PUT",
@@ -216,7 +220,6 @@ function updateUserByAdmin(name, workload, email, isAdmin, id, callbackSuccess) 
 
 <!-- Start: Antonio - Delete User -->
 
-
 function deleteUser(id, callbackSuccess) {
     $.ajax({
         type: "DELETE",
@@ -231,5 +234,77 @@ function deleteUser(id, callbackSuccess) {
     });
 }
 
-
 <!-- End: Antonio - Delete User -->
+
+<!-- Start: Antonio - Create Project -->
+
+function createProject(projectName, dueDate, callbackSuccess ) {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/projects",
+        data: JSON.stringify({
+            "projectName": projectName,
+            "dueDate": dueDate
+
+        }),
+        success: function (data, textStatus, response) {
+            callbackSuccess(true);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+
+        }
+    });
+}
+
+<!-- End: Antonio - Create Project -->
+
+<!-- Start: Antonio - Update Project -->
+
+function updateProject(projectName, dueDate, callbackSuccess) {
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/projects/" + id,
+        data: JSON.stringify({
+            "projectName": projectName,
+            "dueDate": dueDate
+        }),
+        success: function (data, textStatus, response) {
+            callbackSuccess(true);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+
+        }
+    });
+}
+
+<!-- End: Antonio - Update Project -->
+
+<!-- Start: Antonio - Delete Project -->
+
+function deleteProject(id, callbackSuccess) {
+    $.ajax({
+        type: "DELETE",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/projects/" + id,
+
+        success: function (data, textStatus, response) {
+            callbackSuccess(true);
+        }
+    });
+}
+
+<!-- End: Antonio - Delete Project -->
+
+<!-- END PART ANTONIO -->
