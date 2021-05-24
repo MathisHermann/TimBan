@@ -53,35 +53,11 @@ public class TimbanTimeRecordService {
      */
     public int calculate(Long userId, String timeSpan) {
 
-        // retrieve data from db
-        List<TimbanTimeRecord> timeRecords = getTimeRecordListByTimeSpanAndId(userId, timeSpan);
-
-        if (timeRecords.size() % 2 != 0)
-            timeRecords.add(new TimbanTimeRecord(userId, true, false, Instant.now()));
-
-        // Sort the list that the newest record is the first
-        timeRecords.sort(Comparator.comparing(TimbanTimeRecord::getTimestamp).reversed());
-
-
         // Array of the each time record pair grouped by day
-        int[][] diffAndWeekDay = new int[timeRecords.size() / 2][2];
+        int[][] diffAndWeekDay = createDiffAndWeekDayTable(userId, timeSpan);
 
         // Time grouped by day (info about the day)
         ArrayList<Integer> allTimes = new ArrayList<>();
-
-        // Iterate over list and extract the time difference between
-        for (int i = 0; i < timeRecords.size(); i += 2) {
-
-            int dayOfFirst = timeRecords.get(i + 1).getTimestamp().atZone(ZoneId.systemDefault()).getDayOfMonth();
-            int dayOfSecond = timeRecords.get(i).getTimestamp().atZone(ZoneId.systemDefault()).getDayOfMonth();
-
-            if (dayOfFirst == dayOfSecond) {
-                int difference = (int) (timeRecords.get(i).getTimestamp().getEpochSecond()
-                        - (int) timeRecords.get(i + 1).getTimestamp().getEpochSecond()) / 60;
-                diffAndWeekDay[i / 2][0] = difference;
-                diffAndWeekDay[i / 2][1] = dayOfFirst;
-            }
-        }
 
         // Add the daily times to the corresponding list
         for (int i = 0; i < diffAndWeekDay[diffAndWeekDay.length - 1][1]; i++) {
@@ -100,6 +76,37 @@ public class TimbanTimeRecordService {
             totalAllTime += i;
 
         return totalAllTime;
+    }
+
+    public int[][] createDiffAndWeekDayTable(Long userId, String timeSpan) {
+        // retrieve data from db
+        List<TimbanTimeRecord> timeRecords = getTimeRecordListByTimeSpanAndId(userId, timeSpan);
+
+        if (timeRecords.size() % 2 != 0)
+            timeRecords.add(new TimbanTimeRecord(userId, true, false, Instant.now()));
+
+        // Sort the list that the newest record is the first
+        timeRecords.sort(Comparator.comparing(TimbanTimeRecord::getTimestamp).reversed());
+
+        // Array of the each time record pair grouped by day
+        int[][] diffAndWeekDay = new int[timeRecords.size() / 2][2];
+
+        // Iterate over list and extract the time difference between
+        for (int i = 0; i < timeRecords.size(); i += 2) {
+
+            int dayOfFirst = timeRecords.get(i + 1).getTimestamp().atZone(ZoneId.systemDefault()).getDayOfMonth();
+            int dayOfSecond = timeRecords.get(i).getTimestamp().atZone(ZoneId.systemDefault()).getDayOfMonth();
+
+            if (dayOfFirst == dayOfSecond) {
+                int difference = (int) (timeRecords.get(i).getTimestamp().getEpochSecond()
+                        - (int) timeRecords.get(i + 1).getTimestamp().getEpochSecond()) / 60;
+                System.out.println(difference + " lol");
+                diffAndWeekDay[i / 2][0] = difference;
+                diffAndWeekDay[i / 2][1] = dayOfFirst;
+            }
+        }
+
+        return diffAndWeekDay;
     }
 
     public ArrayList<TimbanTimeRecord> getTimeRecordListByTimeSpanAndId(Long userId, String timeSpan) {

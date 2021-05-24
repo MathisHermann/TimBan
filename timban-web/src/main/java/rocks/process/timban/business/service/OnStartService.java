@@ -8,6 +8,8 @@ import rocks.process.timban.data.domain.TimbanProject;
 import rocks.process.timban.data.domain.TimbanTimeRecord;
 import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.tools.LogToFile;
+import rocks.process.timban.tools.ReportPDF;
+
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
@@ -32,6 +34,9 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     @Autowired
     TimbanProjectService timbanProjectService;
 
+    @Autowired
+    ReportPDF reportPDF;
+
     private boolean adminCreated = false;
     private boolean fakeUsersCreated = false;
     private boolean fakeTimeRecordsCreated = false;
@@ -53,10 +58,10 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
         if (!fakeProjectsCreated)
             this.createFakeProjects();
 
+        reportPDF.reportToPDF(timbanUserService.getAllTimbanUsers().get(1), "may");
+
         this.logResults();
     }
-
-
 
     /**
      * Log the results of the fakers to the system log-file
@@ -66,7 +71,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
         LogToFile.logSystem("info", "Fake User Accounts " + (fakeUsersCreated ? "successfully" : "not") + " created.");
         LogToFile.logSystem("info", "Fake Time Records " + (fakeTimeRecordsCreated ? "successfully" : "not") + " created.");
         LogToFile.logSystem("info", "Fake Projects " + (fakeProjectsCreated ? "successfully" : "not") + " created.");
-     // timbanTimeRecordService.calculate(2L, "week");
+        // timbanTimeRecordService.calculate(2L, "week");
     }
 
     /**
