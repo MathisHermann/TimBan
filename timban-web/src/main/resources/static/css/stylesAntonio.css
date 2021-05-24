@@ -6,9 +6,6 @@ body {
 nav {
     background-color: white;
 }
-.search-form {
-    width: 50%;
-}
 
 .dude {
     max-height: 70px;
@@ -25,7 +22,6 @@ nav {
     color: white;
     border: none;
     cursor: pointer;
-
 }
 
 .btn-outline-primary:hover {
@@ -103,8 +99,6 @@ nav {
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    border: 1px solid red;
-
 }
 
 .btn-lg {

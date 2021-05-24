@@ -24,6 +24,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+</head>
+<body>
+
     <!-- Start: Top Nav -->
 
     <nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
@@ -56,9 +59,6 @@
             <img th:src="@{/images/dude.png}" alt="dude" class="dude"/>
         </div>
     </nav>
-
-</head>
-<body>
 
 <!-- End: Top Nav -->
 
@@ -123,7 +123,7 @@
     </ul>
 </div>
 
-<button type="button" class="btn-outline-primary btn-lg">+</button>
+<button type="button" href="#" data-bs-toggle="modal" data-bs-target="#createProjectModal" class="btn-outline-primary btn-lg">+</button>
 
 <!-- End: Project Table -->
 
@@ -211,7 +211,6 @@
 <!-- End: Footer -->
 
 <script>
-
 
     $(document).ready
 
