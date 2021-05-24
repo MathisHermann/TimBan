@@ -100,7 +100,6 @@ public class TimbanTimeRecordService {
             if (dayOfFirst == dayOfSecond) {
                 int difference = (int) (timeRecords.get(i).getTimestamp().getEpochSecond()
                         - (int) timeRecords.get(i + 1).getTimestamp().getEpochSecond()) / 60;
-                System.out.println(difference + " lol");
                 diffAndWeekDay[i / 2][0] = difference;
                 diffAndWeekDay[i / 2][1] = dayOfFirst;
             }

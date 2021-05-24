@@ -58,8 +58,6 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
         if (!fakeProjectsCreated)
             this.createFakeProjects();
 
-        reportPDF.reportToPDF(timbanUserService.getAllTimbanUsers().get(1), "may");
-
         this.logResults();
     }
 
