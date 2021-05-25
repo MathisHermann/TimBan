@@ -122,6 +122,7 @@
                             </button>
                         </div>
                     </div>
+        </div>
     </ul>
 </div>
 
@@ -197,11 +198,8 @@
         </div>
     </div>
 </div>
-</body>
 
 <!-- End Modal: Create Project -->
-
-<script th:src="@{/js/app.js}"></script>
 
 <!-- Start: Footer -->
 
@@ -214,6 +212,13 @@
 
 <!-- End: Footer -->
 
+</body>
+
+
+<!-- Start: Create Project JS -->
+
+<script th:src="@{/js/app.js}"></script>
+
 <script>
 
     $(document).ready
@@ -222,7 +227,7 @@
 
     {
         $('#createProjectButton').click(function (event) {
-            var projectName = $('#projectName').val();
+            var projectName = $('#createProjectButton').val();
             var dueDate = $('#dueDate').val();
 
             createProject(projectName, dueDate, function (result) {

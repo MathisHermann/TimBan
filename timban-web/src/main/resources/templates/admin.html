@@ -100,28 +100,49 @@
             </div>
 
             <div class="modal-body">
-                <!-- Name: Text input -->
-                <input type="text" id="formName" class="form-control"/>
-                <label class="form-label" for="formName">Name</label>
-                <!-- Workload: Input -->
-                <input type="text" id="formWorkload" class="form-control"/>
-                <label class="form-label" for="formWorkload">Workload</label>
-                <!-- Email: Input -->
-                <input type="email" id="formEmail" class="form-control"/>
-                <label class="form-label" for="formEmail">Email</label>
-                <!-- Password: Input -->
-                <input type="password" id="formPassword" class="form-control"/>
-                <label class="form-label" for="formPassword">Password</label>
-                <!-- Admin Rights: Check -->
-                <p>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="formAdmin">
-                    <label class="form-check-label" for="formAdmin">Admin Rights</label>
-                </div>
-                </p>
-                <!-- "Create User" Button" -->
-                <button type="submit" id="formButton" class="btn btn-outline-primary btn-block mb-4">Create User
-                </button>
+                <form class="needs-validation" novalidate>
+                        <!-- Name: Text input -->
+                        <label for="formName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="formName"  required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <!-- Workload: Input -->
+                    <p></p>
+                        <label for="formWorkload" class="form-label">Workload (weekly in hrs.)</label>
+                        <input type="text" class="form-control" id="formWorkload"  required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    <p></p>
+                        <!-- Email: Input -->
+                        <label for="formEmail" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="formEmail"  required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    <p></p>
+                        <!-- Email: Input -->
+                        <label for="formPassword" class="form-label">Password</label>
+                        <input type="text" class="form-control" id="formPassword"  required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <!-- Admin Rights: Check -->
+                    <p></p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="formAdmin" required>
+                            <label class="form-check-label" for="formAdmin">
+                                Admin Rights
+                            </label>
+                        </div>
+                    <p></p>
+                    <!-- "Create User" Button" -->
+                    <div class="col-12">
+                        <button class="btn btn-outline-primary" type="submit">Create User</button>
+                    </div>
+
+                </form>
 
             </div>
         </div>
@@ -154,13 +175,8 @@
         </div>
     </div>
 </div>
-</body>
 
 <!-- End Modal: Create Project -->
-
-<!-- Start: Create User JS -->
-
-<script th:src="@{/js/app.js}"></script>
 
 <!-- Start: Footer -->
 
@@ -172,6 +188,12 @@
 </footer>
 
 <!-- End: Footer -->
+
+</body>
+
+<!-- Start: Create User JS -->
+
+<script th:src="@{/js/app.js}"></script>
 
 <script>
 
@@ -198,6 +220,27 @@
     }
 
 // End: Create User
+
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
 
 </script>
 </html>
