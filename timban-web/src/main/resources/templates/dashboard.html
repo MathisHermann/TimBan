@@ -84,10 +84,12 @@
         </div>
         <div class="col-sm text-center" id="selectProject-Div">
             <select class="selectProject-wrapper" id="selectProject" name="selectProject">
-                <option selected>Select Project</option>
-<!--                <option th:each="project : ${projects}"-->
-<!--                        th:value="${project}"-->
-<!--                        th:text="${project}"></option>-->
+                <option selected disabled>Select Project</option>
+                <option value="0">No project</option>
+                <option
+                        th:each="project : ${projects}"
+                        th:value="${project.id}"
+                        th:text="${project.projectName}"></option>
             </select>
             <span class="input-group-btn"><i class="glyphicon glyphicon-menu-down"></i></span>
         </div>
@@ -188,7 +190,7 @@
             <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
         </div>
         <div class="col-sm-4 text-center">
-            <h1>Project xyz</h1>
+            <h1 th:text="${record.projectId}"/>
         </div>
         <div class="col-sm-3 text-center">
             <h1 th:if="${record.startRecording}">Check-Out</h1>
@@ -299,7 +301,10 @@
             var currentlyCheckedIn = user.currentlyCheckedIn;
             console.log(currentlyCheckedIn + "huhu")
             console.log(userId + " grüezi")
-            timeRecord(userId, currentlyCheckedIn)
+
+            var projectId = $('#selectProject option:selected').val();
+            timeRecord(userId, currentlyCheckedIn, projectId)
+
 
         })
 

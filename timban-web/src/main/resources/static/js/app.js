@@ -96,7 +96,7 @@ function getCookie(name) {
 <!-- Check-In Button-->
 
 
-function timeRecord (userId , startRecording) {
+function timeRecord (userId , startRecording, projectId) {
     var timestamp = new Date();
 
 
@@ -110,7 +110,9 @@ function timeRecord (userId , startRecording) {
         data: JSON.stringify({
             "userId": userId,
             "startRecording": startRecording,
-            "timestamp": timestamp
+            "timestamp": timestamp,
+            "projectId" : projectId
+
         }),
         success: function (data, textStatus, response) {
             // callback(true);
@@ -129,7 +131,7 @@ function timeRecord (userId , startRecording) {
 <!-- Settings -->
 
 
-function putProfile (name, email, password) {
+function putRecord (timestamp, projectId) {
 
 
     $.ajax({
@@ -138,11 +140,11 @@ function putProfile (name, email, password) {
         headers: {
             "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
         },
-        url: serviceEndpointURL + "/api/users",
+        url: serviceEndpointURL + "/api/records" + id,
         data: JSON.stringify({
-            "userName": name,
-            "email": email,
-            "password": password
+            "projectId": projectId,
+            "timestamp": timestamp
+
         }),
         success: function (data, textStatus, response) {
             // callback(true);
@@ -154,6 +156,25 @@ function putProfile (name, email, password) {
         }
     });
 }
+
+
+<!-- Start: Lars - Delete Record -->
+
+function deleteRecord(id, callbackSuccess) {
+    $.ajax({
+        type: "DELETE",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/records/" + id,
+
+        success: function (data, textStatus, response) {
+            callbackSuccess(true);
+        }
+    });
+}
+
+<!-- End: Lars - Delete Record -->
 
 
 <!-- END PART LARS-->
