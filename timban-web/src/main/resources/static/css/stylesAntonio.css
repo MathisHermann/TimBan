@@ -102,14 +102,7 @@ nav {
 }
 
 .btn-lg {
-    margin-left: 1150px;
-    width: 60px;
-    height: 60px;
-    padding: 12px 0px;
-    border-radius: 30px;
-    text-align: center;
-    font-size: 24px;
-    line-height: 1.42857;
+    min-width: 400px;
 }
 
 .container {
