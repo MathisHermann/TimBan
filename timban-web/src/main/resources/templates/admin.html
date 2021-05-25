@@ -48,7 +48,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create User</a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createProjectModal">Create Project</a>
+                            <a class="dropdown-item" href="/projects">Projects</a>
                             <a class="dropdown-item" href="/logout">Logout</a>
                         </div>
                     </div>
@@ -103,43 +103,48 @@
                 <form class="needs-validation" novalidate>
                         <!-- Name: Text input -->
                         <label for="formName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="formName"  required>
-                        <div class="valid-feedback">
-                            Looks good!
+                        <input type="text" class="form-control" id="formName" required>
+                        <div class="invalid-feedback">
+                            Please enter your name.
                         </div>
-                        <!-- Workload: Input -->
+
                     <p></p>
-                        <label for="formWorkload" class="form-label">Workload (weekly in hrs.)</label>
-                        <input type="text" class="form-control" id="formWorkload"  required>
-                        <div class="valid-feedback">
-                            Looks good!
+                        <!-- Workload: Input -->
+                        <label for="formWorkload" class="form-label">Weekly Hours</label>
+                        <input type="number" class="form-control" id="formWorkload" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid number.
                         </div>
+
                     <p></p>
                         <!-- Email: Input -->
                         <label for="formEmail" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="formEmail"  required>
-                        <div class="valid-feedback">
-                            Looks good!
+                        <input type="email" class="form-control" id="formEmail" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid email.
                         </div>
+
                     <p></p>
-                        <!-- Email: Input -->
+                        <!-- Password: Input -->
                         <label for="formPassword" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="formPassword"  required>
-                        <div class="valid-feedback">
-                            Looks good!
+                        <input type="password" class="form-control" id="formPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                        <div class="invalid-feedback">
+                            Please enter 8 characters minimum, containing at least one number, uppercase and lowercase letter.
                         </div>
-                        <!-- Admin Rights: Check -->
+
                     <p></p>
+                        <!-- Admin Rights: Check -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="formAdmin" required>
+                            <input class="form-check-input" type="checkbox" value="" id="formAdmin">
                             <label class="form-check-label" for="formAdmin">
                                 Admin Rights
                             </label>
                         </div>
                     <p></p>
+
                     <!-- "Create User" Button" -->
                     <div class="col-12">
-                        <button class="btn btn-outline-primary" type="submit">Create User</button>
+                        <button class="btn btn-outline-primary btn-block mb-4" id="formButton" type="submit">Create User</button>
                     </div>
 
                 </form>
@@ -150,33 +155,6 @@
 </div>
 
 <!-- End Modal: Create User -->
-
-<!-- Start Modal: Create Project -->
-
-<div class="modal fade" id="createProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Enter Project Data</h5>
-            </div>
-
-            <div class="modal-body">
-                <!-- Project Name: Text input -->
-                <input type="text" id="projectName" class="form-control"/>
-                <label class="form-label" for="projectName">Project Name</label>
-                <!-- Due Date: Input -->
-                <input type="date" id="dueDate" class="form-control"/>
-                <label class="form-label" for="dueDate">Due Date</label>
-                <!-- "Create Project" Button" -->
-                <button type="submit" id="createProjectButton" class="btn btn-outline-primary btn-block mb-4">Create Project
-                </button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- End Modal: Create Project -->
 
 <!-- Start: Footer -->
 
@@ -190,8 +168,6 @@
 <!-- End: Footer -->
 
 </body>
-
-<!-- Start: Create User JS -->
 
 <script th:src="@{/js/app.js}"></script>
 
@@ -221,7 +197,9 @@
 
 // End: Create User
 
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
+// Start: Modal Validation
+
+    // Disabling form submissions if there are invalid fields
     (function () {
         'use strict'
 
@@ -241,6 +219,8 @@
                 }, false)
             })
     })()
+
+// End: Modal Validation
 
 </script>
 </html>

@@ -260,6 +260,7 @@ function deleteUser(id, callbackSuccess) {
 <!-- Start: Antonio - Create Project -->
 
 function createProject(projectName, dueDate, callbackSuccess ) {
+    console.log(projectName)
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -270,7 +271,6 @@ function createProject(projectName, dueDate, callbackSuccess ) {
         data: JSON.stringify({
             "projectName": projectName,
             "dueDate": dueDate
-
         }),
         success: function (data, textStatus, response) {
             callbackSuccess(true);
