@@ -41,7 +41,9 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-        <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
+        <a href="/">
+        <img th:src="@{/images/logo.png}" alt="logo" class="logo" />
+        </a>
         <!--        <form class="search-form d-flex ml-auto mt-1 mb-0">-->
         <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
         <!--            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>-->
@@ -68,9 +70,9 @@
 
 <!-- End Top Nav/Search -->
 
-<div class="container">
+<div class="container" id="record-settings-container">
 
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center" id="record-Settings-row1">
         <div class="col-sm text-center">
             <h1 th:text="${#dates.format(record.timestamp, 'dd.MM.yyyy')}"/>
         </div>
@@ -85,10 +87,38 @@
             <h1 th:unless="${record.startRecording}">Check-In</h1>
         </div>
         <div class="col-sm text-center">
-            <button>Remove Record</button>
+            <button class="button-style">Remove Record</button>
         </div>
     </div>
+
+
+
+    <h1 id="edit-record-h1">Edit the record:</h1>
+
+    <div class="row justify-content-center align-items-center" id="record-Settings-row2">
+        <div class="col-sm text-center">
+             <input type="date" id="formDate" class="form-control" />
+        </div>
+        <div class="col-sm text-center">
+            <input type="text" id="formTimestamp" class="form-control" th:placeholder="${#dates.format(record.timestamp, 'HH:mm')}"/>
+        </div>
+        <div class="col-sm text-center">
+            <h1>Project xyz</h1>
+        </div>
+        <div class="col-sm text-center">
+            <h1 th:if="${record.startRecording}">Check-Out</h1>
+            <h1 th:unless="${record.startRecording}">Check-In</h1>
+        </div>
+        <div class="col-sm text-center">
+            <button class="button-style">Save changes</button>
+        </div>
+    </div>
+
+    <button class="button-style" id="backToDashboard">back to dashboard</button>
 </div>
+
+
+
 
 
 <!-- Start: Footer -->
