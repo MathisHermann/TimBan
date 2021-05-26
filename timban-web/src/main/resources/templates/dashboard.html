@@ -84,8 +84,7 @@
         </div>
         <div class="col-sm text-center" id="selectProject-Div">
             <select class="selectProject-wrapper" id="selectProject" name="selectProject">
-                <option disabled selected>Select Project..</option>
-                <option value="0" default>No project</option>
+                <option value="0"disabled selected>Select Project..</option>
                 <option
                         th:each="project : ${projects}"
                         th:value="${project.id}"
@@ -123,7 +122,7 @@
                          hours=${(difference/3600)},
                         minutes=${(difference - (hours * 3600)) / (60)}"
 
-                th:text="${hours} + ' h '  + ${minutes} % 60 + ' min'"/>
+                th:text="${hours *-1} + ' h '  + ${minutes *-1} % 60 + ' min'"/>
 
             <p th:text="${((user.weeklyHours * 60) / 5) > (totalTimeOfCurrentDay/60)} ? 'UNDER TIME' : 'OVER TIME'" />
         </div>
@@ -296,6 +295,8 @@
         var records = [[${records}]];
         var records = [[${projects}]];
 
+
+
         $('#check-in-button').click(function () {
 
             var userId = user.id;
@@ -304,6 +305,9 @@
             console.log(userId + " grüezi")
 
             var projectId = $('#selectProject option:selected').val();
+            console.log(projectId)
+
+
             timeRecord(userId, currentlyCheckedIn, projectId)
 
 

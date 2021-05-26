@@ -80,7 +80,7 @@
             <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
         </div>
         <div class="col-sm text-center">
-            <h1>Project xyz</h1>
+            <h1 th:text="${record.projectId}"/>
         </div>
         <div class="col-sm text-center">
             <h1 th:if="${record.startRecording}">Check-Out</h1>
@@ -100,9 +100,8 @@
         </div>
 
         <div class="col-sm text-center">
-            <select class="selectProject-wrapper" id="selectProject-put" name="selectProject">
-                <option disabled selected>Select Project..</option>
-                <option value="0" default>No project</option>
+            <select class="selectProject-wrapper" id="SelectProject-put" name="selectProject">
+                <option value="0" disabled selected>Select Project..</option>
                 <option
                         th:each="project : ${projects}"
                         th:value="${project.id}"
@@ -154,12 +153,13 @@
         var user = [[${user}]];
         var recordId = [[${record.id}]];
         var timestamp = [[${record.timestamp}]];
+        var record = [[${record}]];
 
 
         // Start: Delete Record
 
         $('#removeRecord').click(function (event) {
-            deleteRecord(recordId)
+            deleteRecord(record.id)
             event.preventDefault();
         })
 
@@ -169,18 +169,20 @@
         // Start: Update Record
 
         $('#putRecords-Button').click(function (event) {
-            var timestamp = Date.parse($('#formDate').val()) / 1000;
+            var datepicker = Date.parse($('#formDate').val()) / 1000;
             var projectId = $('#SelectProject-put option:selected').val();
 
-            // if (!(timestamp.length > 0)) {
-            //     timestamp = records.timestamp;
-            // }
-            //
-            // if (!(project.length > 0)) {
-            //     project = records.projectId;
-            // }
+        /*    if (!(datepicker === timestamp)) {
+              datepicker = timestamp;
+                console.log("ruedi")
+            }
+            console.log(record.projectId)
+             if (!(projectId > 0)) {
+                 projectId = record.projectId;
 
-            putRecord(timestamp, projectId, recordId);
+             } */
+
+           putRecord(datepicker, projectId, record.id);
 
 
             event.preventDefault();
@@ -191,7 +193,7 @@
         $('#backToDashboard').click(function (event) {
             location.replace("/dashboard")
         })
-        console.log(timestamp.split(".")[0])
+
         document.getElementById('formDate').value = timestamp.split(".")[1];
 
     }
