@@ -86,7 +86,7 @@
             <h1 th:if="${record.startRecording}">Check-Out</h1>
             <h1 th:unless="${record.startRecording}">Check-In</h1>
         </div>
-        <div class="col-sm text-center">
+        <div class="col-sm text-center" method="post">
             <button class="button-style" id="removeRecord">Remove Record</button>
         </div>
     </div>
@@ -102,8 +102,8 @@
 
         <div class="col-sm text-center">
             <select class="selectProject-wrapper" id="selectProject-put" name="selectProject">
-                <option selected disabled>Select Project</option>
-                <option value="0">No project</option>
+                <option disabled selected>Select Project..</option>
+                <option value="0" default>No project</option>
                 <option
                         th:each="project : ${projects}"
                         th:value="${project.id}"
@@ -116,11 +116,11 @@
             <h1 th:unless="${record.startRecording}">Check-In</h1>
         </div>
         <div class="col-sm text-center">
-            <button class="button-style" id="putRecords-Button">Save changes</button>
+            <button class="button-style" id="putRecords-Button" >Save changes</button>
         </div>
     </div>
 
-    <button class="button-style" id="backToDashboard" >back to dashboard</button>
+    <button class="button-style" id="backToDashboard" th:href="${'/dashboard'}" >back to dashboard</button>
 </div>
 
 
@@ -151,23 +151,25 @@
 
     $(document).ready
     {
-// Start: Delete Record
+
+        var user = [[${user}]];
+        var records = [[${records}]];
+
+        // Start: Delete Record
 
         $('#removeRecord').click(function (event) {
-            deleteRecord(id, function (result) {
-                if (result)
-                    location.replace("/dashboard")
-            })
+            deleteRecord(id)
             event.preventDefault();
         })
 
-    // End: Delete Record
+        // End: Delete Record
+
 
         // Start: Update Record
 
         $('#putRecords-Button').click(function (event) {
             var timestamp = Date.parse($('#formDate').val());
-            var projectId = $('#electProject-put option:selected').val();
+            var projectId = $('#SelectProject-put option:selected').val();
 
             // if (!(timestamp.length > 0)) {
             //     timestamp = records.timestamp;
@@ -185,10 +187,11 @@
 
         // End: Update Record
 
-
+        $('#backToDashboard').click(function (event) {
+            location.replace("/dashboard")
+        })
 
     }
-
 
 
 

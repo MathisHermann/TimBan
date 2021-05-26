@@ -160,7 +160,7 @@ function putRecord (timestamp, projectId) {
 
 <!-- Start: Lars - Delete Record -->
 
-function deleteRecord(id, callbackSuccess) {
+function deleteRecord(id) {
     $.ajax({
         type: "DELETE",
         headers: {
@@ -169,7 +169,7 @@ function deleteRecord(id, callbackSuccess) {
         url: serviceEndpointURL + "/api/records/" + id,
 
         success: function (data, textStatus, response) {
-            callbackSuccess(true);
+            location.replace("/dashboard")
         }
     });
 }
@@ -200,7 +200,7 @@ function postProfile(name, workload, email, password, isAdmin, callbackSuccess )
             "isAdmin": isAdmin
         }),
         success: function (data, textStatus, response) {
-            callbackSuccess(true);
+            location.replace("/dashboard")
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);
