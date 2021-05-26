@@ -34,7 +34,7 @@
     </button>
     <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
         <a href="/">
-            <img th:src="@{/images/logo.png}" alt="logo" class="logo" />
+            <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
         </a>
         <!--  <form class="search-form d-flex ml-auto mt-1 mb-0"> -->
         <!--    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
@@ -125,12 +125,17 @@
                 <button type="submit" id="updateUser" class="btn btn-outline-primary">Update</button>
             </div>
             <div class="btn-group col">
-                <button type="button" th:href="${'/api/users/report/' + {user.id}}" id="printReport" class="btn btn-outline-primary">Print Report</button>
+                <button type="button" th:href="${'/api/users/' + {user.id} + '/report'}" id="printReport"
+                        class="btn btn-outline-primary">Print Report
+                </button>
             </div>
             <div class="btn-group col">
                 <button type="button" id="deleteUser" class="btn btn-outline-primary">Delete User</button>
             </div>
         </div>
+        </form>
+    </div>
+</div>
 
 <!-- End: Update User -->
 
@@ -139,7 +144,8 @@
 <footer style="height: 15px;">
     <div class="footer-box">
         <p class="footer">
-            ©TimBan — Made with ❤ for the people of the internet.<br></p>
+            ©TimBan — Made with ❤ for the people of the internet.<br>
+        </p>
     </div>
 </footer>
 
@@ -187,9 +193,9 @@
 
     }
 
-// End: Delete User
+    // End: Delete User
 
-// Start: Modal Validation
+    // Start: Modal Validation
 
     // Disabling form submissions if there are invalid fields
     (function () {
@@ -201,18 +207,18 @@
         // Loop over them and prevent submission
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
+                form.addEventListener('change', function (event) {
+
                     if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
                     }
-
                     form.classList.add('was-validated')
                 }, false)
             })
     })()
 
-// End: Modal Validation
+    // End: Modal Validation
 
 </script>
 </html>

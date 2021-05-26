@@ -132,6 +132,8 @@
                     </div>
                 </form>
                 </div>
+            </div>
+        </div>
     </ul>
 </div>
 
@@ -155,24 +157,26 @@
             <div class="modal-body">
                 <form class="needs-validation" novalidate>
                     <!-- Project Name: Text input -->
-                    <label for="projectName" class="form-label">Project Name</label>
-                    <input type="text" class="form-control" id="projectName" required>
+                    <label for="createProjectName" class="form-label">Project Name</label>
+                    <input type="text" class="form-control" id="createProjectName" required>
                     <div class="invalid-feedback">
                         Please enter a project name.
                     </div>
 
-                <p></p>
+                    <p></p>
                     <!-- Due Date: Date Input -->
-                    <label for="dueDate" class="form-label">Due Date</label>
-                    <input type="date" class="form-control" id="dueDate" required>
+                    <label for="createDueDate" class="form-label">Due Date</label>
+                    <input type="date" class="form-control" id="createDueDate" required>
                     <div class="invalid-feedback">
                         Please enter a date.
                     </div>
 
-                <p></p>
+                    <p></p>
                     <!-- "Create Project" Button" -->
                     <div class="col-12">
-                        <button class="btn btn-outline-primary btn-block mb-4" id="createProjectButton" type="submit">Create Project</button>
+                        <button class="btn btn-outline-primary btn-block mb-4" id="createProjectButton" type="submit">
+                            Create Project
+                        </button>
                     </div>
 
                 </form>
@@ -203,18 +207,17 @@
 
     $(document).ready
 
-// Start: Create Project
+    // Start: Create Project
 
     {
         $('#createProjectButton').click(function (event) {
             var projectName = $('#createProjectName').val();
-            var dueDate = $('#createDueDate').val();
-
-            console.log(projectName)
+            var dueDateSelection = $('#createDueDate').val();
+            var dueDate = Date.parse(dueDateSelection) / 1000;
 
             createProject(projectName, dueDate, function (result) {
-                // if (result)
-                //location.reload()
+                if (result)
+                    location.reload()
             });
             event.preventDefault()
 
@@ -226,7 +229,7 @@
 
         $('.updateProjectButtonSelection').click(function (event) {
 
-                console.log( $(this).parents('div.content').find('input').val() );
+            console.log($(this).parents('div.content').find('input').val());
 
             var projectName = $('#formProjectName').val();
             var dueDate = $('#formDueDate').val();
@@ -254,7 +257,7 @@
         })
     }
 
-// End: Delete Project
+    // End: Delete Project
 
     // Start: Modal Validation
 

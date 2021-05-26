@@ -1,12 +1,16 @@
 package rocks.process.timban.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rocks.process.timban.business.service.TimbanProjectService;
 import rocks.process.timban.data.domain.TimbanProject;
+import rocks.process.timban.data.domain.TimbanTimeRecord;
 import rocks.process.timban.data.domain.TimbanUser;
 import rocks.process.timban.data.repository.TimbanProjectRepository;
+import rocks.process.timban.tools.LogToFile;
 
 import javax.validation.Valid;
 import java.time.Instant;
@@ -44,10 +48,16 @@ public class TimbanProjectController {
     }
 
     @PostMapping
-    public TimbanProject createProject(@Valid TimbanProject timbanProject) throws Exception {
-        System.out.println(timbanProject.getProjectName());
-        timbanProject.setCreatedAt(Instant.now());
-        return timbanProjectService.save(timbanProject);
+    public ResponseEntity<TimbanProject> createProject(@RequestBody TimbanProject timbanProject) {
+        try {
+            timbanProject.setCreatedAt(Instant.now());
+            TimbanProject updatedTimbanProject = timbanProjectService.save(timbanProject);
+            LogToFile.logUser("Project created; Project name: " + updatedTimbanProject.getProjectName() + "; Duedate: "
+                    + updatedTimbanProject.getDueDate().toString());
+            return new ResponseEntity<>(updatedTimbanProject, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(timbanProject, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping(path = "/{id}")

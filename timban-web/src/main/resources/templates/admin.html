@@ -30,32 +30,33 @@
 
 <!-- Start: Top Nav -->
 
-    <nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-            <a href="/">
-                <img th:src="@{/images/logo.png}" alt="logo" class="logo" />
-            </a>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Howdy, Admin
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create User</a>
-                            <a class="dropdown-item" href="/projects">Projects</a>
-                            <a class="dropdown-item" href="/logout">Logout</a>
-                        </div>
+<nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
+        <a href="/">
+            <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
+        </a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Howdy, Admin
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create
+                            User</a>
+                        <a class="dropdown-item" href="/projects">Projects</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
-            </ul>
-            <img th:src="@{/images/dude.png}" alt="dude" class="dude"/>
-        </div>
-    </nav>
+                </div>
+        </ul>
+        <img th:src="@{/images/dude.png}" alt="dude" class="dude"/>
+    </div>
+</nav>
 
 <!-- End: Top Nav -->
 
@@ -71,7 +72,7 @@
         </li>
     </ul>
     <ul class="responsive-table" th:each="user: ${users}">
-        <a class= "rowClick" th:href="${'/overview/' + {user.id}}">
+        <a class="rowClick" th:href="${'/overview/' + {user.id}}">
             <li class="table-row">
                 <div class="col col-1" data-label="Id" th:text="${user.id}"></div>
                 <div class="col col-2" data-label="Name" th:text="${user.userName}"></div>
@@ -84,7 +85,9 @@
 </div>
 
 <div class="text-center">
-    <button type="button" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal" class="btn-outline-primary btn-lg">+ Create User</button>
+    <button type="button" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal"
+            class="btn-outline-primary btn-lg">+ Create User
+    </button>
 </div>
 
 
@@ -101,50 +104,54 @@
 
             <div class="modal-body">
                 <form class="needs-validation" novalidate>
-                        <!-- Name: Text input -->
-                        <label for="formName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="formName" required>
-                        <div class="invalid-feedback">
-                            Please enter your name.
-                        </div>
+                    <!-- Name: Text input -->
+                    <label for="formName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="formName" required>
+                    <div class="invalid-feedback">
+                        Please enter a name.
+                    </div>
 
                     <p></p>
-                        <!-- Workload: Input -->
-                        <label for="formWorkload" class="form-label">Weekly Hours</label>
-                        <input type="number" class="form-control" id="formWorkload" required>
-                        <div class="invalid-feedback">
-                            Please enter a valid number.
-                        </div>
+                    <!-- Workload: Input -->
+                    <label for="formWorkload" class="form-label">Weekly Hours</label>
+                    <input type="number" class="form-control" id="formWorkload" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid number.
+                    </div>
 
                     <p></p>
-                        <!-- Email: Input -->
-                        <label for="formEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="formEmail" required>
-                        <div class="invalid-feedback">
-                            Please enter a valid email.
-                        </div>
+                    <!-- Email: Input -->
+                    <label for="formEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="formEmail" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid email.
+                    </div>
 
                     <p></p>
-                        <!-- Password: Input -->
-                        <label for="formPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="formPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-                        <div class="invalid-feedback">
-                            Please enter 8 characters minimum, containing at least one number, uppercase and lowercase letter.
-                        </div>
+                    <!-- Password: Input -->
+                    <label for="formPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="formPassword"
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                    <div class="invalid-feedback">
+                        Please enter 8 characters minimum, containing at least one number, uppercase and lowercase
+                        letter.
+                    </div>
 
                     <p></p>
-                        <!-- Admin Rights: Check -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="formAdmin">
-                            <label class="form-check-label" for="formAdmin">
-                                Admin Rights
-                            </label>
-                        </div>
+                    <!-- Admin Rights: Check -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="formAdmin">
+                        <label class="form-check-label" for="formAdmin">
+                            Admin Rights
+                        </label>
+                    </div>
                     <p></p>
 
                     <!-- "Create User" Button" -->
                     <div class="col-12">
-                        <button class="btn btn-outline-primary btn-block mb-4" id="formButton" type="submit">Create User</button>
+                        <button class="btn btn-outline-primary btn-block mb-4" id="formButton" type="submit">Create
+                            User
+                        </button>
                     </div>
 
                 </form>
@@ -175,9 +182,37 @@
 
     $(document).ready
 
-// Start: Create User
 
     {
+
+        // Start: Modal Validation
+
+        // Disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('change', function (event) {
+
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+        // End: Modal Validation
+
+
+        // Start: Create User
+
         $('#formButton').click(function (event) {
             var name = $('#formName').val();
             var workload = $('#formWorkload').val();
@@ -189,38 +224,14 @@
                 if (result)
                     location.reload()
             });
-
             event.preventDefault();
         })
 
+
+        // End: Create User
+
+
     }
-
-// End: Create User
-
-// Start: Modal Validation
-
-    // Disabling form submissions if there are invalid fields
-    (function () {
-        'use strict'
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-
-// End: Modal Validation
 
 </script>
 </html>

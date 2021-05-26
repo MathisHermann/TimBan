@@ -92,9 +92,6 @@ public class TimbanUserController {
     @PutMapping(path = "/{id}")
     public ResponseEntity<Void> updateUserById(@RequestBody TimbanUser timbanUser, @PathVariable Long id) {
         try {
-            System.out.println(timbanUser.getUserName());
-            System.out.println(timbanUser.getCreatedOn());
-            System.out.println(timbanUser.getWeeklyHours());
             TimbanUser updatedUser = timbanUserService.updateUser(timbanUser, id);
             LogToFile.logUser("User updated; UserID: " + updatedUser.getId() + "; Username: " + updatedUser.getUserName());
         } catch (Exception e) {
