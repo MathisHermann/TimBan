@@ -248,7 +248,7 @@
 
 // End: Delete Project
 
-// Start: Modal Validation
+    // Start: Modal Validation
 
     // Disabling form submissions if there are invalid fields
     (function () {
@@ -260,12 +260,12 @@
         // Loop over them and prevent submission
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
+                form.addEventListener('change', function (event) {
+
                     if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
                     }
-
                     form.classList.add('was-validated')
                 }, false)
             })

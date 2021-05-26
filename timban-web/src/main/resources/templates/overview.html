@@ -78,18 +78,25 @@
     </div>
 
     <div class="modal-body">
+        <form class="needs-validation" novalidate>
         <!-- Update Name & Workload Information -->
         <div class="row mb-4">
             <div class="col">
                 <div class="form-outline">
                     <input type="text" id="formName2" class="form-control" th:field="${user.userName}"/>
                     <label class="form-label" for="formName2">Name</label>
+                    <div class="invalid-feedback">
+                        Please enter your name.
+                    </div>
                 </div>
             </div>
             <div class="col">
                 <div class="form-outline">
-                    <input type="text" id="formWorkload2" class="form-control" th:field="${user.weeklyHours}"/>
+                    <input type="number" id="formWorkload2" class="form-control" th:field="${user.weeklyHours}"/>
                     <label class="form-label" for="formWorkload2">Workload hrs.</label>
+                    <div class="invalid-feedback">
+                        Please enter a valid number.
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,8 +104,11 @@
         <div class="row mb-4">
             <div class="col">
                 <div class="form-outline">
-                    <input type="text" id="formEmail2" class="form-control" th:field="${user.email}"/>
+                    <input type="email" id="formEmail2" class="form-control" th:field="${user.email}"/>
                     <label class="form-label" for="formEmail2">Email</label>
+                    <div class="invalid-feedback">
+                        Please enter a valid email.
+                    </div>
                 </div>
             </div>
 
