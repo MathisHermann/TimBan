@@ -102,14 +102,22 @@ nav {
 }
 
 .btn-lg {
-    margin-left: 1150px;
-    width: 60px;
-    height: 60px;
-    padding: 12px 0px;
-    border-radius: 30px;
+    min-width: 400px;
+}
+
+.errorPageStyle {
+    padding: 40px 15px;
     text-align: center;
-    font-size: 24px;
-    line-height: 1.42857;
+    color: #3FB0AC;
+}
+
+.error-actions {
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+.error-actions .btn {
+    margin-right:10px;
 }
 
 .container {

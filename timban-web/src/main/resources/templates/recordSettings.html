@@ -87,7 +87,7 @@
             <h1 th:unless="${record.startRecording}">Check-In</h1>
         </div>
         <div class="col-sm text-center">
-            <button class="button-style">Remove Record</button>
+            <button class="button-style" id="removeRecord">Remove Record</button>
         </div>
     </div>
 
@@ -97,24 +97,30 @@
 
     <div class="row justify-content-center align-items-center" id="record-Settings-row2">
         <div class="col-sm text-center">
-             <input type="date" id="formDate" class="form-control" />
+             <input type="datetime-local" id="formDate" class="form-control" />
         </div>
+
         <div class="col-sm text-center">
-            <input type="text" id="formTimestamp" class="form-control" th:placeholder="${#dates.format(record.timestamp, 'HH:mm')}"/>
-        </div>
-        <div class="col-sm text-center">
-            <h1>Project xyz</h1>
+            <select class="selectProject-wrapper" id="selectProject-put" name="selectProject">
+                <option selected disabled>Select Project</option>
+                <option value="0">No project</option>
+                <option
+                        th:each="project : ${projects}"
+                        th:value="${project.id}"
+                        th:text="${project.projectName}"></option>
+            </select>
+            <span class="input-group-btn"><i class="glyphicon glyphicon-menu-down"></i></span>
         </div>
         <div class="col-sm text-center">
             <h1 th:if="${record.startRecording}">Check-Out</h1>
             <h1 th:unless="${record.startRecording}">Check-In</h1>
         </div>
         <div class="col-sm text-center">
-            <button class="button-style">Save changes</button>
+            <button class="button-style" id="putRecords-Button">Save changes</button>
         </div>
     </div>
 
-    <button class="button-style" id="backToDashboard">back to dashboard</button>
+    <button class="button-style" id="backToDashboard" >back to dashboard</button>
 </div>
 
 
@@ -141,5 +147,56 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
 
-<script th:inline="javascript"></script>
+<script th:inline="javascript">
+
+    $(document).ready
+    {
+// Start: Delete Record
+
+        $('#removeRecord').click(function (event) {
+            deleteRecord(id, function (result) {
+                if (result)
+                    location.replace("/dashboard")
+            })
+            event.preventDefault();
+        })
+
+    // End: Delete Record
+
+        // Start: Update Record
+
+        $('#putRecords-Button').click(function (event) {
+            var timestamp = Date.parse($('#formDate').val());
+            var projectId = $('#electProject-put option:selected').val();
+
+            // if (!(timestamp.length > 0)) {
+            //     timestamp = records.timestamp;
+            // }
+            //
+            // if (!(project.length > 0)) {
+            //     project = records.projectId;
+            // }
+
+            putRecord(timestamp, projectId);
+
+
+            event.preventDefault();
+        })
+
+        // End: Update Record
+
+
+
+    }
+
+
+
+
+</script>
+
+
+
+
+
+
 </html>

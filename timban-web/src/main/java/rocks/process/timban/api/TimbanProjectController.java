@@ -45,6 +45,7 @@ public class TimbanProjectController {
 
     @PostMapping
     public TimbanProject createProject(@Valid TimbanProject timbanProject) throws Exception {
+        System.out.println(timbanProject.getProjectName());
         timbanProject.setCreatedAt(Instant.now());
         return timbanProjectService.save(timbanProject);
     }
