@@ -126,7 +126,6 @@ function timeRecord(userId, startRecording, projectId) {
 
 
 function putRecord(timestamp, projectId, recordId) {
-    console.log("hurray")
     $.ajax({
         type: "PUT",
         contentType: "application/json",

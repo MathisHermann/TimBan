@@ -229,14 +229,14 @@
 
         $('.updateProjectButtonSelection').click(function (event) {
 
-            console.log($(this).parents('div.content').find('input').val());
+            console.log($(this).attr('id'));
 
             var projectName = $('#formProjectName').val();
             var dueDate = $('#formDueDate').val();
 
             updateProject(projectName, dueDate, id, function (result) {
-                if (result)
-                    location.reload()
+            //    if (result)
+              //      location.reload()
             });
 
             event.preventDefault();
