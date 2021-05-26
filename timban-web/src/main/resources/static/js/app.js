@@ -1,4 +1,3 @@
-
 <!-- START PART LARS-->
 
 <!-- COPIED & ADJUSTED FROM INTERNET TECHNOLOGY PROJECT -->
@@ -44,7 +43,7 @@ function validateLogin(callback) {
 }
 
 
-function currentTime () {
+function currentTime() {
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     return currentTime;
@@ -90,13 +89,10 @@ function getCookie(name) {
 // }
 
 
-
-
-
 <!-- Check-In Button-->
 
 
-function timeRecord (userId , startRecording, projectId) {
+function timeRecord(userId, startRecording, projectId) {
     var timestamp = new Date();
 
 
@@ -111,7 +107,7 @@ function timeRecord (userId , startRecording, projectId) {
             "userId": userId,
             "startRecording": startRecording,
             "timestamp": timestamp,
-            "projectId" : projectId
+            "projectId": projectId
 
         }),
         success: function (data, textStatus, response) {
@@ -126,25 +122,21 @@ function timeRecord (userId , startRecording, projectId) {
 }
 
 
-
-
 <!-- Settings -->
 
 
-function putRecord (timestamp, projectId) {
-
-
+function putRecord(timestamp, projectId, recordId) {
+    console.log("hurray")
     $.ajax({
         type: "PUT",
         contentType: "application/json",
         headers: {
             "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
         },
-        url: serviceEndpointURL + "/api/records" + id,
+        url: serviceEndpointURL + "/api/records/" + recordId,
         data: JSON.stringify({
             "projectId": projectId,
             "timestamp": timestamp
-
         }),
         success: function (data, textStatus, response) {
             // callback(true);
@@ -184,7 +176,7 @@ function deleteRecord(id) {
 
 <!-- Start: Antonio - Create User -->
 
-function postProfile(name, workload, email, password, isAdmin, callbackSuccess ) {
+function postProfile(name, workload, email, password, isAdmin, callbackSuccess) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -259,7 +251,7 @@ function deleteUser(id, callbackSuccess) {
 
 <!-- Start: Antonio - Create Project -->
 
-function createProject(projectName, dueDate, callbackSuccess ) {
+function createProject(projectName, dueDate, callbackSuccess) {
     $.ajax({
         type: "POST",
         contentType: "application/json",

@@ -43,8 +43,10 @@ public class TimbanTimeRecordService {
                 timbanUserService.changeCheckedInStatus(timbanTimeRecord);
             }
             return timbanTimeRecordRepository.save(timbanTimeRecord);
-        } else if (timbanTimeRecordRepository.findById(timbanTimeRecord.getId()).isPresent())
+        } else if (timbanTimeRecordRepository.findById(timbanTimeRecord.getId()).isPresent()) {
+            timbanTimeRecord.setUserId(timbanTimeRecordRepository.findById(timbanTimeRecord.getId()).get().getUserId());
             return timbanTimeRecordRepository.save(timbanTimeRecord);
+        }
         return null;
     }
 
@@ -149,7 +151,8 @@ public class TimbanTimeRecordService {
         return LocalTime.ofSecondOfDay(calculate(userId, "week") * 60L);
     }
 
-    public LocalTime getMonthly(Long userId) {return LocalTime.ofSecondOfDay(calculate(userId, "month") * 60L);
+    public LocalTime getMonthly(Long userId) {
+        return LocalTime.ofSecondOfDay(calculate(userId, "month") * 60L);
     }
 
     public LocalTime getYearly(Long userId) {

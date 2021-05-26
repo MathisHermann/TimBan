@@ -147,18 +147,22 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
 
+
+<script th:src="@{/js/app.js}"></script>
+
 <script th:inline="javascript">
 
     $(document).ready
     {
 
         var user = [[${user}]];
-        var records = [[${records}]];
+        var recordId = [[${record.id}]];
+
 
         // Start: Delete Record
 
         $('#removeRecord').click(function (event) {
-            deleteRecord(id)
+            deleteRecord(recordId)
             event.preventDefault();
         })
 
@@ -168,7 +172,7 @@
         // Start: Update Record
 
         $('#putRecords-Button').click(function (event) {
-            var timestamp = Date.parse($('#formDate').val());
+            var timestamp = Date.parse($('#formDate').val()) / 1000;
             var projectId = $('#SelectProject-put option:selected').val();
 
             // if (!(timestamp.length > 0)) {
@@ -179,7 +183,7 @@
             //     project = records.projectId;
             // }
 
-            putRecord(timestamp, projectId);
+            putRecord(timestamp, projectId, recordId);
 
 
             event.preventDefault();

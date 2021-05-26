@@ -78,10 +78,13 @@ public class TimbanTimeRecordController {
      * Update existing Record
      */
     @PutMapping(path = "/{id}")
-    public ResponseEntity<TimbanTimeRecord> updateUser(@RequestBody TimbanTimeRecord timbanTimeRecord) {
+    public ResponseEntity<TimbanTimeRecord> updateUser(@RequestBody TimbanTimeRecord timbanTimeRecord, @PathVariable Long id) throws Exception {
         try {
+            timbanTimeRecord.setId(id);
+            if (timbanTimeRecord.getTimestamp() == null)
+                throw new Exception("Entry not valid!");
             TimbanTimeRecord updatedTimbanTimeRecord = timbanTimeRecordService.saveTimbanTimeRecord(timbanTimeRecord, false);
-            LogToFile.logUser("Record updated; User: " + updatedTimbanTimeRecord.getUserId() + "; Timestamp: "
+            LogToFile.logUser("Record updated; Id: " + timbanTimeRecord.getId() + "; User: " + updatedTimbanTimeRecord.getUserId() + "; Timestamp: "
                     + updatedTimbanTimeRecord.getTimestamp() + "; Action: "
                     + (updatedTimbanTimeRecord.getStartRecording() ? "Start recording" : "Stop recording"));
 
