@@ -276,7 +276,7 @@ function createProject(projectName, dueDate, callbackSuccess) {
 
 <!-- Start: Antonio - Update Project -->
 
-function updateProject(projectName, dueDate, callbackSuccess) {
+function updateProject(projectName, dueDate, id, callbackSuccess) {
     $.ajax({
         type: "PUT",
         contentType: "application/json",
@@ -293,7 +293,7 @@ function updateProject(projectName, dueDate, callbackSuccess) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);
-
+            callbackSuccess(false);
         }
     });
 }

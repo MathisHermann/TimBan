@@ -43,13 +43,15 @@ public class TimbanProjectController {
         try {
             return timbanProjectService.getAttachedUsers(id);
         } catch (Exception e) {
-           return null;
+            return null;
         }
     }
 
     @PostMapping
     public ResponseEntity<TimbanProject> createProject(@RequestBody TimbanProject timbanProject) {
         try {
+            if (timbanProject.getProjectName().length() == 0)
+                throw new Exception("Project Name cannot be empty!");
             timbanProject.setCreatedAt(Instant.now());
             TimbanProject updatedTimbanProject = timbanProjectService.save(timbanProject);
             LogToFile.logUser("Project created; Project name: " + updatedTimbanProject.getProjectName() + "; Duedate: "
@@ -61,8 +63,16 @@ public class TimbanProjectController {
     }
 
     @PutMapping(path = "/{id}")
-    public TimbanProject updateProject(@Valid TimbanProject timbanProject, @PathVariable Long id) {
-        return timbanProjectService.update(timbanProject, id);
+    public ResponseEntity<TimbanProject> updateProject(@RequestBody TimbanProject timbanProject, @PathVariable Long id) throws Exception {
+        try {
+            if (timbanProject.getProjectName().length() == 0)
+                throw new Exception("Project Name cannot be empty!");
+
+            return new ResponseEntity<>(timbanProjectService.update(timbanProject, id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(timbanProject, HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @DeleteMapping(path = "/{id}")

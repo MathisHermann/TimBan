@@ -69,7 +69,6 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
         noProjectCreated = true;
         try {
             TimbanProject timbanProject = new TimbanProject("No Project");
-            timbanProject.setId(0L);
             timbanProjectService.save(timbanProject);
         } catch (Exception e) {
             e.printStackTrace();
