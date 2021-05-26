@@ -27,40 +27,40 @@
 </head>
 <body>
 
-    <!-- Start: Top Nav -->
+<!-- Start: Top Nav -->
 
-    <nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-            <a href="/">
-                <img th:src="@{/images/logo.png}" alt="logo" class="logo" />
-            </a>
-            <!--  <form class="search-form d-flex ml-auto mt-1 mb-0"> -->
-            <!--    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-            <!--    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button> -->
-            <!--  </form> -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Howdy, Admin
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create
-                                User</a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                               data-bs-target="#createProjectModal">Create Project</a>
-                            <a class="dropdown-item" href="/logout">Logout</a>
-                        </div>
+<nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
+        <a href="/">
+            <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
+        </a>
+        <!--  <form class="search-form d-flex ml-auto mt-1 mb-0"> -->
+        <!--    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+        <!--    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button> -->
+        <!--  </form> -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Howdy, Admin
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create
+                            User</a>
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                           data-bs-target="#createProjectModal">Create Project</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
-            </ul>
-            <img th:src="@{/images/dude.png}" alt="dude" class="dude"/>
-        </div>
-    </nav>
+                </div>
+        </ul>
+        <img th:src="@{/images/dude.png}" alt="dude" class="dude"/>
+    </div>
+</nav>
 
 <!-- End: Top Nav -->
 
@@ -125,7 +125,9 @@
     </ul>
 </div>
 
-<button type="button" href="#" data-bs-toggle="modal" data-bs-target="#createProjectModal" class="btn-outline-primary btn-lg">+</button>
+<button type="button" href="#" data-bs-toggle="modal" data-bs-target="#createProjectModal"
+        class="btn-outline-primary btn-lg">+
+</button>
 
 <!-- End: Project Table -->
 
@@ -258,6 +260,7 @@
                 location.replace("/projects")
         })
     })
+
     }
 
     // End: Delete Project

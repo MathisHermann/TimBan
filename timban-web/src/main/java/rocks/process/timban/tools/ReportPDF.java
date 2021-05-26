@@ -115,7 +115,6 @@ public class ReportPDF {
 
         for (int i = rows - 1; i >= 0; i--) {
             reversedDiffAndWeekDay[rows - 1 - i] = diffAndWeekDay[i];
-
         }
 
         for (int[] i : reversedDiffAndWeekDay) {
