@@ -37,7 +37,9 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     @Autowired
     ReportPDF reportPDF;
 
+    private final boolean runsProductive = false;
     private boolean adminCreated = false;
+    private boolean noProjectCreated = false;
     private boolean fakeUsersCreated = false;
     private boolean fakeTimeRecordsCreated = false;
     private boolean fakeProjectsCreated = false;
@@ -51,14 +53,28 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     public void onApplicationEvent(ApplicationReadyEvent event) {
         if (!adminCreated)
             this.createAdminUser();
-        if (!fakeUsersCreated)
+        if (!noProjectCreated)
+            this.createNoProject();
+        if (!fakeUsersCreated && !runsProductive)
             this.createFakeUsers();
-        if (!fakeTimeRecordsCreated)
+        if (!fakeTimeRecordsCreated && !runsProductive)
             this.createFakeTimeRecords();
-        if (!fakeProjectsCreated)
+        if (!fakeProjectsCreated && !runsProductive)
             this.createFakeProjects();
 
         this.logResults();
+    }
+
+    private void createNoProject() {
+        noProjectCreated = true;
+        try {
+            TimbanProject timbanProject = new TimbanProject("No Project");
+            timbanProject.setId(0L);
+            timbanProjectService.save(timbanProject);
+        } catch (Exception e) {
+            e.printStackTrace();
+            noProjectCreated = false;
+        }
     }
 
     /**
@@ -130,7 +146,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 timbanUser.isCurrentlyCheckedIn(),
                                 !timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(180, ChronoUnit.MINUTES).plus(10080 * 52, ChronoUnit.MINUTES)
+                                Instant.now().minus(280, ChronoUnit.MINUTES).minus(10080 * 52, ChronoUnit.MINUTES)
                         ), true);
 
                 timbanTimeRecordService.saveTimbanTimeRecord(
@@ -138,7 +154,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 !timbanUser.isCurrentlyCheckedIn(),
                                 timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(280, ChronoUnit.MINUTES).plus(10080 * 52, ChronoUnit.MINUTES)
+                                Instant.now().minus(180, ChronoUnit.MINUTES).minus(10080 * 52, ChronoUnit.MINUTES)
                         ), true);
             }
             for (TimbanUser timbanUser : timbanUserService.getAllTimbanUsers()) {
@@ -147,7 +163,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 timbanUser.isCurrentlyCheckedIn(),
                                 !timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().minus(180, ChronoUnit.MINUTES)
+                                Instant.now().minus(170, ChronoUnit.MINUTES)
                         ), true);
 
                 timbanTimeRecordService.saveTimbanTimeRecord(
@@ -165,7 +181,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 timbanUser.isCurrentlyCheckedIn(),
                                 !timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(180, ChronoUnit.MINUTES)
+                                Instant.now().minus(270, ChronoUnit.MINUTES)
                         ), true);
 
                 timbanTimeRecordService.saveTimbanTimeRecord(
@@ -173,7 +189,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 !timbanUser.isCurrentlyCheckedIn(),
                                 timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(270, ChronoUnit.MINUTES)
+                                Instant.now().minus(180, ChronoUnit.MINUTES)
                         ), true);
             }
             for (TimbanUser timbanUser : timbanUserService.getAllTimbanUsers()) {
@@ -182,7 +198,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 timbanUser.isCurrentlyCheckedIn(),
                                 !timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(180, ChronoUnit.MINUTES).plus(9080, ChronoUnit.MINUTES)
+                                Instant.now().minus(280, ChronoUnit.MINUTES).minus(9080, ChronoUnit.MINUTES)
                         ), true);
 
                 timbanTimeRecordService.saveTimbanTimeRecord(
@@ -190,7 +206,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
                                 timbanUser.getId(),
                                 !timbanUser.isCurrentlyCheckedIn(),
                                 timbanUser.isCurrentlyCheckedIn(),
-                                Instant.now().plus(280, ChronoUnit.MINUTES).plus(9080, ChronoUnit.MINUTES)
+                                Instant.now().minus(180, ChronoUnit.MINUTES).minus(9080, ChronoUnit.MINUTES)
                         ), true);
             }
         } catch (Exception e) {
