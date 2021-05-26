@@ -93,19 +93,26 @@
                 </div>
                 <!-- Update Project Name & Due Date -->
                 <div class="modal-body">
+                    <form class="needs-validation" novalidate>
                     <div class="row mb-4">
                         <div class="col">
                             <div class="form-outline">
                                 <input type="text" id="formProjectName" class="form-control"
                                        th:value="${project.projectName}"/>
                                 <label class="form-label" for="formProjectName">Project Name</label>
+                                <div class="invalid-feedback">
+                                    Please enter a valid project name.
+                                </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-outline">
-                                <input type="text" id="formDueDate" class="form-control"
+                                <input type="date" id="formDueDate" class="form-control"
                                        th:value="${#dates.format(project.dueDate, 'dd.MM.yyyy')}"/>
                                 <label class="form-label" for="formDueDate">Due Date</label>
+                                <div class="invalid-feedback">
+                                    Please enter a valid date.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -123,6 +130,7 @@
                             </button>
                         </div>
                     </div>
+                </form>
                 </div>
     </ul>
 </div>
