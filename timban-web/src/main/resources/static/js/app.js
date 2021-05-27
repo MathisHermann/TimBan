@@ -23,7 +23,8 @@ function login(email, password, callback) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);
-            callback(false, oninvalid());
+            callback(false);
+            document.getElementById("error").innerHTML="Please check your inputs.. Something went wrong!";
         }
     });
 

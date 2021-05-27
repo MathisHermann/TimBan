@@ -122,7 +122,7 @@
                          hours=${(difference/3600)},
                         minutes=${(difference - (hours * 3600)) / (60)}"
 
-                th:text="${hours *-1} + ' h '  + ${minutes *-1} % 60 + ' min'"/>
+                th:text="${hours} + ' h '  + ${minutes} % 60 + ' min'"/>
 
             <p th:text="${((user.weeklyHours * 60) / 5) > (totalTimeOfCurrentDay/60)} ? 'UNDER TIME' : 'OVER TIME'" />
         </div>
@@ -131,50 +131,6 @@
 
 <!-- End : Hero -->
 
-
-
-
-<!--&lt;!&ndash; Start : Timebox Infoboxes &ndash;&gt;-->
-
-<!--<div class="timebox">-->
-
-<!--    <div class="container">-->
-
-<!--        <div class="timeboxes">-->
-
-
-<!--            <div class="timebox-1">-->
-
-<!--                <div class="column-timebox-1">-->
-<!--                    <div class="check-in-button">-->
-<!--                        <input type="submit" id="check-in-button" name="check-in-button"-->
-<!--                               th:value="${user.currentlyCheckedIn} ? 'Check-Out' : 'Check-In'">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="column-timebox-1">-->
-<!--                    <h1 th:text="${#dates.format(#dates.createNow() , 'HH:mm')}"/>-->
-<!--                    <p>CURRENT TIME</p>-->
-<!--                </div>-->
-<!--                <div class="column-timebox-1">-->
-<!--                    <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'"/>-->
-<!--                    <p>CURRENT STATUS</p>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="timebox-2">-->
-<!--                <div class="column-timebox-2">-->
-<!--                    <h1 th:text="${totalTimeOfCurrentDay}"/>-->
-<!--                    <p>TIME WORKED</p>-->
-<!--                </div>-->
-<!--                <div class="timebox-2-date">-->
-<!--                    <h1 th:text="${#dates.format(#dates.createNow() , 'dd.MM.yyyy')}"/>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; End : Timebox Infoboxes &ndash;&gt;-->
 
 <!-- Start : Last recordings -->
 
@@ -189,7 +145,13 @@
             <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
         </div>
         <div class="col-sm-4 text-center">
-            <h1 th:text="${record.projectId}"/>
+            <h1 th:with="id=${record.projectId},
+                id=0"
+                th:text="${projects[id].projectName}"/>
+<!--            <h1 th:text="${record.projectId}"/>-->
+
+
+
         </div>
         <div class="col-sm-3 text-center">
             <h1 th:if="${record.startRecording}">Check-Out</h1>
@@ -201,31 +163,6 @@
     </div>
     </div>
 </div>
-
-
-
-
-<!--<div class="last-recordings">-->
-<!--    <div class="recording-box">-->
-<!--        <h1>My last recordings:</h1>-->
-
-<!--        <div th:each="record: ${records} " class="recording">-->
-
-<!--            <div class="last-recordings-date">-->
-<!--                <h1 th:text="${#dates.format(record.timestamp, 'dd.MM.yyyy')}"/>-->
-<!--            </div>-->
-<!--            <div class="last-recordings-time">-->
-<!--                <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>-->
-<!--            </div>-->
-<!--            <div class="last-recordings-status">-->
-<!--                <h1 th:if="${record.startRecording}">Check-Out</h1>-->
-<!--                <h1 th:unless="${record.startRecording}">Check-In</h1>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!-- End : Last recordings -->
 
 
 <script th:src="@{/js/app.js}"></script>
@@ -339,18 +276,6 @@
 
 
 
-
-        // console.log(Date.parse(records[1].timestamp) - Date.parse(records[0].timestamp))
-        // console.log(Date.parse(records[1].timestamp))
-        // console.log(today)
-        //
-        // var timestamp = records[1].timestamp;
-        // var today = new Date().setHours(0, 0, 0, 0);
-        // var thatDay = new Date(timestamp).setHours(0, 0, 0, 0);
-        //
-        // if(today === thatDay){
-        //     console.log("*** Same day ***");
-        // }
 
     }
 

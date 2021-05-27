@@ -96,7 +96,7 @@
 
     <div class="row justify-content-center align-items-center" id="record-Settings-row2">
         <div class="col-sm text-center">
-            <input type="datetime-local" id="formDate" class="form-control"/>
+            <input type="datetime-local" id="formDate" class="form-control" />
         </div>
 
         <div class="col-sm text-center">
@@ -171,6 +171,7 @@
         $('#putRecords-Button').click(function (event) {
             var datepicker = Date.parse($('#formDate').val()) / 1000;
             var projectId = $('#SelectProject-put option:selected').val();
+            console.log(record.timestamp);
 
         /*    if (!(datepicker === timestamp)) {
               datepicker = timestamp;
@@ -197,6 +198,8 @@
         document.getElementById('formDate').value = timestamp.split(".")[1];
 
     }
+
+
 
 
 </script>
