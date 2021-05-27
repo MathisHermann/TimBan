@@ -169,6 +169,36 @@ function deleteRecord(id) {
 <!-- End: Lars - Delete Record -->
 
 
+<!-- Settings -->
+
+
+function putProfile (name, email, password) {
+
+
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        headers: {
+            "X-XSRF-TOKEN": getCookie("XSRF-TOKEN")
+        },
+        url: serviceEndpointURL + "/api/users",
+        data: JSON.stringify({
+            "userName": name,
+            "email": email,
+            "password": password
+        }),
+        success: function (data, textStatus, response) {
+            // callback(true);
+            location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            callback(false);
+        }
+    });
+}
+
+
 <!-- END PART LARS-->
 
 
