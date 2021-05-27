@@ -192,7 +192,7 @@ function postProfile(name, workload, email, password, isAdmin, callbackSuccess) 
             "isAdmin": isAdmin
         }),
         success: function (data, textStatus, response) {
-            location.replace("/dashboard")
+            location.reload()
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);

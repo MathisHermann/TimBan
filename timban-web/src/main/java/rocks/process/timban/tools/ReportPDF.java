@@ -51,10 +51,11 @@ public class ReportPDF {
     }
 
     private String createDocument(String userName, int[][] diffAndWeekDay, int totalTime) {
-        String path = null;
+        String location = null;
         try {
 
-            path = "timban-web/src/main/resources/static/reports/" + userName.replace(" ", "_");
+            String path = "timban-web/src/main/resources/static/reports/" + userName.replace(" ", "_");
+            location = "/reports/" + userName.replace(" ", "_");
 
             File theDir = new File(path);
             if (!theDir.exists()) {
@@ -92,7 +93,7 @@ public class ReportPDF {
             e.printStackTrace();
         }
 
-        return path;
+        return location;
 
     }
 
