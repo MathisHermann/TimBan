@@ -198,32 +198,11 @@
         })
 
         $('#printReport').click(function (event) {
-            console.log("hurray")
-            generatePDFReport(id, function (result, serviceEndpointURL) {
-                if (result != null) {
-
-                    var append = '<div class="modal-content" id="result-user-reports">' +
-                    '<div class="modal-header">' +
-                    '<h5 class="modal-title">User Reports</h5>' +
-                    '</div>' +
-                    '<div class="modal-body">' +
-                    '<div class="row">' +
-                    '<embed src="/resources/static' + result + '/TimeReport.pdf" width="auto" height="200px" />' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>'
-
-                    $(append).appendTo($('#report-result'));
-
-                }
-
-
+            generatePDFReport(id, function (result, data, serviceEndpointURL) {
+                if (result)
+                    window.open(serviceEndpointURL + data + '/TimeReport.pdf')
             })
-
-
         })
-
-
     }
 
     // End: Delete User

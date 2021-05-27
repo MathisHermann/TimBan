@@ -328,7 +328,7 @@ function generatePDFReport(id, callback) {
         dataType: "text",
         url: serviceEndpointURL + "/api/users/" + id + "/report",
         success: function (data, textStatus, response) {
-            callback(data, serviceEndpointURL);
+            callback(true, data, serviceEndpointURL);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);
