@@ -65,7 +65,7 @@ public class TimbanTimeRecordService {
 
     public int[][] createDiffAndWeekDayTable(Long userId, String timeSpan) {
         // retrieve data from db
-        List<TimbanTimeRecord> timeRecords = getTimeRecordListByTimeSpanAndId(userId, timeSpan);
+        List<TimbanTimeRecord> timeRecords = getTimeRecordListByUserIdAndTimeSpan(userId, timeSpan);
 
         if (timeRecords.size() % 2 != 0)
             timeRecords.add(new TimbanTimeRecord(userId, true, false, Instant.now()));
@@ -93,7 +93,7 @@ public class TimbanTimeRecordService {
         return diffAndWeekDay;
     }
 
-    public ArrayList<TimbanTimeRecord> getTimeRecordListByTimeSpanAndId(Long userId, String timeSpan) {
+    public ArrayList<TimbanTimeRecord> getTimeRecordListByUserIdAndTimeSpan(Long userId, String timeSpan) {
 
         // retrieve data from db
         List<TimbanTimeRecord> allTimeRecords = timbanTimeRecordRepository.findAllByUserId(userId);
