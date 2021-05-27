@@ -39,9 +39,10 @@ public class TimbanTimeRecordService {
         // If the id is null, a new Time Record is created. Otherwise, the existing entity is updated.
 
         if (timbanTimeRecord.getId() == null) {
-            if (!isFromFaker) {
+            if (!isFromFaker)
                 timbanUserService.changeCheckedInStatus(timbanTimeRecord);
-            }
+            else
+                timbanTimeRecord.setProjectId(0L);
             return timbanTimeRecordRepository.save(timbanTimeRecord);
         } else if (timbanTimeRecordRepository.findById(timbanTimeRecord.getId()).isPresent()) {
             timbanTimeRecord.setUserId(timbanTimeRecordRepository.findById(timbanTimeRecord.getId()).get().getUserId());

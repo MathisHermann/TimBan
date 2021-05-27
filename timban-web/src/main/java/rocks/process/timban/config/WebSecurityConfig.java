@@ -19,6 +19,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import rocks.process.timban.business.service.UserDetailsServiceImpl;
 import rocks.process.security.config.EnableTokenSecurity;
 import rocks.process.security.service.TokenService;
@@ -47,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .requireCsrfProtectionMatcher(new CSRFRequestMatcher())
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
             .authorizeRequests()
-                .antMatchers("/", "/index", "/css/**", "/js/**", "/images/**", "/login/**", "/api/**").permitAll()
+                .antMatchers("/", "/index", "/css/**", "/js/**", "/images/**", "/login/**", "/api/**", "/reports/**").permitAll()
                 .antMatchers("/dashboard/**", "/projects/**", "/admin/**", "/overview/**", "/record-settings", "/reports/**").authenticated()
                 .antMatchers(HttpMethod.GET, "/logout").permitAll()
                 .anyRequest().authenticated().and()
