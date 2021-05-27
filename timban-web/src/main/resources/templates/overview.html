@@ -198,9 +198,11 @@
         })
 
         $('#printReport').click(function (event) {
+            console.log("hurray")
             generatePDFReport(id, function (result, data, serviceEndpointURL) {
-                if (result)
-                    window.open(serviceEndpointURL + data + '/TimeReport.pdf')
+                if (result != null) {
+                    window.open(serviceEndpointURL + data)
+                }
             })
         })
     }

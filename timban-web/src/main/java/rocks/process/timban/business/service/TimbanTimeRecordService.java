@@ -1,22 +1,16 @@
 package rocks.process.timban.business.service;
 
-import org.apache.tomcat.util.threads.StopPooledThreadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rocks.process.timban.data.domain.TimbanTimeRecord;
 import rocks.process.timban.data.repository.TimbanTimeRecordRepository;
 
 import javax.validation.Valid;
-import java.sql.Array;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.*;
 
-import static java.util.Comparator.*;
 
 /**
  * Author: Mathis
@@ -62,6 +56,9 @@ public class TimbanTimeRecordService {
         // Time grouped by day (info about the day)
         ArrayList<Integer> allTimes = new ArrayList<>();
 
+      for (int[] i : diffAndWeekDay)
+          System.out.println(i[0] + " : " + i[1]);
+
         // Add the daily times to the corresponding list
         for (int i = 0; i < diffAndWeekDay[diffAndWeekDay.length - 1][1]; i++) {
             int totalTime = 0;
@@ -72,7 +69,6 @@ public class TimbanTimeRecordService {
             }
             allTimes.add(totalTime);
         }
-
         // Calculate the sum
         int totalAllTime = 0;
         for (int i : allTimes)
