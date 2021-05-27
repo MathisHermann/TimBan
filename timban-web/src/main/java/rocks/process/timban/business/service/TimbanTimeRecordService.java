@@ -46,33 +46,19 @@ public class TimbanTimeRecordService {
     }
 
     /**
-     * This is a function. lol
+     * Parent function to calculate the sum of the worked time.
+     * userId defines for which user the time is calculated.
+     * timeSpan defines for which timespan the worked time is calculated. timeSpan can have the value "day", "month" or "year"
      */
     public int calculate(Long userId, String timeSpan) {
 
         // Array of the each time record pair grouped by day
         int[][] diffAndWeekDay = createDiffAndWeekDayTable(userId, timeSpan);
 
-        // Time grouped by day (info about the day)
-        ArrayList<Integer> allTimes = new ArrayList<>();
-
-      for (int[] i : diffAndWeekDay)
-          System.out.println(i[0] + " : " + i[1]);
-
-        // Add the daily times to the corresponding list
-        for (int i = 0; i < diffAndWeekDay[diffAndWeekDay.length - 1][1]; i++) {
-            int totalTime = 0;
-            for (int[] ints : diffAndWeekDay) {
-                if (i + 1 == ints[1]) {
-                    totalTime += ints[0];
-                }
-            }
-            allTimes.add(totalTime);
-        }
-        // Calculate the sum
+        // Calculate the sum of all daily times
         int totalAllTime = 0;
-        for (int i : allTimes)
-            totalAllTime += i;
+        for (int[] i : diffAndWeekDay)
+            totalAllTime += i[0];
 
         return totalAllTime;
     }

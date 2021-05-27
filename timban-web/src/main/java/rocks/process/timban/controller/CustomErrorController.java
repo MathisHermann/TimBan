@@ -10,7 +10,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class MyErrorController implements ErrorController {
+public class CustomErrorController implements ErrorController {
 
     @Autowired
     TimbanUserService timbanUserService;
@@ -19,7 +19,7 @@ public class MyErrorController implements ErrorController {
     public String renderErrorPage(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         if (status != null) {
-            Integer statusCode = Integer.valueOf(status.toString());
+            int statusCode = Integer.parseInt(status.toString());
             switch (statusCode) {
                 case 404:
                     return "404";
