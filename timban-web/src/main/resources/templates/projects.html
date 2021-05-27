@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<!-- Author: Antonio Briatico -->
+
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
@@ -38,10 +41,11 @@
         <a href="/">
             <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
         </a>
-        <!--  <form class="search-form d-flex ml-auto mt-1 mb-0"> -->
-        <!--    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-        <!--    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button> -->
-        <!--  </form> -->
+        <!-- Start: Filter Bar -->
+        <form class="search-form d-flex ml-auto mt-1 mb-0" id="searchProjects">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+        <!-- End: Filter Bar -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <div class="dropdown">
@@ -174,13 +178,16 @@
                     <p></p>
                     <!-- "Create Project" Button" -->
                     <div class="col-12">
-                        <button class="btn btn-outline-primary btn-block mb-4" id="createProjectButton" type="submit">
+                        <button class="btn btn-outline-primary btn-block mb-4" id="createProjectButton" onclick="myAlertBottom()" type="submit">
                             Create Project
                         </button>
                     </div>
-
+                    <!-- Alert -->
+                    <div class="myAlert-bottom alert alert-success">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> The project has been successfully created.
+                    </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -210,7 +217,7 @@
 
 <!-- Start: Footer -->
 
-<footer style="height: 15px;">
+<footer>
     <div class="footer-box">
         <p class="footer">
             ©TimBan — Made with ❤ for the people of the internet.<br></p>
@@ -307,6 +314,37 @@
     })()
 
     // End: Modal Validation
+
+    // Start: Alert
+
+    function myAlertBottom(){
+        $(".myAlert-bottom").show();
+        setTimeout(function(){
+            $(".myAlert-bottom").hide();
+        }, 2000);
+    }
+
+    // End: Alert
+
+    // Start: Project Search Bar
+
+    const searchProjects = document.querySelector("#searchProjects");
+    searchProjects.addEventListener("keyup", function(e){
+        const span_projects = document.querySelectorAll(".table-row");
+        const search_project = e.target.value.toLowerCase();
+
+        span_projects.forEach(function(project){
+            if(project.textContent.toLowerCase().indexOf(search_project) !== -1){
+                project.closest('ul').style.display = "block"
+            }
+            else{
+                project.closest('ul').style.display = "none";
+            }
+        })
+
+    });
+
+    // End: Project Search Bar
 
 </script>
 </html>
