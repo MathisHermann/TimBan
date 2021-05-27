@@ -216,7 +216,7 @@ function postProfile(name, workload, email, password, isAdmin, callbackSuccess) 
         url: serviceEndpointURL + "/api/users",
         data: JSON.stringify({
             "userName": name,
-            "workload": workload,
+            "weeklyHours": workload,
             "email": email,
             "password": password,
             "isAdmin": isAdmin

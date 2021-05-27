@@ -8,14 +8,23 @@ nav {
     background-color: white;
 }
 
+.nav-item{
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+
+}
+
 .search-form {
-    width: 500px;
+    width: 400px;
     position: relative;
     display: flex;
 }
 
 .form-control {
     border-color: #3FB0AC;
+    align-content: center;
+    min-width: 400px;
 }
 
 .dude {
@@ -59,7 +68,6 @@ nav {
 }
 
 .grid {
-    margin-top: 200px;
     font-size: 26px;
     color: white;
     display: grid;
@@ -87,6 +95,7 @@ nav {
     color: black;
     text-decoration: none;
 }
+
 .rowClick:hover {
     color: #3FB0AC;
 }
@@ -106,6 +115,14 @@ nav {
     color: rgb(0, 0, 0);
 }
 
+.btn-lg {
+    margin-bottom: 50px;
+}
+
+.btn-group {
+    margin-bottom: 50px;
+}
+
 .createButton {
     display:block;
     height: 100px;
@@ -113,20 +130,12 @@ nav {
     border-radius: 50%;
 }
 
+.dropD {
+   margin-bottom: 30px;
+}
+
 .btn-lg {
     min-width: 400px;
-}
-
-.myAlert-bottom{
-    text-align: center;
-    position: fixed;
-    bottom: 5px;
-    left:2%;
-    width: 96%;
-}
-
-.alert{
-    display: none;
 }
 
 .errorPageStyle {
@@ -146,7 +155,7 @@ nav {
 
 .container {
     max-width: 1000px;
-    margin-top: 250px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 10px;
