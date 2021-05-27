@@ -18,7 +18,7 @@ import java.util.Optional;
  * Peer: Sven
  * Reviewer: -
  * Date: 21.04.2021, 12.05.2021
- *
+ * <p>
  * This class handles all request regarding the frontend view "overview". Only admin users can open this page.
  * This view is shown, when a particular user is to be seen.
  */
@@ -54,15 +54,21 @@ public class OverviewController {
                     model.addAttribute(
                             "user", timbanUser.get()
                     );
-                    model.addAttribute(
-                            "weekly", timbanTimeRecordService.getWeekly(timbanUser.get().getId())
-                    );
-                    model.addAttribute(
-                            "monthly", timbanTimeRecordService.getMonthly(timbanUser.get().getId())
-                    );
-                    model.addAttribute(
-                            "yearly",  timbanTimeRecordService.getYearly(timbanUser.get().getId())
-                    );
+                    try {
+                        model.addAttribute(
+                                "weekly", timbanTimeRecordService.getWeekly(timbanUser.get().getId())
+                        );
+                        model.addAttribute(
+                                "monthly", timbanTimeRecordService.getMonthly(timbanUser.get().getId())
+                        );
+                        model.addAttribute(
+                                "yearly", timbanTimeRecordService.getYearly(timbanUser.get().getId())
+                        );
+                    } catch (Exception e) {
+                        model.addAttribute("weekly", "00:00");
+                        model.addAttribute("monthly", "00:00");
+                        model.addAttribute("yearly", "00:00");
+                    }
 
                     model.addAttribute(
                             "weeklyCompanyHours", timbanCompanyConfigService.getWeeklyCompanyHours()
@@ -89,7 +95,8 @@ public class OverviewController {
             }
         } catch (Exception e) {
             // return the view "login" if visitor is not logged in
-            return  "login";
+            e.printStackTrace();
+            return "login";
         }
     }
 

@@ -37,9 +37,8 @@ public class ReportPDF {
     @Autowired
     TimbanTimeRecordService timbanTimeRecordService;
 
-    public boolean reportToPDF(
-            TimbanUser timbanUser,
-            String month) {
+    public String reportToPDF(
+            TimbanUser timbanUser) {
 
         List<TimbanTimeRecord> timeRecords = timbanTimeRecordService.getTimeRecordListByTimeSpanAndId(timbanUser.getId(), "month");
 
@@ -48,16 +47,14 @@ public class ReportPDF {
         String userName = timbanUser.getUserName();
         int totalTime = timbanTimeRecordService.calculate(timbanUser.getId(), "month");
 
-        createDocument(userName, diffAndWeekDay, totalTime);
-
-        return true;
+        return createDocument(userName, diffAndWeekDay, totalTime);
     }
 
-    private void createDocument(String userName, int[][] diffAndWeekDay, int totalTime) {
-
+    private String createDocument(String userName, int[][] diffAndWeekDay, int totalTime) {
+        String path = null;
         try {
 
-            String path = "timban-web/src/main/resources/static/reports/" + userName.replace(" ", "_");
+            path = "timban-web/src/main/resources/static/reports/" + userName.replace(" ", "_");
 
             File theDir = new File(path);
             if (!theDir.exists()) {
@@ -94,6 +91,8 @@ public class ReportPDF {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return path;
 
     }
 
