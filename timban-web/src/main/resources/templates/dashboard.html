@@ -1,6 +1,5 @@
 
-<!--Author:  Lars Stegmann-->
-
+<!-- START PART LARS STEGMANN-->
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
@@ -35,7 +34,7 @@
 </head>
 <body>
 
-<!-- Top Nav/Search -->
+<!-- Top Nav/Search based on Antonio Briatico's design-->
 
 <nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -69,11 +68,9 @@
     </div>
 </nav>
 
-<!-- End Top Nav/Search -->
+<!-- End Top Nav/Search based on Antonio Briatico's design-->
 
 <!-- Start : Hero -->
-
-
 
 <div class="container" id="heroSection-dashboard">
 
@@ -144,12 +141,8 @@
         <div class="col-sm-2 text-center">
             <h1 th:text="${#dates.format(record.timestamp, 'HH:mm')}"/>
         </div>
-        <div class="col-sm-4 text-center">
-            <h1 th:with="id=${record.projectId},
-                id=0"
-                th:text="${projects[id].projectName}"/>
-<!--            <h1 th:text="${record.projectId}"/>-->
-
+        <div class="col-sm-4 text-center" >
+            <h1 th:text="${record.projectId}"/>
 
 
         </div>
@@ -230,7 +223,7 @@
     {
         var user = [[${user}]];
         var records = [[${records}]];
-        var records = [[${projects}]];
+        var projects = [[${projects}]];
 
 
 
