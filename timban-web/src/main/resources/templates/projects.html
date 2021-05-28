@@ -122,7 +122,8 @@
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-outline">
-                                    <input type="text" th:id="@{|formProjectName-${project.id}|}" class="form-control" required
+                                    <input type="text" th:id="@{|formProjectName-${project.id}|}" class="form-control"
+                                           required
                                            th:value="${project.projectName}"/>
                                     <label class="form-label" th:attr="for='@{|formProjectName-${project.id}|}'">Project
                                         Name</label>

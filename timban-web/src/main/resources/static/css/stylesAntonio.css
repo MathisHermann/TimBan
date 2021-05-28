@@ -12,17 +12,19 @@ nav {
     display: block;
     text-align: center;
     margin-top: 30px;
-
 }
 
 .search-form {
-    min-width: 400px;
+    width: 100%;
+}
+
+.fSearch{
+    width: 100%;
 }
 
 .form-control {
     border-color: #3FB0AC;
     align-content: center;
-
 }
 
 .dude {
@@ -118,10 +120,6 @@ nav {
     margin-bottom: 50px;
 }
 
-.btn-group {
-    margin-bottom: 50px;
-}
-
 .createButton {
     display:block;
     height: 100px;
@@ -134,7 +132,8 @@ nav {
 }
 
 .btn-lg {
-    min-width: 400px;
+    width: 30%;
+    margin-bottom: 50px;
 }
 
 .errorPageStyle {
