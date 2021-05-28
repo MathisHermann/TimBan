@@ -199,6 +199,21 @@ function putProfile (name, email, password) {
 }
 
 
+// function getProjectName (records, projects, projectName) {
+//
+//     var i;
+//     var z;
+//     for (i = 0; i < records.length; i++) {
+//         var projectID = record.projectId;
+//
+//         for (z = 0; z < projects.length; z++) {
+//             var projectName = project.getElementById(projectID).projectName
+//         }
+//         return projectName
+//     }
+// }
+
+
 <!-- END PART LARS-->
 
 
