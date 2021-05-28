@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import rocks.process.timban.data.domain.TimbanProject;
@@ -25,6 +26,7 @@ import java.time.temporal.ChronoUnit;
  */
 
 @Component
+@PropertySource("classpath:application.properties")
 public class OnStartService implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
@@ -46,9 +48,11 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     private boolean fakeTimeRecordsCreated = false;
     private boolean fakeProjectsCreated = false;
 
-    @Value("user.insertion.username")
+    @Autowired
+    private Environment env;
+    /*@Value("user.insertion.username")
     private String userName;
-
+*/
     /**
      * Execute the faker and creation of the admin user.
      *
@@ -131,6 +135,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     public void createAdminUser() {
         adminCreated = true;
         try {
+            String userName = env.getProperty("user.insertion.username");
             System.out.println(userName);
         } catch (Exception e) {
             System.out.println("Hello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello");
