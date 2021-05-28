@@ -15,3 +15,8 @@ spring:
 security:
   token:
     secret: ${TOKEN_SECRET}
+
+user:
+  insertion:
+    username: ${INSERT_USERNAME}
+    password: ${INSERT_PASSWORD}
