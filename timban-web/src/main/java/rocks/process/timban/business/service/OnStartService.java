@@ -3,6 +3,7 @@ package rocks.process.timban.business.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -26,7 +27,6 @@ import java.time.temporal.ChronoUnit;
  */
 
 @Component
-@PropertySource("classpath:application-heroku.yml")
 public class OnStartService implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
@@ -47,12 +47,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     private boolean fakeUsersCreated = false;
     private boolean fakeTimeRecordsCreated = false;
     private boolean fakeProjectsCreated = false;
-
-    @Autowired
-    private Environment env;
-    /*@Value("user.insertion.username")
-    private String userName;
-*/
+    
     /**
      * Execute the faker and creation of the admin user.
      *
@@ -135,7 +130,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     public void createAdminUser() {
         adminCreated = true;
         try {
-            String userName = env.getProperty("user.insertion.username");
+            String userName = System.getenv("INSERT_USERNAME");
             System.out.println(userName);
         } catch (Exception e) {
             System.out.println("Hello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello");
