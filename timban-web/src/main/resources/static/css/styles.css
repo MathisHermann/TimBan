@@ -452,6 +452,10 @@ select::-ms-expand {
  align-content: center;
 }
 
+.putProfile-Button{
+ margin-top: 10px;
+}
+
 @media (max-width: 767px) {
  #selectProject-Div {
   margin-top: 30px;

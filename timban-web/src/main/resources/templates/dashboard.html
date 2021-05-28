@@ -124,7 +124,7 @@
             <h1 th:text="${user.currentlyCheckedIn} ? 'Online' : 'Offline'"/>
             <p>CURRENT STATUS</p>
         </div>
-        <div class="col-sm text-center" >
+        <div class="col-sm text-center" id>
             <h1 th:with="hours=${(totalTimeOfCurrentDay/3600)},
                         minutes=${(totalTimeOfCurrentDay - (hours * 3600)) / (60)}"
 
@@ -242,8 +242,8 @@
         var user = [[${user}]];
         var records = [[${records}]];
         var projects = [[${projects}]];
-
-
+        // var projectName;
+        // getProjectName(records, projects, projectName)
 
         $('#check-in-button').click(function () {
 
