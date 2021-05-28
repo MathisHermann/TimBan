@@ -26,7 +26,7 @@ import java.time.temporal.ChronoUnit;
  */
 
 @Component
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application-heroku.yml")
 public class OnStartService implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
