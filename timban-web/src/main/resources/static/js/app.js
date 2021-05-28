@@ -199,6 +199,21 @@ function putProfile (name, email, password) {
 }
 
 
+// function getProjectName (records, projects, projectName) {
+//
+//     var i;
+//     var z;
+//     for (i = 0; i < records.length; i++) {
+//         var projectID = record.projectId;
+//
+//         for (z = 0; z < projects.length; z++) {
+//             var projectName = project.getElementById(projectID).projectName
+//         }
+//         return projectName
+//     }
+// }
+
+
 <!-- END PART LARS-->
 
 
@@ -216,7 +231,7 @@ function postProfile(name, workload, email, password, isAdmin, callbackSuccess) 
         url: serviceEndpointURL + "/api/users",
         data: JSON.stringify({
             "userName": name,
-            "workload": workload,
+            "weeklyHours": workload,
             "email": email,
             "password": password,
             "isAdmin": isAdmin

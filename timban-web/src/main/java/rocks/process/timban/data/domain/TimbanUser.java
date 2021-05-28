@@ -65,7 +65,7 @@ public class TimbanUser {
         this.password = password;
         this.isAdmin = isAdmin;
         this.weeklyHours = weeklyHours;
-        this. currentlyCheckedIn = currentlyCheckedIn;
+        this.currentlyCheckedIn = currentlyCheckedIn;
     }
 
     public TimbanUser(){

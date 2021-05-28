@@ -351,7 +351,6 @@ select {
  text-overflow: '';
  appearance: none;
  border: none;
- width: 80%;
  height: 40px;
  -moz-padding-start: calc(10px - 3px);
  padding-left: 10px;
@@ -430,8 +429,31 @@ select::-ms-expand {
  margin-top: 50px;
 }
 
+#modal-centered{
+ display: revert;
+}
+
+#modal-header-style{
+ display: revert;
+}
+
 #error{
  color: red;
+}
+
+#container-margin{
+ margin-bottom: 50px;
+}
+ #record-settings-container{
+  margin-bottom: 150px;
+ }
+#form-control-datetime {
+ border-color: #3FB0AC;
+ align-content: center;
+}
+
+.putProfile-Button{
+ margin-top: 10px;
 }
 
 @media (max-width: 767px) {
@@ -453,6 +475,26 @@ select::-ms-expand {
 
  #record-settings-container{
   margin-bottom: 150px;
+ }
+
+ #edit-button{
+  margin-top: 10px;
+ }
+
+ #removeRecord{
+  margin-top: 10px;
+ }
+
+ #putRecords-Button{
+  margin-top: 10px;
+ }
+
+#SelectProject-put{
+ margin-top: 10px;
+}
+
+ .logo{
+  max-height: 25px!important;
  }
 }
 

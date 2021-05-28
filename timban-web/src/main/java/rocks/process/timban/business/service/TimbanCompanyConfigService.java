@@ -5,6 +5,13 @@ import org.springframework.stereotype.Service;
 import rocks.process.timban.data.domain.TimbanCompanyConfig;
 import rocks.process.timban.data.repository.TimbanCompanyConfigRepository;
 
+/**
+ * Author: Sven Herzig
+ * PairProgrammer: -
+ * Reviewer:
+ * Date: 26.04.2021
+ */
+
 @Service
 public class TimbanCompanyConfigService {
 

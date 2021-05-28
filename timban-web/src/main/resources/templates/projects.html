@@ -32,23 +32,44 @@
 
 <!-- Start: Top Nav -->
 
-<nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <!-- Navbar Logo -->
+    <a href="/">
+        <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
+    </a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav"
+            aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-        <a href="/">
-            <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
-        </a>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="mainNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/projects">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+        </ul>
+
         <!-- Start: Filter Bar -->
-        <form class="search-form d-flex ml-auto mt-1 mb-0" id="searchProjects">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="search-form">
+            <input class="form-control" type="text" placeholder="Search" id="searchProjects" aria-label="Search">
         </form>
-        <!-- End: Filter Bar -->
+
+        <!-- Dropdown Menu -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <div class="dropdown">
+                <div class="dropdown dropD">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Howdy, Admin
@@ -56,13 +77,13 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
                            data-bs-target="#createProjectModal">Create Project</a>
-                        <a class="dropdown-item" href="/admin">Users</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </div>
         </ul>
-        <img th:src="@{/images/dude.png}" alt="dude" class="dude"/>
+
     </div>
+
 </nav>
 
 <!-- End: Top Nav -->
@@ -98,43 +119,51 @@
                 <!-- Update Project Name & Due Date -->
                 <div class="modal-body">
                     <form class="needs-validation" novalidate>
-                    <div class="row mb-4">
-                        <div class="col">
-                            <div class="form-outline">
-                                <input type="text" th:id="@{|formProjectName-${project.id}|}"  class="form-control"
-                                       th:value="${project.projectName}"/>
-                                <label class="form-label" th:attr="for='@{|formProjectName-${project.id}|}'">Project Name</label>
-                                <div class="invalid-feedback">
-                                    Please enter a valid project name.
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" th:id="@{|formProjectName-${project.id}|}" class="form-control"
+                                           required
+                                           th:value="${project.projectName}"/>
+                                    <label class="form-label" th:attr="for='@{|formProjectName-${project.id}|}'">Project
+                                        Name</label>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid project name.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="date" th:id="@{|formDueDate-${project.id}|}" id="formDueDate"
+                                           class="form-control" required
+                                           th:value="${#dates.format(project.dueDate, 'yyyy-MM-dd')}"/>
+                                    <label class="form-label" th:attr="for='@{|formDueDate-${project.id}|}'">Due
+                                        Date</label>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid date.
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-outline">
-                                <input type="date" th:id="@{|formDueDate-${project.id}|}" id="formDueDate" class="form-control"
-                                       th:value="${#dates.format(project.dueDate, 'yyyy-MM-dd')}"/>
-                                <label class="form-label" th:attr="for='@{|formDueDate-${project.id}|}'">Due Date</label>
-                                <div class="invalid-feedback">
-                                    Please enter a valid date.
-                                </div>
+                        <!-- Update user & Delete User Button" -->
+                        <div class="row">
+                            <div class="btn-group col">
+                                <button th:attr="data-value=${project.id}"
+                                        th:id="@{|updateProjectButton-${project.id}|}"
+                                        type="submit" class="btn btn-outline-primary updateProjectButtonSelection">
+                                    Update
+                                </button>
+                            </div>
+                            <div class="btn-group col">
+                                <button th:attr="data-value=${project.id}"
+                                        th:id="@{|deleteProjectButton-${project.id}|}"
+                                        type="button" class="btn btn-outline-primary deleteProjectButtonSelection">
+                                    Delete
+                                    Project
+                                </button>
                             </div>
                         </div>
-                    </div>
-                    <!-- Update user & Delete User Button" -->
-                    <div class="row">
-                        <div class="btn-group col">
-                            <button th:attr="data-value=${project.id}" th:id="@{|updateProjectButton-${project.id}|}"
-                                    type="submit" class="btn btn-outline-primary updateProjectButtonSelection">Update
-                            </button>
-                        </div>
-                        <div class="btn-group col">
-                            <button th:attr="data-value=${project.id}" th:id="@{|deleteProjectButton-${project.id}|}"
-                                    type="button" class="btn btn-outline-primary deleteProjectButtonSelection">Delete
-                                Project
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -178,14 +207,9 @@
                     <p></p>
                     <!-- "Create Project" Button" -->
                     <div class="col-12">
-                        <button class="btn btn-outline-primary btn-block mb-4" id="createProjectButton" onclick="myAlertBottom()" type="submit">
+                        <button class="btn btn-outline-primary btn-block mb-4" id="createProjectButton" type="submit">
                             Create Project
                         </button>
-                    </div>
-                    <!-- Alert -->
-                    <div class="myAlert-bottom alert alert-success">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>Success!</strong> The project has been successfully created.
                     </div>
                 </form>
             </div>
@@ -194,26 +218,6 @@
 </div>
 
 <!-- End Modal: Create Project -->
-
-<div class="modal fade" role="dialog" tabindex="-1" id="error-modal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="color: black !important">
-                <h4 class="text-white" id="result-text" style="color: black !important">Wrong entries, try again!</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-footer">
-                <div class="button-group">
-                    <a href="/admin">
-                        <button class="btn btn-warning btn-block" style="width: 100px" type="button">Admin</button>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 <!-- Start: Footer -->
 
@@ -258,16 +262,14 @@
 
             var id = $(this).attr('id').split("-")[1]
 
-            var projectName = $('#formProjectName-' + id ).val();
+            var projectName = $('#formProjectName-' + id).val();
             var dueDateSelection = $('#formDueDate-' + id).val();
             var dueDate = Date.parse(dueDateSelection) / 1000;
 
             updateProject(projectName, dueDate, id, function (result) {
                 if (result)
                     location.reload()
-                else {
-                    $("#error-modal").modal('show');
-                }
+
             });
 
             event.preventDefault();
@@ -290,7 +292,7 @@
 
     // End: Delete Project
 
-    // Start: Modal Validation
+    // Start: Modal Validation (with the help of Bootstrap 5.0 docs)
 
     // Disabling form submissions if there are invalid fields
     (function () {
@@ -315,29 +317,17 @@
 
     // End: Modal Validation
 
-    // Start: Alert
-
-    function myAlertBottom(){
-        $(".myAlert-bottom").show();
-        setTimeout(function(){
-            $(".myAlert-bottom").hide();
-        }, 2000);
-    }
-
-    // End: Alert
-
     // Start: Project Search Bar
 
     const searchProjects = document.querySelector("#searchProjects");
-    searchProjects.addEventListener("keyup", function(e){
+    searchProjects.addEventListener("keyup", function (e) {
         const span_projects = document.querySelectorAll(".table-row");
         const search_project = e.target.value.toLowerCase();
 
-        span_projects.forEach(function(project){
-            if(project.textContent.toLowerCase().indexOf(search_project) !== -1){
+        span_projects.forEach(function (project) {
+            if (project.textContent.toLowerCase().indexOf(search_project) !== -1) {
                 project.closest('ul').style.display = "block"
-            }
-            else{
+            } else {
                 project.closest('ul').style.display = "none";
             }
         })

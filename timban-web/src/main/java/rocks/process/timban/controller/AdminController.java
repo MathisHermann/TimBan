@@ -56,9 +56,5 @@ public class AdminController {
             // Return if the visitor is not logged in or login is not valid.
             return "redirect:/login";
         }
-
     }
-
-
-
 }

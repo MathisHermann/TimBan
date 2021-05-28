@@ -33,37 +33,58 @@
 
 <!-- Start: Top Nav -->
 
-<nav class="py-6 px-4 navbar navbar-expand-lg auto-hiding-navbar fixed-top">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <!-- Navbar Logo -->
+    <a href="/">
+        <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
+    </a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav"
+            aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-        <a href="/">
-            <img th:src="@{/images/logo.png}" alt="logo" class="logo"/>
-        </a>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="mainNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/projects">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+        </ul>
+
         <!-- Start: Filter Bar -->
-        <form class="search-form d-flex ml-auto mt-1 mb-0" id="searchUsers">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                   </form>
-        <!-- End: Filter Bar -->
+        <form class="search-form">
+            <input class="form-control fSearch" type="text" placeholder="Search" id="searchUsers" aria-label="Search">
+        </form>
+
+        <!-- Dropdown Menu -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <div class="dropdown">
+                <div class="dropdown dropD">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Howdy, Admin
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createUserModal">Create
-                            User</a>
-                        <a class="dropdown-item" href="/projects">Projects</a>
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                           data-bs-target="#createUserModal">Create User</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </div>
         </ul>
-        <img th:src="@{/images/dude.png}" alt="dude" class="dude"/>
+
     </div>
+
 </nav>
 
 <!-- End: Top Nav -->
@@ -76,7 +97,7 @@
             <div class="col col-1">Id</div>
             <div class="col col-2">Name</div>
             <div class="col col-3">Workload %</div>
-            <div class="col col-4">Workload hrs.</div>
+            <div class="col col-4">Weekly hrs.</div>
         </li>
     </ul>
     <ul class="responsive-table" th:each="user: ${users}">
@@ -240,15 +261,14 @@
     // Start: User Search Bar
 
     const searchUsers = document.querySelector("#searchUsers");
-    searchUsers.addEventListener("keyup", function(e){
+    searchUsers.addEventListener("keyup", function (e) {
         const span_users = document.querySelectorAll(".table-row");
         const search_user = e.target.value.toLowerCase();
 
-        span_users.forEach(function(user){
-            if(user.textContent.toLowerCase().indexOf(search_user) !== -1){
+        span_users.forEach(function (user) {
+            if (user.textContent.toLowerCase().indexOf(search_user) !== -1) {
                 user.closest('ul').style.display = "block"
-            }
-            else{
+            } else {
                 user.closest('ul').style.display = "none";
             }
         })
