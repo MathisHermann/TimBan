@@ -46,6 +46,9 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     private boolean fakeTimeRecordsCreated = false;
     private boolean fakeProjectsCreated = false;
 
+    @Value("user.insertion.username")
+    private String userName;
+
     /**
      * Execute the faker and creation of the admin user.
      *
@@ -125,10 +128,9 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     /**
      * Create The Admin User. Only this will be executed in productive.
      */
-    public void createAdminUser(Environment environment) {
+    public void createAdminUser() {
         adminCreated = true;
         try {
-            String userName = environment.getProperty("user.insertion.username");
             System.out.println(userName);
         } catch (Exception e) {
             System.out.println("Hello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello");
