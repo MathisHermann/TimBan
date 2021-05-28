@@ -16,15 +16,13 @@ nav {
 }
 
 .search-form {
-    width: 400px;
-    position: relative;
-    display: flex;
+    min-width: 400px;
 }
 
 .form-control {
     border-color: #3FB0AC;
     align-content: center;
-    min-width: 400px;
+
 }
 
 .dude {
@@ -69,6 +67,7 @@ nav {
 
 .grid {
     font-size: 26px;
+    margin-top: 10px;
     color: white;
     display: grid;
     height:300px;

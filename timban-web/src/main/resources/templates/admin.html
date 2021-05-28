@@ -41,13 +41,13 @@
     </a>
 
     <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
+    <div class="collapse navbar-collapse" id="mainNav">
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
@@ -64,9 +64,7 @@
 
         <!-- Start: Filter Bar -->
         <form class="search-form">
-            <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchUsers" aria-label="Search">
-            </div>
+            <input class="form-control" type="text" placeholder="Search" id="searchUsers" aria-label="Search">
         </form>
 
         <!-- Dropdown Menu -->
@@ -263,15 +261,14 @@
     // Start: User Search Bar
 
     const searchUsers = document.querySelector("#searchUsers");
-    searchUsers.addEventListener("keyup", function(e){
+    searchUsers.addEventListener("keyup", function (e) {
         const span_users = document.querySelectorAll(".table-row");
         const search_user = e.target.value.toLowerCase();
 
-        span_users.forEach(function(user){
-            if(user.textContent.toLowerCase().indexOf(search_user) !== -1){
+        span_users.forEach(function (user) {
+            if (user.textContent.toLowerCase().indexOf(search_user) !== -1) {
                 user.closest('ul').style.display = "block"
-            }
-            else{
+            } else {
                 user.closest('ul').style.display = "none";
             }
         })

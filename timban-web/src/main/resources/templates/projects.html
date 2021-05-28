@@ -40,13 +40,13 @@
     </a>
 
     <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
+    <div class="collapse navbar-collapse" id="mainNav">
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
@@ -63,9 +63,7 @@
 
         <!-- Start: Filter Bar -->
         <form class="search-form">
-            <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchProjects" aria-label="Search">
-            </div>
+                <input class="form-control" type="text" placeholder="Search" id="searchProjects" aria-label="Search">
         </form>
 
         <!-- Dropdown Menu -->
@@ -263,12 +261,10 @@
             updateProject(projectName, dueDate, id, function (result) {
                 if (result)
                     location.reload()
-                else {
-                    $("#error-modal").modal('show');
-                }
-            });
 
+            });
             event.preventDefault();
+
         })
 
 // End: Update Project
