@@ -102,6 +102,7 @@ public class TimbanUserController {
     @PutMapping
     public ResponseEntity<Void> updateUser(@RequestBody TimbanUser timbanUser) {
         try {
+            timbanUser.setAdmin(timbanUserService.getCurrentTimbanUser().isAdmin());
             timbanUser.setId(timbanUserService.getCurrentTimbanUser().getId());
             timbanUser.setChangedOn(Instant.now());
             timbanUserService.saveTimbanUser(timbanUser);
