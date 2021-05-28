@@ -41,7 +41,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     @Autowired
     ReportPDF reportPDF;
 
-    private final boolean runsProductive = System.getenv("RUN_PROD").equals("true");
+    private final boolean runsProductive = Boolean.getBoolean(System.getenv("RUN_PROD"));
     private boolean adminCreated = false;
     private boolean noProjectCreated = false;
     private boolean fakeUsersCreated = false;
