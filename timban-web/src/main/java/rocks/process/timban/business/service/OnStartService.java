@@ -55,7 +55,11 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
      */
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        runsProductive = System.getenv("RUN_PROD").equals("prod");
+        try {
+            runsProductive = System.getenv("RUN_PROD").equals("prod");
+        } catch (NullPointerException e) {
+            runsProductive = false;
+        }
         if (!adminCreated)
             this.createAdminUser();
         if (!noProjectCreated)

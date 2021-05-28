@@ -265,7 +265,7 @@
             var projectName = $('#formProjectName-' + id).val();
             var dueDateSelection = $('#formDueDate-' + id).val();
             var dueDate = Date.parse(dueDateSelection) / 1000;
-
+            console.log(dueDate)
             updateProject(projectName, dueDate, id, function (result) {
                 if (result)
                     location.reload()

@@ -39,6 +39,7 @@ public class TimbanProjectService {
         try {
             TimbanProject updatedTimbanProject = timbanProjectRepository.findById(id).get();
             updatedTimbanProject.setProjectName(timbanProject.getProjectName());
+            updatedTimbanProject.setDueDate(timbanProject.getDueDate());
             return timbanProjectRepository.save(updatedTimbanProject);
         } catch (Exception e) {
             return null;
