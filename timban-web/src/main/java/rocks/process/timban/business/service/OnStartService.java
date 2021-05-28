@@ -47,7 +47,7 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     private boolean fakeUsersCreated = false;
     private boolean fakeTimeRecordsCreated = false;
     private boolean fakeProjectsCreated = false;
-    
+
     /**
      * Execute the faker and creation of the admin user.
      *
@@ -131,16 +131,25 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
         adminCreated = true;
         try {
             String userName = System.getenv("INSERT_USERNAME");
-            System.out.println(userName);
+            String email = System.getenv("INSERT_EMAIL");
+            String password = System.getenv("INSERT_PASSWORD");
+
+            if (userName != null && email != null && password != null)
+                timbanUserService.saveTimbanUser(new TimbanUser(userName, email, password, true, 0, false));
+            else
+                adminCreated = false;
+
         } catch (Exception e) {
-            System.out.println("Hello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello");
+            adminCreated = false;
         }
 
-        try {
-            timbanUserService.saveTimbanUser(new TimbanUser("admin", "admin@example.com", "12345678", true, 0, false));
-        } catch (Exception e) {
-            e.printStackTrace();
-            adminCreated = false;
+        if (!adminCreated) {
+            try {
+                timbanUserService.saveTimbanUser(new TimbanUser("admin", "admin@example.com", "12345678", true, 0, false));
+            } catch (Exception e) {
+                e.printStackTrace();
+                adminCreated = false;
+            }
         }
     }
 

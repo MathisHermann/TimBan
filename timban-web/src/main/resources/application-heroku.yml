@@ -18,4 +18,5 @@ security:
 
 admin:
   username: ${INSERT_USERNAME}
+  email: ${INSERT_EMAIL}
   password: ${INSERT_PASSWORD}
