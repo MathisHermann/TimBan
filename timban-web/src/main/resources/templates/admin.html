@@ -97,7 +97,7 @@
             <div class="col col-1">Id</div>
             <div class="col col-2">Name</div>
             <div class="col col-3">Workload %</div>
-            <div class="col col-4">Workload hrs.</div>
+            <div class="col col-4">Weekly hrs.</div>
         </li>
     </ul>
     <ul class="responsive-table" th:each="user: ${users}">
@@ -261,14 +261,15 @@
     // Start: User Search Bar
 
     const searchUsers = document.querySelector("#searchUsers");
-    searchUsers.addEventListener("keyup", function (e) {
+    searchUsers.addEventListener("keyup", function(e){
         const span_users = document.querySelectorAll(".table-row");
         const search_user = e.target.value.toLowerCase();
 
-        span_users.forEach(function (user) {
-            if (user.textContent.toLowerCase().indexOf(search_user) !== -1) {
+        span_users.forEach(function(user){
+            if(user.textContent.toLowerCase().indexOf(search_user) !== -1){
                 user.closest('ul').style.display = "block"
-            } else {
+            }
+            else{
                 user.closest('ul').style.display = "none";
             }
         })

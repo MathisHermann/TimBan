@@ -63,7 +63,7 @@
 
         <!-- Start: Filter Bar -->
         <form class="search-form">
-                <input class="form-control" type="text" placeholder="Search" id="searchProjects" aria-label="Search">
+            <input class="form-control" type="text" placeholder="Search" id="searchProjects" aria-label="Search">
         </form>
 
         <!-- Dropdown Menu -->
@@ -119,43 +119,50 @@
                 <!-- Update Project Name & Due Date -->
                 <div class="modal-body">
                     <form class="needs-validation" novalidate>
-                    <div class="row mb-4">
-                        <div class="col">
-                            <div class="form-outline">
-                                <input type="text" th:id="@{|formProjectName-${project.id}|}"  class="form-control"
-                                       th:value="${project.projectName}"/>
-                                <label class="form-label" th:attr="for='@{|formProjectName-${project.id}|}'">Project Name</label>
-                                <div class="invalid-feedback">
-                                    Please enter a valid project name.
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" th:id="@{|formProjectName-${project.id}|}" class="form-control" required
+                                           th:value="${project.projectName}"/>
+                                    <label class="form-label" th:attr="for='@{|formProjectName-${project.id}|}'">Project
+                                        Name</label>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid project name.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="date" th:id="@{|formDueDate-${project.id}|}" id="formDueDate"
+                                           class="form-control" required
+                                           th:value="${#dates.format(project.dueDate, 'yyyy-MM-dd')}"/>
+                                    <label class="form-label" th:attr="for='@{|formDueDate-${project.id}|}'">Due
+                                        Date</label>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid date.
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-outline">
-                                <input type="date" th:id="@{|formDueDate-${project.id}|}" id="formDueDate" class="form-control"
-                                       th:value="${#dates.format(project.dueDate, 'yyyy-MM-dd')}"/>
-                                <label class="form-label" th:attr="for='@{|formDueDate-${project.id}|}'">Due Date</label>
-                                <div class="invalid-feedback">
-                                    Please enter a valid date.
-                                </div>
+                        <!-- Update user & Delete User Button" -->
+                        <div class="row">
+                            <div class="btn-group col">
+                                <button th:attr="data-value=${project.id}"
+                                        th:id="@{|updateProjectButton-${project.id}|}"
+                                        type="submit" class="btn btn-outline-primary updateProjectButtonSelection">
+                                    Update
+                                </button>
+                            </div>
+                            <div class="btn-group col">
+                                <button th:attr="data-value=${project.id}"
+                                        th:id="@{|deleteProjectButton-${project.id}|}"
+                                        type="button" class="btn btn-outline-primary deleteProjectButtonSelection">
+                                    Delete
+                                    Project
+                                </button>
                             </div>
                         </div>
-                    </div>
-                    <!-- Update user & Delete User Button" -->
-                    <div class="row">
-                        <div class="btn-group col">
-                            <button th:attr="data-value=${project.id}" th:id="@{|updateProjectButton-${project.id}|}"
-                                    type="submit" class="btn btn-outline-primary updateProjectButtonSelection">Update
-                            </button>
-                        </div>
-                        <div class="btn-group col">
-                            <button th:attr="data-value=${project.id}" th:id="@{|deleteProjectButton-${project.id}|}"
-                                    type="button" class="btn btn-outline-primary deleteProjectButtonSelection">Delete
-                                Project
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -199,7 +206,7 @@
                     <p></p>
                     <!-- "Create Project" Button" -->
                     <div class="col-12">
-                        <button class="btn btn-outline-primary btn-block mb-4" id="createProjectButton" onclick="myAlertBottom()" type="submit">
+                        <button class="btn btn-outline-primary btn-block mb-4" id="createProjectButton" type="submit">
                             Create Project
                         </button>
                     </div>
@@ -254,7 +261,7 @@
 
             var id = $(this).attr('id').split("-")[1]
 
-            var projectName = $('#formProjectName-' + id ).val();
+            var projectName = $('#formProjectName-' + id).val();
             var dueDateSelection = $('#formDueDate-' + id).val();
             var dueDate = Date.parse(dueDateSelection) / 1000;
 
@@ -263,8 +270,8 @@
                     location.reload()
 
             });
-            event.preventDefault();
 
+            event.preventDefault();
         })
 
 // End: Update Project
@@ -312,15 +319,14 @@
     // Start: Project Search Bar
 
     const searchProjects = document.querySelector("#searchProjects");
-    searchProjects.addEventListener("keyup", function(e){
+    searchProjects.addEventListener("keyup", function (e) {
         const span_projects = document.querySelectorAll(".table-row");
         const search_project = e.target.value.toLowerCase();
 
-        span_projects.forEach(function(project){
-            if(project.textContent.toLowerCase().indexOf(search_project) !== -1){
+        span_projects.forEach(function (project) {
+            if (project.textContent.toLowerCase().indexOf(search_project) !== -1) {
                 project.closest('ul').style.display = "block"
-            }
-            else{
+            } else {
                 project.closest('ul').style.display = "none";
             }
         })
