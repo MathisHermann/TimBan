@@ -1,8 +1,10 @@
 package rocks.process.timban.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import rocks.process.timban.data.domain.TimbanProject;
 import rocks.process.timban.data.domain.TimbanTimeRecord;
@@ -123,8 +125,15 @@ public class OnStartService implements ApplicationListener<ApplicationReadyEvent
     /**
      * Create The Admin User. Only this will be executed in productive.
      */
-    public void createAdminUser() {
+    public void createAdminUser(Environment environment) {
         adminCreated = true;
+        try {
+            String userName = environment.getProperty("user.insertion.username");
+            System.out.println(userName);
+        } catch (Exception e) {
+            System.out.println("Hello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello \nHello");
+        }
+
         try {
             timbanUserService.saveTimbanUser(new TimbanUser("admin", "admin@example.com", "12345678", true, 0, false));
         } catch (Exception e) {
